@@ -9,7 +9,7 @@ class MyCalendar extends StatefulWidget {
 }
 
 class _MyCalendarState extends State<MyCalendar> {
-  DateTime _focusedDay = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+  DateTime _focusedDay = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).toLocal();
   DateTime? _selectedDay;
 
   @override
@@ -44,13 +44,14 @@ class _MyCalendarState extends State<MyCalendar> {
             },
             onDaySelected: (selectedDay, focusedDay) {
               setState(() {
-                _selectedDay = selectedDay;
+                _selectedDay = DateTime(selectedDay.year, selectedDay.month, selectedDay.day).toLocal();
                 _focusedDay = focusedDay;
               });
             },
           ),
           const SizedBox(height: 28),
-          Text('Selected Day: ${_selectedDay ?? DateTime.now()}'),
+          Text(
+              'Selected Day: ${_selectedDay ?? DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).toLocal()}'),
         ],
       ),
     );
