@@ -117,10 +117,11 @@ class _DietPageState extends State<DietPage> {
                       children: [
                         // Calories
                         _buildCircularPercentIndicator(
-                            _caloriesPercent, Colors.red.shade600, "${dailyData.calories} kcal"),
+                            _caloriesPercent, Colors.red.shade600, "${dailyData.calories}", 'Calories'),
                         const SizedBox(width: 20),
                         // Carb
-                        _buildCircularPercentIndicator(_carbPercent, Colors.green.shade600, "${dailyData.carb} g"),
+                        _buildCircularPercentIndicator(
+                            _carbPercent, Colors.green.shade600, "${dailyData.carb} g", 'Carb'),
                       ],
                     ),
                     const SizedBox(height: 40),
@@ -128,10 +129,11 @@ class _DietPageState extends State<DietPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         // Protein
-                        _buildCircularPercentIndicator(_proteinPercent, Colors.blue.shade800, "${dailyData.protein} g"),
+                        _buildCircularPercentIndicator(
+                            _proteinPercent, Colors.blue.shade800, "${dailyData.protein} g", 'Protein'),
                         const SizedBox(width: 20),
                         // Fat
-                        _buildCircularPercentIndicator(_fatPercent, Colors.brown.shade600, "${dailyData.fat} g"),
+                        _buildCircularPercentIndicator(_fatPercent, Colors.brown.shade600, "${dailyData.fat} g", 'Fat'),
                       ],
                     ),
                     const SizedBox(height: 50),
@@ -170,14 +172,32 @@ class _DietPageState extends State<DietPage> {
   }
 
   // CircularPercentIndicator를 생성하는 함수
-  Widget _buildCircularPercentIndicator(double percent, Color progressColor, String centerText) {
+  Widget _buildCircularPercentIndicator(double percent, Color progressColor, String centerText1, String centerText2) {
     return CircularPercentIndicator(
       radius: 50.0,
       lineWidth: 13,
       animation: true,
-      backgroundColor: Color.fromARGB(127, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(127, 255, 255, 255),
       percent: percent,
-      center: Text(centerText, style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 13)),
+      center: Column(
+        mainAxisAlignment: MainAxisAlignment.center, // 텍스트 세로 가운데 정렬
+        children: [
+          Text(
+            centerText1, // 첫 번째 줄 텍스트
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
+            ),
+          ),
+          Text(
+            centerText2, // 두 번째 줄 텍스트
+            style: const TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: 12,
+            ),
+          ),
+        ],
+      ),
       progressColor: progressColor,
       circularStrokeCap: CircularStrokeCap.round,
     );
@@ -189,16 +209,23 @@ class _DietPageState extends State<DietPage> {
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
         borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),
         ),
       ),
       child: Row(
         children: [
           Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(15),
+                // bottomLeft: Radius.circular(10),
+              ),
+              color: dividerColor,
+            ),
             width: 14,
             height: 50,
-            color: dividerColor,
+            // color: dividerColor,
           ),
           const SizedBox(width: 20),
           Column(

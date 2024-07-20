@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -31,8 +32,11 @@ class MyDrawer extends StatelessWidget {
 
               // other pages
               GestureDetector(
-                onTap: () {
-                  print('on clicked');
+                onTap: () async {
+                  final Uri _url = Uri.parse('http://github.com/squattlife/MyMacro');
+                  if (!await launchUrl(_url)) {
+                    throw Exception('Could not launch $_url');
+                  }
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 25.0),

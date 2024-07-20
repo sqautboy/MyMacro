@@ -14,6 +14,7 @@ class FirstIntro extends StatefulWidget {
 class _FirstIntroState extends State<FirstIntro> {
   // TextEditingController 추가
   final TextEditingController _targetCalorieController = TextEditingController();
+  bool _isButtonEnabled = false; // 버튼 활성화 상태 변수 추가
 
   @override
   void dispose() {
@@ -76,6 +77,12 @@ class _FirstIntroState extends State<FirstIntro> {
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
+                onChanged: (text) {
+                  // 텍스트 필드 값이 변경될 때마다 버튼 활성화 상태 업데이트
+                  setState(() {
+                    _isButtonEnabled = text.isNotEmpty;
+                  });
+                },
               ),
 
               const SizedBox(
@@ -83,50 +90,53 @@ class _FirstIntroState extends State<FirstIntro> {
               ),
 
               // start now button
-              GestureDetector(
-                onTap: () async {
-                  // 1. TextField에서 입력된 값 가져오기
-                  int targetCalories = int.tryParse(_targetCalorieController.text) ?? 0;
+              ElevatedButton(
+                // GestureDetector 대신 ElevatedButton 사용
+                onPressed: _isButtonEnabled // 버튼 활성화 상태에 따라 onPressed 설정
+                    ? () async {
+                        // 1. TextField에서 입력된 값 가져오기
+                        int targetCalories = int.tryParse(_targetCalorieController.text) ?? 0;
 
-                  // 2. IsarService를 통해 TargetData 가져오기
-                  TargetData? existingTargetData = await IsarService.isar.targetDatas.where().findFirst();
+                        // 2. IsarService를 통해 TargetData 가져오기
+                        TargetData? existingTargetData = await IsarService.isar.targetDatas.where().findFirst();
 
-                  // 3. TargetData가 이미 존재하면 업데이트, 없으면 생성
-                  if (existingTargetData != null) {
-                    existingTargetData.targetCalories = targetCalories;
-                    await IsarService.isar
-                        .writeTxn(() async => await IsarService.isar.targetDatas.put(existingTargetData));
-                  } else {
-                    await IsarService.isar.writeTxn(() async {
-                      await IsarService.isar.targetDatas.put(TargetData()..targetCalories = targetCalories);
-                    });
-                  }
+                        // 3. TargetData가 이미 존재하면 업데이트, 없으면 생성
+                        if (existingTargetData != null) {
+                          existingTargetData.targetCalories = targetCalories;
+                          await IsarService.isar
+                              .writeTxn(() async => await IsarService.isar.targetDatas.put(existingTargetData));
+                        } else {
+                          await IsarService.isar.writeTxn(() async {
+                            await IsarService.isar.targetDatas.put(TargetData()..targetCalories = targetCalories);
+                          });
+                        }
 
-                  print('입력된 텍스트: ${_targetCalorieController.text}');
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SecondIntro(),
-                      ));
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[900],
+                        print('입력된 텍스트: ${_targetCalorieController.text}');
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SecondIntro(),
+                            ));
+                      }
+                    : null,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _isButtonEnabled ? Colors.grey[900] : Colors.green, // 버튼 색상 변경
+                  padding: const EdgeInsets.all(25),
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  padding: const EdgeInsets.all(25),
-                  child: const Center(
-                    child: Text(
-                      'Next',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                ),
+                child: const Center(
+                  child: Text(
+                    'Next',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

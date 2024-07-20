@@ -85,58 +85,61 @@ class _SecondIntroState extends State<SecondIntro> {
             ),
 
             // start now button
-            GestureDetector(
-              onTap: () async {
-                TargetData? existingTargetData = await IsarService.isar.targetDatas.where().findFirst();
-                int calories = existingTargetData!.targetCalories;
+            ElevatedButton(
+              onPressed: _selectedIndex != -1 // _selectedIndex가 -1이 아니면 활성화
+                  ? () async {
+                      TargetData? existingTargetData = await IsarService.isar.targetDatas.where().findFirst();
+                      int calories = existingTargetData!.targetCalories;
 
-                switch (_selectedIndex) {
-                  case 0:
-                    existingTargetData.targetCarb = ((calories * 0.6 / 4)).toInt();
-                    existingTargetData.targetProtein = ((calories * 0.2 / 4)).toInt();
-                    existingTargetData.targetFat = ((calories * 0.2 / 9)).toInt();
-                    break;
-                  case 1:
-                    existingTargetData.targetCarb = ((calories * 0.5) / 4).toInt();
-                    existingTargetData.targetProtein = ((calories * 0.3) / 4).toInt();
-                    existingTargetData.targetFat = ((calories * 0.2 / 9)).toInt();
-                    break;
-                  case 2:
-                    existingTargetData.targetCarb = ((calories * 0.4) / 4).toInt();
-                    existingTargetData.targetProtein = ((calories * 0.4 / 4)).toInt();
-                    existingTargetData.targetFat = ((calories * 0.2 / 9)).toInt();
-                    break;
-                  default:
-                    // 선택된 항목이 없을 경우 기본 설정 (필요에 따라 수정)
-                    break;
-                }
-                // 설정된 목표 칼로리, 탄수화물, 단백질, 지방 비율을 데이터베이스에 저장
-                await IsarService.isar.writeTxn(() async => await IsarService.isar.targetDatas.put(existingTargetData));
+                      switch (_selectedIndex) {
+                        case 0:
+                          existingTargetData.targetCarb = ((calories * 0.6 / 4)).toInt();
+                          existingTargetData.targetProtein = ((calories * 0.2 / 4)).toInt();
+                          existingTargetData.targetFat = ((calories * 0.2 / 9)).toInt();
+                          break;
+                        case 1:
+                          existingTargetData.targetCarb = ((calories * 0.5) / 4).toInt();
+                          existingTargetData.targetProtein = ((calories * 0.3) / 4).toInt();
+                          existingTargetData.targetFat = ((calories * 0.2 / 9)).toInt();
+                          break;
+                        case 2:
+                          existingTargetData.targetCarb = ((calories * 0.4) / 4).toInt();
+                          existingTargetData.targetProtein = ((calories * 0.4 / 4)).toInt();
+                          existingTargetData.targetFat = ((calories * 0.2 / 9)).toInt();
+                          break;
+                        default:
+                          // 선택된 항목이 없을 경우 기본 설정 (필요에 따라 수정)
+                          break;
+                      }
+                      // 설정된 목표 칼로리, 탄수화물, 단백질, 지방 비율을 데이터베이스에 저장
+                      await IsarService.isar
+                          .writeTxn(() async => await IsarService.isar.targetDatas.put(existingTargetData));
 
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MainPage(),
-                    ));
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[900],
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MainPage(),
+                          ));
+                    }
+                  : null,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.grey[900], // 버튼 배경색
+                padding: const EdgeInsets.all(25), // 버튼 패딩
+                shape: RoundedRectangleBorder(
+                  // 버튼 모양
                   borderRadius: BorderRadius.circular(12),
                 ),
-                padding: const EdgeInsets.all(25),
-                child: const Center(
-                  child: Text(
-                    'Start Now',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
+                minimumSize: const Size(double.infinity, 50),
               ),
-            )
+              child: const Text(
+                'Start Now',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ), // 버튼 텍스트
+            ),
           ],
         ),
       ),

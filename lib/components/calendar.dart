@@ -42,6 +42,7 @@ class _MyCalendarState extends State<MyCalendar> {
             selectedDayPredicate: (day) {
               return isSameDay(_selectedDay, day);
             },
+
             onDaySelected: (selectedDay, focusedDay) {
               setState(() {
                 _selectedDay = DateTime(selectedDay.year, selectedDay.month, selectedDay.day).toLocal();
