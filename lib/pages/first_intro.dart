@@ -56,7 +56,7 @@ class _FirstIntroState extends State<FirstIntro> {
 
               // sub title
               const Text(
-                '당신의 목표 칼로리를 입력하세요.',
+                '당신의 목표 칼로리를 입력하세요',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey,
@@ -72,7 +72,7 @@ class _FirstIntroState extends State<FirstIntro> {
               TextField(
                 controller: _targetCalorieController,
                 decoration: const InputDecoration(
-                  labelText: '목표 칼로리 입력',
+                  labelText: '목표 칼로리(Kcal)',
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
