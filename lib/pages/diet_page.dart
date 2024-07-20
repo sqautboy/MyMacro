@@ -109,17 +109,18 @@ class _DietPageState extends State<DietPage> {
           : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
               child: Container(
-                color: Colors.grey.shade200,
+                // color: Colors.grey.shade200,
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         // Calories
-                        _buildCircularPercentIndicator(_caloriesPercent, Colors.red, "${dailyData.calories}"),
+                        _buildCircularPercentIndicator(
+                            _caloriesPercent, Colors.red.shade600, "${dailyData.calories} kcal"),
                         const SizedBox(width: 20),
                         // Carb
-                        _buildCircularPercentIndicator(_carbPercent, Colors.green[800]!, "${dailyData.carb}"),
+                        _buildCircularPercentIndicator(_carbPercent, Colors.green.shade600, "${dailyData.carb} g"),
                       ],
                     ),
                     const SizedBox(height: 40),
@@ -127,13 +128,39 @@ class _DietPageState extends State<DietPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         // Protein
-                        _buildCircularPercentIndicator(
-                            _proteinPercent, const Color.fromARGB(255, 19, 110, 195), "${dailyData.protein}"),
+                        _buildCircularPercentIndicator(_proteinPercent, Colors.blue.shade800, "${dailyData.protein} g"),
                         const SizedBox(width: 20),
                         // Fat
-                        _buildCircularPercentIndicator(
-                            _fatPercent, const Color.fromARGB(255, 166, 113, 21), "${dailyData.fat}"),
+                        _buildCircularPercentIndicator(_fatPercent, Colors.brown.shade600, "${dailyData.fat} g"),
                       ],
+                    ),
+                    const SizedBox(height: 50),
+                    _currentMacro(
+                      Colors.red.shade600,
+                      "Calories",
+                      '${dailyData.calories} / ${targetData.targetCalories} kcal',
+                      (dailyData.calories / targetData.targetCalories * 100).toInt(),
+                    ),
+                    const SizedBox(height: 20),
+                    _currentMacro(
+                      Colors.green.shade600,
+                      "Carb",
+                      '${dailyData.carb} / ${targetData.targetCarb} g',
+                      (dailyData.carb / targetData.targetCarb * 100).toInt(),
+                    ),
+                    const SizedBox(height: 20),
+                    _currentMacro(
+                      Colors.blue.shade800,
+                      "Protein",
+                      '${dailyData.protein} / ${targetData.targetProtein} g',
+                      (dailyData.protein / targetData.targetProtein * 100).toInt(),
+                    ),
+                    const SizedBox(height: 20),
+                    _currentMacro(
+                      Colors.brown.shade600,
+                      "Fat",
+                      '${dailyData.fat} / ${targetData.targetFat} g',
+                      (dailyData.fat / targetData.targetFat * 100).toInt(),
                     ),
                   ],
                 ),
@@ -148,11 +175,64 @@ class _DietPageState extends State<DietPage> {
       radius: 50.0,
       lineWidth: 13,
       animation: true,
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(127, 255, 255, 255),
       percent: percent,
-      center: Text(centerText),
+      center: Text(centerText, style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 13)),
       progressColor: progressColor,
       circularStrokeCap: CircularStrokeCap.round,
+    );
+  }
+
+  Widget _currentMacro(Color dividerColor, String nutrition, String status, int percentage) {
+    return Container(
+      // padding: const EdgeInsets.symmetric(vertical: 15),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade200,
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 14,
+            height: 50,
+            color: dividerColor,
+          ),
+          const SizedBox(width: 20),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                nutrition,
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 46, 46, 46),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18,
+                ),
+              ),
+              Text(
+                status,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Color.fromARGB(255, 87, 87, 87),
+                ),
+              ),
+            ],
+          ),
+          const Spacer(),
+          Text(
+            '$percentage%',
+            style: const TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: 18,
+              color: Color.fromARGB(255, 36, 36, 36),
+            ),
+          ),
+          const SizedBox(width: 40),
+        ],
+      ),
     );
   }
 }
