@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:diet_macro/models/isar_service.dart'; // IsarService import added
+import 'package:diet_macro/models/isar_data.dart'; // DailyData import added
 
 class MyCalendar extends StatefulWidget {
   const MyCalendar({super.key});
@@ -11,6 +13,7 @@ class MyCalendar extends StatefulWidget {
 class _MyCalendarState extends State<MyCalendar> {
   DateTime _focusedDay = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).toLocal();
   DateTime? _selectedDay;
+  DailyData? _dailyData; // Stores DailyData for the selected date
 
   @override
   Widget build(BuildContext context) {
@@ -43,16 +46,29 @@ class _MyCalendarState extends State<MyCalendar> {
               return isSameDay(_selectedDay, day);
             },
 
-            onDaySelected: (selectedDay, focusedDay) {
+            onDaySelected: (selectedDay, focusedDay) async {
               setState(() {
                 _selectedDay = DateTime(selectedDay.year, selectedDay.month, selectedDay.day).toLocal();
                 _focusedDay = focusedDay;
               });
+
+              _dailyData = await IsarService().getDailyDataByDate(_selectedDay!);
             },
           ),
-          const SizedBox(height: 28),
-          Text(
-              'Selected Day: ${_selectedDay ?? DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).toLocal()}'),
+          const SizedBox(height: 50),
+          // Text(
+          //     'Selected Day: ${_selectedDay ?? DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).toLocal()}'),
+
+          // 선택한 날짜의 DailyData 표시
+          if (_dailyData != null) ...[
+            // _dailyData가 null이 아닌 경우에만 표시
+            Text('Calories: ${_dailyData!.calories}'),
+            Text('Carb: ${_dailyData!.carb}'),
+            Text('Protein: ${_dailyData!.protein}'),
+            Text('Fat: ${_dailyData!.fat}'),
+          ] else ...[
+            Text('No data available for selected day'),
+          ],
         ],
       ),
     );
