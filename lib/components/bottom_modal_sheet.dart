@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -71,9 +73,7 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
               ),
             ],
           ),
-          const SizedBox(
-            height: 6,
-          ),
+          const Spacer(),
           _buildInputField('Calories', 'Kcal', caloriesController),
           _buildInputField('Carb', 'g', carbController),
           _buildInputField('Protein', 'g', proteinController),

@@ -36,7 +36,7 @@ class _MainPageState extends State<MainPage> {
       ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0,
+        foregroundColor: Colors.transparent,
         leading: Builder(builder: (context) {
           return IconButton(
             icon: const Padding(

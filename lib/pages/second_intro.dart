@@ -43,7 +43,7 @@ class _SecondIntroState extends State<SecondIntro> {
             ),
 
             SizedBox(
-              height: 60,
+              height: 70,
               child: Column(
                 children: [
                   const SizedBox(
@@ -80,9 +80,7 @@ class _SecondIntroState extends State<SecondIntro> {
               ],
             ),
 
-            const SizedBox(
-              height: 60,
-            ),
+            Spacer(),
 
             // start now button
             ElevatedButton(
@@ -140,6 +138,7 @@ class _SecondIntroState extends State<SecondIntro> {
                 ),
               ), // 버튼 텍스트
             ),
+            Spacer(),
           ],
         ),
       ),

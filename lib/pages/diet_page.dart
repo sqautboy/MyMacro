@@ -1,4 +1,5 @@
 import 'package:diet_macro/components/bottom_modal_sheet.dart';
+import 'package:diet_macro/components/nutrition_tile.dart';
 import 'package:diet_macro/models/isar_data.dart'; // isar_data.dart import
 import 'package:diet_macro/models/isar_service.dart';
 import 'package:flutter/material.dart';
@@ -82,6 +83,10 @@ class _DietPageState extends State<DietPage> {
           child: const Icon(Icons.add, color: Colors.white),
           onPressed: () {
             showModalBottomSheet(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.65, // 화면 높이의 80%
+              ),
+              isScrollControlled: true,
               context: context,
               builder: (context) {
                 return BottomModalSheet(
@@ -108,8 +113,7 @@ class _DietPageState extends State<DietPage> {
           ? const Center(child: CircularProgressIndicator()) // Show loading indicator while loading
           : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-              child: Container(
-                // color: Colors.grey.shade200,
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
                     Row(
@@ -137,32 +141,32 @@ class _DietPageState extends State<DietPage> {
                       ],
                     ),
                     const SizedBox(height: 50),
-                    _currentMacro(
-                      Colors.red.shade600,
-                      "Calories",
-                      '${dailyData.calories} / ${targetData.targetCalories} kcal',
-                      (dailyData.calories / targetData.targetCalories * 100).toInt(),
+                    NutritionTile(
+                      dividerColor: Colors.red.shade600,
+                      nutrition: "Calories",
+                      status: '${dailyData.calories} / ${targetData.targetCalories} kcal',
+                      percentage: (dailyData.calories / targetData.targetCalories * 100).toInt(),
                     ),
                     const SizedBox(height: 20),
-                    _currentMacro(
-                      Colors.green.shade600,
-                      "Carb",
-                      '${dailyData.carb} / ${targetData.targetCarb} g',
-                      (dailyData.carb / targetData.targetCarb * 100).toInt(),
+                    NutritionTile(
+                      dividerColor: Colors.green.shade600,
+                      nutrition: "Carb",
+                      status: '${dailyData.carb} / ${targetData.targetCarb} g',
+                      percentage: (dailyData.carb / targetData.targetCarb * 100).toInt(),
                     ),
                     const SizedBox(height: 20),
-                    _currentMacro(
-                      Colors.blue.shade800,
-                      "Protein",
-                      '${dailyData.protein} / ${targetData.targetProtein} g',
-                      (dailyData.protein / targetData.targetProtein * 100).toInt(),
+                    NutritionTile(
+                      dividerColor: Colors.blue.shade800,
+                      nutrition: "Protein",
+                      status: '${dailyData.protein} / ${targetData.targetProtein} g',
+                      percentage: (dailyData.protein / targetData.targetProtein * 100).toInt(),
                     ),
                     const SizedBox(height: 20),
-                    _currentMacro(
-                      Colors.brown.shade600,
-                      "Fat",
-                      '${dailyData.fat} / ${targetData.targetFat} g',
-                      (dailyData.fat / targetData.targetFat * 100).toInt(),
+                    NutritionTile(
+                      dividerColor: Colors.brown.shade600,
+                      nutrition: "Fat",
+                      status: '${dailyData.fat} / ${targetData.targetFat} g',
+                      percentage: (dailyData.fat / targetData.targetFat * 100).toInt(),
                     ),
                   ],
                 ),

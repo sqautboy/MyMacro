@@ -33,7 +33,7 @@ class MyDrawer extends StatelessWidget {
               // other pages
               GestureDetector(
                 onTap: () async {
-                  final Uri _url = Uri.parse('http://github.com/squattlife/MyMacro');
+                  final Uri _url = Uri.parse('https://github.com/squattlife/MyMacro');
                   if (!await launchUrl(_url)) {
                     throw Exception('Could not launch $_url');
                   }

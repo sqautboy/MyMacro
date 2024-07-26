@@ -120,7 +120,7 @@ class _FirstIntroState extends State<FirstIntro> {
                       }
                     : null,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: _isButtonEnabled ? Colors.grey[900] : Colors.green, // 버튼 색상 변경
+                  backgroundColor: _isButtonEnabled ? Colors.grey[900] : Colors.grey, // 버튼 색상 변경
                   padding: const EdgeInsets.all(25),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),

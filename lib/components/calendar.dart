@@ -1,7 +1,8 @@
+import 'package:diet_macro/components/nutrition_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:diet_macro/models/isar_service.dart'; // IsarService import added
-import 'package:diet_macro/models/isar_data.dart'; // DailyData import added
+import 'package:diet_macro/models/isar_service.dart';
+import 'package:diet_macro/models/isar_data.dart';
 
 class MyCalendar extends StatefulWidget {
   const MyCalendar({super.key});
@@ -13,63 +14,117 @@ class MyCalendar extends StatefulWidget {
 class _MyCalendarState extends State<MyCalendar> {
   DateTime _focusedDay = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).toLocal();
   DateTime? _selectedDay;
-  DailyData? _dailyData; // Stores DailyData for the selected date
+  DailyData? _dailyData;
+  TargetData? _targetData; // TargetData 추가
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTargetData(); // TargetData 로드
+  }
+
+  // TargetData 로드 함수
+  Future<void> _loadTargetData() async {
+    _targetData = await IsarService().getTargetData();
+    setState(() {}); // UI 업데이트
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-      color: Colors.grey[300],
-      child: Column(
-        children: [
-          TableCalendar(
-            // 캘린더 바디 스타일
-            calendarStyle: const CalendarStyle(
-              defaultTextStyle: TextStyle(fontWeight: FontWeight.bold), // 기본 날짜 텍스트 굵게
-              weekendTextStyle: TextStyle(fontWeight: FontWeight.bold), // 주말 날짜 텍스트 굵게
-              selectedTextStyle: TextStyle(fontWeight: FontWeight.bold), // 선택된 날짜 텍스트 굵게
-              todayTextStyle: TextStyle(fontWeight: FontWeight.bold), // 오늘 날짜 텍스트 굵게
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        color: Colors.grey[300],
+        child: Column(
+          children: [
+            TableCalendar(
+              // ... (캘린더 스타일 및 속성 설정)
+              calendarStyle: const CalendarStyle(
+                defaultTextStyle: TextStyle(fontWeight: FontWeight.bold), // 기본 날짜 텍스트 굵게
+                weekendTextStyle: TextStyle(fontWeight: FontWeight.bold), // 주말 날짜 텍스트 굵게
+                selectedTextStyle: TextStyle(fontWeight: FontWeight.bold), // 선택된 날짜 텍스트 굵게
+                todayTextStyle: TextStyle(fontWeight: FontWeight.bold), // 오늘 날짜 텍스트 굵게
+              ),
+              // 캘린더 헤더 스타일
+              headerStyle: const HeaderStyle(
+                titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), // 월, 년도 텍스트 스타일
+                formatButtonVisible: false, // 형식 버튼 숨기기
+                titleCentered: true, // 제목 중앙 정렬
+              ),
+              // 캘린더 속성
+              firstDay: DateTime.utc(2024, 1, 1),
+              lastDay: DateTime.utc(2040, 12, 31),
+              focusedDay: _focusedDay,
+              calendarFormat: CalendarFormat.month,
+              availableCalendarFormats: const {CalendarFormat.month: 'Month'}, // Disable format button
+              selectedDayPredicate: (day) {
+                return isSameDay(_selectedDay, day);
+              },
+
+              onDaySelected: (selectedDay, focusedDay) async {
+                setState(() {
+                  _selectedDay = DateTime(selectedDay.year, selectedDay.month, selectedDay.day).toLocal();
+                  _focusedDay = focusedDay;
+                });
+
+                _dailyData = await IsarService().getDailyDataByDate(_selectedDay!);
+                setState(() {}); // UI 업데이트
+              },
             ),
-            // 캘린더 헤더 스타일
-            headerStyle: const HeaderStyle(
-              titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), // 월, 년도 텍스트 스타일
-              formatButtonVisible: false, // 형식 버튼 숨기기
-              titleCentered: true, // 제목 중앙 정렬
-            ),
-            // 캘린더 속성
-            firstDay: DateTime.utc(2024, 1, 1),
-            lastDay: DateTime.utc(2040, 12, 31),
-            focusedDay: _focusedDay,
-            calendarFormat: CalendarFormat.month,
-            availableCalendarFormats: const {CalendarFormat.month: 'Month'}, // Disable format button
-            selectedDayPredicate: (day) {
-              return isSameDay(_selectedDay, day);
-            },
+            const SizedBox(height: 20),
 
-            onDaySelected: (selectedDay, focusedDay) async {
-              setState(() {
-                _selectedDay = DateTime(selectedDay.year, selectedDay.month, selectedDay.day).toLocal();
-                _focusedDay = focusedDay;
-              });
-
-              _dailyData = await IsarService().getDailyDataByDate(_selectedDay!);
-            },
-          ),
-          const SizedBox(height: 50),
-          // Text(
-          //     'Selected Day: ${_selectedDay ?? DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).toLocal()}'),
-
-          // 선택한 날짜의 DailyData 표시
-          if (_dailyData != null) ...[
-            // _dailyData가 null이 아닌 경우에만 표시
-            Text('Calories: ${_dailyData!.calories}'),
-            Text('Carb: ${_dailyData!.carb}'),
-            Text('Protein: ${_dailyData!.protein}'),
-            Text('Fat: ${_dailyData!.fat}'),
-          ] else ...[
-            Text('No data available for selected day'),
+            // 선택한 날짜의 DailyData 표시
+            if (_dailyData == null) ...[
+              const Text('No data available for selected day'),
+            ] else ...[
+              Expanded(
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    children: [
+                      NutritionTile(
+                        dividerColor: Colors.red.shade600,
+                        nutrition: "Calories",
+                        status: '${_dailyData?.calories} / ${_targetData?.targetCalories ?? 0} kcal',
+                        percentage: (_targetData != null && _dailyData!.calories > 0)
+                            ? (_dailyData!.calories / _targetData!.targetCalories * 100).toInt()
+                            : 0,
+                      ),
+                      const SizedBox(height: 12),
+                      NutritionTile(
+                        dividerColor: Colors.green.shade600,
+                        nutrition: "Carb",
+                        status: '${_dailyData!.carb} / ${_targetData?.targetCarb ?? 0} g',
+                        percentage: (_targetData != null && _dailyData!.carb > 0)
+                            ? (_dailyData!.carb / _targetData!.targetCarb * 100).toInt()
+                            : 0,
+                      ),
+                      const SizedBox(height: 12),
+                      NutritionTile(
+                        dividerColor: Colors.blue.shade800,
+                        nutrition: "Protein",
+                        status: '${_dailyData!.protein} / ${_targetData?.targetProtein ?? 0} g',
+                        percentage: (_targetData != null && _dailyData!.protein > 0)
+                            ? (_dailyData!.protein / _targetData!.targetProtein * 100).toInt()
+                            : 0,
+                      ),
+                      const SizedBox(height: 12),
+                      NutritionTile(
+                        dividerColor: Colors.brown.shade600,
+                        nutrition: "Fat",
+                        status: '${_dailyData!.fat} / ${_targetData?.targetFat ?? 0} g',
+                        percentage: (_targetData != null && _dailyData!.fat > 0)
+                            ? (_dailyData!.fat / _targetData!.targetFat * 100).toInt()
+                            : 0,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }
