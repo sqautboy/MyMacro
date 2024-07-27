@@ -77,6 +77,7 @@ class _DietPageState extends State<DietPage> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       floatingActionButton: FloatingActionButton(
+          tooltip: 'Add Nutrion',
           backgroundColor: Colors.black,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
@@ -183,7 +184,7 @@ class _DietPageState extends State<DietPage> {
       lineWidth: 13,
       animation: true,
       animationDuration: 1000,
-      backgroundColor: Color.fromARGB(100, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(100, 255, 255, 255),
       percent: percent,
       center: Column(
         mainAxisAlignment: MainAxisAlignment.center, // 텍스트 세로 가운데 정렬

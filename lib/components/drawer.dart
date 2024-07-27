@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -16,16 +17,15 @@ class MyDrawer extends StatelessWidget {
             children: [
               // logo
               Container(
-                padding: const EdgeInsets.only(top: 75.0),
-                child: const Icon(
-                  Icons.food_bank_rounded,
-                  size: 100.0,
-                  color: Colors.grey,
+                padding: const EdgeInsets.only(top: 55.0),
+                child: Lottie.asset(
+                  'lib/images/animated_icon.json',
+                  width: 230,
                 ),
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
                 child: Divider(
                   color: Colors.grey[600],
                 ),
@@ -34,9 +34,9 @@ class MyDrawer extends StatelessWidget {
               // other pages
               GestureDetector(
                 onTap: () async {
-                  final Uri _url = Uri.parse('https://github.com/squattlife/MyMacro');
-                  if (!await launchUrl(_url)) {
-                    throw Exception('Could not launch $_url');
+                  final Uri url = Uri.parse('https://github.com/squattlife/MyMacro');
+                  if (!await launchUrl(url)) {
+                    throw Exception('Could not launch $url');
                   }
                 },
                 child: Padding(
@@ -64,6 +64,25 @@ class MyDrawer extends StatelessWidget {
                       style: GoogleFonts.roboto(
                         color: Colors.grey[300],
                       ),
+                    ),
+                  ),
+                ),
+              ),
+
+              GestureDetector(
+                onTap: () async {
+                  final Uri url = Uri.parse('https://www.fatsecret.com/calories-nutrition/');
+                  if (!await launchUrl(url)) {
+                    throw Exception('Could not launch $url');
+                  }
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 25.5),
+                  child: ListTile(
+                    leading: Image.asset('lib/images/fatsecret.png', width: 28.0),
+                    title: Text(
+                      'FatSecret',
+                      style: GoogleFonts.roboto(color: Colors.grey[300]),
                     ),
                   ),
                 ),

@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.grey),
       debugShowCheckedModeBanner: false,
       home: targetCalories == null ? const FirstIntro() : const MainPage(), // 조건에 따라 페이지 설정
     );

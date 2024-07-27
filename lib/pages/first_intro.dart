@@ -4,6 +4,7 @@ import 'package:diet_macro/pages/second_intro.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:isar/isar.dart';
+import 'package:lottie/lottie.dart';
 
 class FirstIntro extends StatefulWidget {
   const FirstIntro({super.key});
@@ -34,13 +35,9 @@ class _FirstIntroState extends State<FirstIntro> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // logo
-              const Padding(
-                padding: EdgeInsets.all(25.0),
-                child: Icon(Icons.food_bank_rounded, size: 100),
-              ),
-
-              const SizedBox(
-                height: 48,
+              Lottie.asset(
+                'lib/images/animated_icon.json',
+                width: 300,
               ),
 
               // title

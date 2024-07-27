@@ -44,7 +44,7 @@ class NutritionTile extends StatelessWidget {
               Text(
                 nutrition,
                 style: GoogleFonts.roboto(
-                  color: Color.fromARGB(255, 61, 61, 61),
+                  color: const Color.fromARGB(255, 61, 61, 61),
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
                 ),
