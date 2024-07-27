@@ -8,7 +8,10 @@ class SettingPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: const Center(
-        child: Text('Setting'),
+        child: Text(
+          'Reset TargetCalories , ...',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
       ),
     );
   }

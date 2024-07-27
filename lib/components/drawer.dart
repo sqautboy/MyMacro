@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -17,7 +18,7 @@ class MyDrawer extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(top: 75.0),
                 child: const Icon(
-                  Icons.info,
+                  Icons.food_bank_rounded,
                   size: 100.0,
                   color: Colors.grey,
                 ),
@@ -42,9 +43,9 @@ class MyDrawer extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 25.0),
                   child: ListTile(
                     leading: Image.asset('lib/images/github.png', width: 28.0),
-                    title: const Text(
+                    title: Text(
                       'Github',
-                      style: TextStyle(color: Colors.white),
+                      style: GoogleFonts.roboto(color: Colors.grey[300]),
                     ),
                   ),
                 ),
@@ -58,9 +59,11 @@ class MyDrawer extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 25.0),
                   child: ListTile(
                     leading: Image.asset('lib/images/appstore.png', width: 28.0),
-                    title: const Text(
+                    title: Text(
                       'App Store',
-                      style: TextStyle(color: Colors.white),
+                      style: GoogleFonts.roboto(
+                        color: Colors.grey[300],
+                      ),
                     ),
                   ),
                 ),

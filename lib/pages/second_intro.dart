@@ -30,9 +30,7 @@ class _SecondIntroState extends State<SecondIntro> {
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
         child: Column(
           children: [
-            const SizedBox(
-              height: 40,
-            ),
+            const Spacer(),
             Text(
               '식단의 탄단지 비율을 선택하세요',
               style: TextStyle(
@@ -80,7 +78,7 @@ class _SecondIntroState extends State<SecondIntro> {
               ],
             ),
 
-            Spacer(),
+            const Spacer(),
 
             // start now button
             ElevatedButton(
@@ -138,7 +136,9 @@ class _SecondIntroState extends State<SecondIntro> {
                 ),
               ), // 버튼 텍스트
             ),
-            Spacer(),
+            const Spacer(
+              flex: 2,
+            ),
           ],
         ),
       ),
@@ -159,7 +159,7 @@ class _SecondIntroState extends State<SecondIntro> {
           foregroundColor: Colors.white,
           textStyle: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 16,
+            fontSize: 15,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),

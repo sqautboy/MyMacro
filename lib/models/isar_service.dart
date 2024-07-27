@@ -33,7 +33,7 @@ class IsarService {
 
   // TargetData 생성 (기존 TargetData가 없는 경우)
   Future<void> createTargetData(int targetCalories, int targetCarb, int targetProtein, int targetFat) async {
-    final existingTargetData = await isar.targetDatas.where().findFirst();
+    final existingTargetData = await getTargetData();
 
     if (existingTargetData == null) {
       final newTargetData = TargetData()
@@ -42,9 +42,11 @@ class IsarService {
         ..targetProtein = targetProtein
         ..targetFat = targetFat;
 
-      await isar.writeTxn(() async {
-        await isar.targetDatas.put(newTargetData);
-      });
+      updateTargetData(newTargetData);
+
+      // await isar.writeTxn(() async {
+      //   await isar.targetDatas.put(newTargetData);
+      // });
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:diet_macro/components/nutrition_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:diet_macro/models/isar_service.dart';
 import 'package:diet_macro/models/isar_data.dart';
@@ -39,15 +40,24 @@ class _MyCalendarState extends State<MyCalendar> {
           children: [
             TableCalendar(
               // ... (캘린더 스타일 및 속성 설정)
-              calendarStyle: const CalendarStyle(
-                defaultTextStyle: TextStyle(fontWeight: FontWeight.bold), // 기본 날짜 텍스트 굵게
-                weekendTextStyle: TextStyle(fontWeight: FontWeight.bold), // 주말 날짜 텍스트 굵게
-                selectedTextStyle: TextStyle(fontWeight: FontWeight.bold), // 선택된 날짜 텍스트 굵게
-                todayTextStyle: TextStyle(fontWeight: FontWeight.bold), // 오늘 날짜 텍스트 굵게
+              calendarStyle: CalendarStyle(
+                tablePadding: const EdgeInsets.all(8),
+                defaultTextStyle: GoogleFonts.roboto(fontWeight: FontWeight.bold), // 기본 날짜 텍스트 굵게
+                weekendTextStyle: GoogleFonts.roboto(fontWeight: FontWeight.bold), // 주말 날짜 텍스트 굵게
+                selectedTextStyle: GoogleFonts.roboto(fontWeight: FontWeight.bold), // 선택된 날짜 텍스트 굵게
+                todayTextStyle: GoogleFonts.roboto(fontWeight: FontWeight.bold),
               ),
+
               // 캘린더 헤더 스타일
-              headerStyle: const HeaderStyle(
-                titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), // 월, 년도 텍스트 스타일
+              headerStyle: HeaderStyle(
+                rightChevronIcon: Icon(Icons.arrow_circle_right, color: Colors.grey[800]),
+                leftChevronIcon: Icon(Icons.arrow_circle_left, color: Colors.grey[800]),
+                headerPadding: const EdgeInsets.only(bottom: 12, left: 60, right: 60),
+                titleTextFormatter: (date, locale) => date.month.toString(),
+                titleTextStyle: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 36,
+                ), // 월, 년도 텍스트 스타일
                 formatButtonVisible: false, // 형식 버튼 숨기기
                 titleCentered: true, // 제목 중앙 정렬
               ),
@@ -71,16 +81,29 @@ class _MyCalendarState extends State<MyCalendar> {
                 setState(() {}); // UI 업데이트
               },
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 8),
 
             // 선택한 날짜의 DailyData 표시
             if (_dailyData == null) ...[
-              const Text('No data available for selected day'),
+              Container(
+                padding: const EdgeInsets.all(30.0),
+                child: Center(
+                  // 텍스트를 가운데 정렬
+                  child: Text(
+                    'No Data',
+                    style: GoogleFonts.roboto(
+                      fontSize: 50,
+                      color: Colors.grey[850],
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+              ),
             ] else ...[
               Expanded(
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     children: [
                       NutritionTile(

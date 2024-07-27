@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BottomModalSheet extends StatefulWidget {
   final Function(int, int, int, int) onAddPressed;
@@ -60,10 +60,10 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Add Diet Info',
-                style: TextStyle(
-                  fontSize: 18,
+                style: GoogleFonts.roboto(
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -90,9 +90,9 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
                 backgroundColor: Colors.black,
               ),
               onPressed: _addButtonPressed,
-              child: const Text(
+              child: Text(
                 'Add',
-                style: TextStyle(
+                style: GoogleFonts.roboto(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -112,6 +112,7 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
         controller: controller,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
+          labelStyle: GoogleFonts.roboto(fontSize: 14),
           labelText: label,
           hintText: hint,
           border: const OutlineInputBorder(),

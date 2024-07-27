@@ -3,6 +3,7 @@ import 'package:diet_macro/components/nutrition_tile.dart';
 import 'package:diet_macro/models/isar_data.dart'; // isar_data.dart import
 import 'package:diet_macro/models/isar_service.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class DietPage extends StatefulWidget {
@@ -178,24 +179,25 @@ class _DietPageState extends State<DietPage> {
   // CircularPercentIndicator를 생성하는 함수
   Widget _buildCircularPercentIndicator(double percent, Color progressColor, String centerText1, String centerText2) {
     return CircularPercentIndicator(
-      radius: 50.0,
+      radius: 52.0,
       lineWidth: 13,
       animation: true,
-      backgroundColor: const Color.fromARGB(127, 255, 255, 255),
+      animationDuration: 1000,
+      backgroundColor: Color.fromARGB(100, 255, 255, 255),
       percent: percent,
       center: Column(
         mainAxisAlignment: MainAxisAlignment.center, // 텍스트 세로 가운데 정렬
         children: [
           Text(
             centerText1, // 첫 번째 줄 텍스트
-            style: const TextStyle(
+            style: GoogleFonts.roboto(
               fontWeight: FontWeight.w500,
               fontSize: 16,
             ),
           ),
           Text(
             centerText2, // 두 번째 줄 텍스트
-            style: const TextStyle(
+            style: GoogleFonts.roboto(
               fontWeight: FontWeight.w300,
               fontSize: 12,
             ),
@@ -204,66 +206,6 @@ class _DietPageState extends State<DietPage> {
       ),
       progressColor: progressColor,
       circularStrokeCap: CircularStrokeCap.round,
-    );
-  }
-
-  Widget _currentMacro(Color dividerColor, String nutrition, String status, int percentage) {
-    return Container(
-      // padding: const EdgeInsets.symmetric(vertical: 15),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade200,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
-        ),
-      ),
-      child: Row(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(15),
-                // bottomLeft: Radius.circular(10),
-              ),
-              color: dividerColor,
-            ),
-            width: 14,
-            height: 50,
-            // color: dividerColor,
-          ),
-          const SizedBox(width: 20),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                nutrition,
-                style: const TextStyle(
-                  color: Color.fromARGB(255, 46, 46, 46),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18,
-                ),
-              ),
-              Text(
-                status,
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Color.fromARGB(255, 87, 87, 87),
-                ),
-              ),
-            ],
-          ),
-          const Spacer(),
-          Text(
-            '$percentage%',
-            style: const TextStyle(
-              fontWeight: FontWeight.w300,
-              fontSize: 18,
-              color: Color.fromARGB(255, 36, 36, 36),
-            ),
-          ),
-          const SizedBox(width: 40),
-        ],
-      ),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:diet_macro/models/isar_data.dart';
 import 'package:diet_macro/models/isar_service.dart';
 import 'package:diet_macro/pages/second_intro.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:isar/isar.dart';
 
 class FirstIntro extends StatefulWidget {
@@ -35,7 +36,7 @@ class _FirstIntroState extends State<FirstIntro> {
               // logo
               const Padding(
                 padding: EdgeInsets.all(25.0),
-                child: Icon(Icons.apple, size: 100),
+                child: Icon(Icons.food_bank_rounded, size: 100),
               ),
 
               const SizedBox(
@@ -43,24 +44,24 @@ class _FirstIntroState extends State<FirstIntro> {
               ),
 
               // title
-              const Text(
-                'Diet Macro',
-                style: TextStyle(
+              Text(
+                'MyMacro',
+                style: GoogleFonts.roboto(
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: 40,
                 ),
               ),
 
               const SizedBox(
-                height: 48,
+                height: 20,
               ),
 
               // sub title
-              const Text(
-                '당신의 목표 칼로리를 입력하세요',
-                style: TextStyle(
+              Text(
+                'Enter your Calories Goal',
+                style: GoogleFonts.roboto(
                   fontSize: 16,
-                  color: Colors.grey,
+                  color: Colors.grey[600],
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -73,8 +74,11 @@ class _FirstIntroState extends State<FirstIntro> {
               TextField(
                 controller: _targetCalorieController,
                 decoration: const InputDecoration(
-                  labelText: '목표 칼로리(Kcal)',
+                  labelText: 'CALORIES GOAL',
+                  hintText: 'Kcal',
                   border: OutlineInputBorder(),
+                  labelStyle: TextStyle(fontSize: 12),
+                  hintStyle: TextStyle(fontSize: 14),
                 ),
                 keyboardType: TextInputType.number,
                 onChanged: (text) {
@@ -126,10 +130,10 @@ class _FirstIntroState extends State<FirstIntro> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
                     'Next',
-                    style: TextStyle(
+                    style: GoogleFonts.roboto(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,

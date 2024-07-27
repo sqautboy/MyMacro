@@ -35,8 +35,8 @@ class _MainPageState extends State<MainPage> {
         onTabChange: navigationBottomBar,
       ),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.transparent,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.grey[300],
         leading: Builder(builder: (context) {
           return IconButton(
             icon: const Padding(
