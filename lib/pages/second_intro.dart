@@ -104,7 +104,7 @@ class _SecondIntroState extends State<SecondIntro> {
                           existingTargetData.targetFat = ((calories * 0.2 / 9)).toInt();
                           break;
                         default:
-                          // 선택된 항목이 없을 경우 기본 설정 (필요에 따라 수정)
+                          // 선택된 항목이 없을 경우 기본 설정
                           break;
                       }
                       // 설정된 목표 칼로리, 탄수화물, 단백질, 지방 비율을 데이터베이스에 저장

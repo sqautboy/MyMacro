@@ -78,6 +78,7 @@ class _MyCalendarState extends State<MyCalendar> {
                 });
 
                 _dailyData = await IsarService().getDailyDataByDate(_selectedDay!);
+
                 setState(() {}); // UI 업데이트
               },
             ),

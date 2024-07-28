@@ -4,7 +4,7 @@ part 'isar_data.g.dart';
 
 @collection
 class TargetData {
-  Id id = Isar.autoIncrement;
+  Id id = 1;
 
   int targetCalories = 0;
   int targetCarb = 0;
