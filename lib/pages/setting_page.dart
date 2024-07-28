@@ -1,5 +1,6 @@
 import 'package:diet_macro/components/setting_card.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
@@ -11,17 +12,30 @@ class SettingPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Text('SETTINGS',
+              style: GoogleFonts.robotoCondensed(
+                fontSize: 38,
+                fontWeight: FontWeight.bold,
+              )),
+          Spacer(),
           SettingCard(
             title: 'RESET',
             subtitle: 'Click to reset your calories goal',
-            iconDir: 'lib/images/reset_icon.json',
+            iconDir: 'lib/images/brocoli.json',
           ),
           const SizedBox(height: 20),
           SettingCard(
-            title: '- - - - - -',
+            title: 'DELETE',
+            subtitle: 'Click to delete your     daily data',
+            iconDir: 'lib/images/orange.json',
+          ),
+          const SizedBox(height: 20),
+          SettingCard(
+            title: 'TEMP',
             subtitle: '더워 피곤해 졸려 힘들어',
-            iconDir: 'lib/images/thinking.json',
-          )
+            iconDir: 'lib/images/taco.json',
+          ),
+          Spacer(),
         ],
       ),
     );
