@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 class BottomModalSheet extends StatefulWidget {
   final Function(int, int, int, int) onAddPressed;
@@ -42,6 +43,21 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
     );
 
     Navigator.pop(context); // 모덜 닫기
+
+    // success animation modal popup dialog
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        Future.delayed(Duration(seconds: 1), () {
+          Navigator.of(context).pop(true);
+        });
+        return AlertDialog(
+          backgroundColor: Colors.transparent,
+          title: Lottie.asset('lib/images/success.json'),
+        );
+      },
+    );
 
     print('Calories: $calories');
     print('Carb: $carb');
