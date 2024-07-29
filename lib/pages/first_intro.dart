@@ -42,7 +42,7 @@ class _FirstIntroState extends State<FirstIntro> {
 
               // title
               Text(
-                '아 하기싫어',
+                'MyMacro',
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.bold,
                   fontSize: 40,

@@ -2,6 +2,7 @@ import 'package:diet_macro/models/isar_data.dart';
 import 'package:diet_macro/models/isar_service.dart';
 import 'package:diet_macro/pages/main_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:isar/isar.dart';
 
 class SecondIntro extends StatefulWidget {
@@ -32,9 +33,10 @@ class _SecondIntroState extends State<SecondIntro> {
           children: [
             const Spacer(),
             Text(
-              '식단의 탄단지 비율을 선택하세요',
-              style: TextStyle(
-                fontSize: 24,
+              'Select Your Diet Option',
+              style: GoogleFonts.robotoCondensed(
+                fontSize: 28,
+                fontWeight: FontWeight.w700,
                 color: Colors.grey[800],
               ),
               textAlign: TextAlign.center,
@@ -177,11 +179,11 @@ class _SecondIntroState extends State<SecondIntro> {
 
     switch (index) {
       case 0:
-        return '탄: ${((calories * 0.6) / 4).toInt()}g   단: ${((calories * 0.2) / 4).toInt()}g   지: ${((calories * 0.2) / 9).toInt()}g';
+        return 'Carb: ${((calories * 0.6) / 4).toInt()}g   Prot: ${((calories * 0.2) / 4).toInt()}g   Fat: ${((calories * 0.2) / 9).toInt()}g';
       case 1:
-        return '탄: ${((calories * 0.5) / 4).toInt()}g   단: ${((calories * 0.3) / 4).toInt()}g   지: ${((calories * 0.2) / 9).toInt()}g';
+        return 'Carb: ${((calories * 0.5) / 4).toInt()}g   Prot: ${((calories * 0.3) / 4).toInt()}g   Fat: ${((calories * 0.2) / 9).toInt()}g';
       case 2:
-        return '탄: ${((calories * 0.4) / 4).toInt()}g   단: ${((calories * 0.4) / 4).toInt()}g   지: ${((calories * 0.2) / 9).toInt()}g';
+        return 'Carb: ${((calories * 0.4) / 4).toInt()}g   Prot: ${((calories * 0.4) / 4).toInt()}g   Fat: ${((calories * 0.2) / 9).toInt()}g';
       default:
         return '';
     }
