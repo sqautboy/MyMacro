@@ -70,6 +70,24 @@ class MyDrawer extends StatelessWidget {
               ),
 
               GestureDetector(
+                onTap: () {
+                  print('on clicked');
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 27.0),
+                  child: ListTile(
+                    leading: Image.asset('lib/images/playstore.png', width: 26.0),
+                    title: Text(
+                      'Play Store',
+                      style: GoogleFonts.roboto(
+                        color: Colors.grey[300],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              GestureDetector(
                 onTap: () async {
                   final Uri url = Uri.parse('https://www.fatsecret.com/calories-nutrition/');
                   if (!await launchUrl(url)) {
