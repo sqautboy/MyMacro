@@ -27,118 +27,121 @@ class _FirstIntroState extends State<FirstIntro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.grey[300],
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // logo
-              Lottie.asset(
-                'lib/images/animated_icon.json',
-                width: 300,
-              ),
-
-              // title
-              Text(
-                'MyMacro',
-                style: GoogleFonts.roboto(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 40,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // logo
+                Lottie.asset(
+                  'lib/images/animated_icon.json',
+                  width: 300,
                 ),
-              ),
 
-              const SizedBox(
-                height: 20,
-              ),
-
-              // sub title
-              Text(
-                'Enter your Calories Goal',
-                style: GoogleFonts.roboto(
-                  fontSize: 16,
-                  color: Colors.grey[600],
-                ),
-                textAlign: TextAlign.center,
-              ),
-
-              const SizedBox(
-                height: 48,
-              ),
-
-              // targetCalorie Input Field
-              TextField(
-                controller: _targetCalorieController,
-                decoration: const InputDecoration(
-                  labelText: 'CALORIES GOAL',
-                  hintText: 'Kcal',
-                  border: OutlineInputBorder(),
-                  labelStyle: TextStyle(fontSize: 12),
-                  hintStyle: TextStyle(fontSize: 14),
-                ),
-                keyboardType: TextInputType.number,
-                onChanged: (text) {
-                  // 텍스트 필드 값이 변경될 때마다 버튼 활성화 상태 업데이트
-                  setState(() {
-                    _isButtonEnabled = text.isNotEmpty;
-                  });
-                },
-              ),
-
-              const SizedBox(
-                height: 48,
-              ),
-
-              // start now button
-              ElevatedButton(
-                // GestureDetector 대신 ElevatedButton 사용
-                onPressed: _isButtonEnabled // 버튼 활성화 상태에 따라 onPressed 설정
-                    ? () async {
-                        // 1. TextField에서 입력된 값 가져오기
-                        int targetCalories = int.tryParse(_targetCalorieController.text) ?? 0;
-
-                        // 2. IsarService를 통해 TargetData 가져오기
-                        TargetData? existingTargetData = await IsarService.isar.targetDatas.where().findFirst();
-
-                        // 3. TargetData가 이미 존재하면 업데이트, 없으면 생성
-                        if (existingTargetData != null) {
-                          existingTargetData.targetCalories = targetCalories;
-                          await IsarService.isar
-                              .writeTxn(() async => await IsarService.isar.targetDatas.put(existingTargetData));
-                        } else {
-                          await IsarService.isar.writeTxn(() async {
-                            await IsarService.isar.targetDatas.put(TargetData()..targetCalories = targetCalories);
-                          });
-                        }
-
-                        print('입력된 텍스트: ${_targetCalorieController.text}');
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SecondIntro(),
-                            ));
-                      }
-                    : null,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: _isButtonEnabled ? Colors.grey[900] : Colors.grey, // 버튼 색상 변경
-                  padding: const EdgeInsets.all(25),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                // title
+                Text(
+                  'MyMacro',
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 40,
                   ),
                 ),
-                child: Center(
-                  child: Text(
-                    'Next',
-                    style: GoogleFonts.roboto(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
+
+                const SizedBox(
+                  height: 20,
+                ),
+
+                // sub title
+                Text(
+                  'Enter your Calories Goal',
+                  style: GoogleFonts.roboto(
+                    fontSize: 16,
+                    color: Colors.grey[600],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+
+                const SizedBox(
+                  height: 48,
+                ),
+
+                // targetCalorie Input Field
+                TextField(
+                  controller: _targetCalorieController,
+                  decoration: const InputDecoration(
+                    labelText: 'CALORIES GOAL',
+                    hintText: 'Kcal',
+                    border: OutlineInputBorder(),
+                    labelStyle: TextStyle(fontSize: 12),
+                    hintStyle: TextStyle(fontSize: 14),
+                  ),
+                  keyboardType: TextInputType.number,
+                  onChanged: (text) {
+                    // 텍스트 필드 값이 변경될 때마다 버튼 활성화 상태 업데이트
+                    setState(() {
+                      _isButtonEnabled = text.isNotEmpty;
+                    });
+                  },
+                ),
+
+                const SizedBox(
+                  height: 48,
+                ),
+
+                // start now button
+                ElevatedButton(
+                  // GestureDetector 대신 ElevatedButton 사용
+                  onPressed: _isButtonEnabled // 버튼 활성화 상태에 따라 onPressed 설정
+                      ? () async {
+                          // 1. TextField에서 입력된 값 가져오기
+                          int targetCalories = int.tryParse(_targetCalorieController.text) ?? 0;
+
+                          // 2. IsarService를 통해 TargetData 가져오기
+                          TargetData? existingTargetData = await IsarService.isar.targetDatas.where().findFirst();
+
+                          // 3. TargetData가 이미 존재하면 업데이트, 없으면 생성
+                          if (existingTargetData != null) {
+                            existingTargetData.targetCalories = targetCalories;
+                            await IsarService.isar
+                                .writeTxn(() async => await IsarService.isar.targetDatas.put(existingTargetData));
+                          } else {
+                            await IsarService.isar.writeTxn(() async {
+                              await IsarService.isar.targetDatas.put(TargetData()..targetCalories = targetCalories);
+                            });
+                          }
+
+                          print('입력된 텍스트: ${_targetCalorieController.text}');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SecondIntro(),
+                              ));
+                        }
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: _isButtonEnabled ? Colors.grey[900] : Colors.grey, // 버튼 색상 변경
+                    padding: const EdgeInsets.all(25),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Next',
+                      style: GoogleFonts.roboto(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
