@@ -1,4 +1,4 @@
-package com.example.diet_macro
+package com.leejaeyoung.mymacro
 
 import io.flutter.embedding.android.FlutterActivity
 
