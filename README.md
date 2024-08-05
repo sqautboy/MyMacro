@@ -14,3 +14,24 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+lib/
+├── main.dart
+├── components/
+│   ├── bottom_modal_sheet.dart
+│   ├── bottom_navigation_bar.dart
+│   ├── calendar.dart
+│   ├── drawer.dart
+│   └── nutrition_tile.dart
+├── images/
+├── models/
+│   ├── isar_data.dart
+│   ├── isar_data.g.dart
+│   └── isar_service.dart
+├── pages/
+│   ├── date_page.dart
+│   ├── diet_page.dart
+│   ├── first_intro.dart
+│   ├── second_intro.dart
+│   ├── setting_page.dart
+└── └── main_page.dart
