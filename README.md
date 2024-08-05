@@ -1,6 +1,4 @@
-# diet_macro
-
-A new Flutter project.
+# MyMacro
 
 ## Getting Started
 
