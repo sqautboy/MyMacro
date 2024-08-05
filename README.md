@@ -15,23 +15,5 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-lib/
-├── main.dart
-├── components/
-│   ├── bottom_modal_sheet.dart
-│   ├── bottom_navigation_bar.dart
-│   ├── calendar.dart
-│   ├── drawer.dart
-│   └── nutrition_tile.dart
-├── images/
-├── models/
-│   ├── isar_data.dart
-│   ├── isar_data.g.dart
-│   └── isar_service.dart
-├── pages/
-│   ├── date_page.dart
-│   ├── diet_page.dart
-│   ├── first_intro.dart
-│   ├── second_intro.dart
-│   ├── setting_page.dart
-└── └── main_page.dart
+
+<img width="259" alt="스크린샷 2024-08-06 오전 1 47 51" src="https://github.com/user-attachments/assets/a9b21967-2f8d-4cc7-aaaa-0ada92080937">
