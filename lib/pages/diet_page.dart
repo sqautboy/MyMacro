@@ -105,6 +105,14 @@ class _DietPageState extends State<DietPage> {
                       print("날짜: ${dailyData.date}");
 
                       IsarService().updateDailyData(dailyData);
+
+                      // 팝업 메시지 표시
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Successfully added your macro!'),
+                          duration: const Duration(seconds: 2),
+                        ),
+                      );
                     });
                   },
                 );
@@ -130,14 +138,18 @@ class _DietPageState extends State<DietPage> {
                             _carbPercent, Colors.green.shade600, "${dailyData.carb} g", 'Carb'),
                       ],
                     ),
-                    const SizedBox(height: 40),
+                    const SizedBox(
+                      height: 40,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         // Protein
                         _buildCircularPercentIndicator(
                             _proteinPercent, Colors.blue.shade800, "${dailyData.protein} g", 'Protein'),
-                        const SizedBox(width: 20),
+                        const SizedBox(
+                          width: 20,
+                        ),
                         // Fat
                         _buildCircularPercentIndicator(_fatPercent, Colors.brown.shade600, "${dailyData.fat} g", 'Fat'),
                       ],
