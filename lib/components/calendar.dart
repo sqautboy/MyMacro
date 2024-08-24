@@ -23,11 +23,17 @@ class _MyCalendarState extends State<MyCalendar> {
   void initState() {
     super.initState();
     _loadTargetData(); // TargetData 로드
+    _loadDailyDataForFocusedDay(); // initState에서 focusedDay의 데이터를 로드
   }
 
   // TargetData 로드 함수
   Future<void> _loadTargetData() async {
     _targetData = await IsarService().getTargetData();
+  }
+
+  // focusedDay의 DailyData 로드
+  Future<void> _loadDailyDataForFocusedDay() async {
+    _dailyData = await IsarService().getDailyDataByDate(_focusedDay);
     setState(() {}); // UI 업데이트
   }
 
@@ -64,8 +70,9 @@ class _MyCalendarState extends State<MyCalendar> {
             // 캘린더 속성
             firstDay: DateTime.utc(2024, 1, 1),
             lastDay: DateTime.utc(2040, 12, 31),
-            focusedDay: _focusedDay,
+            focusedDay: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).toLocal(),
             calendarFormat: CalendarFormat.month,
+
             availableCalendarFormats: const {CalendarFormat.month: 'Month'}, // Disable format button
             selectedDayPredicate: (day) {
               return isSameDay(_selectedDay, day);
@@ -74,14 +81,12 @@ class _MyCalendarState extends State<MyCalendar> {
             onDaySelected: (selectedDay, focusedDay) async {
               setState(() {
                 _selectedDay = DateTime(selectedDay.year, selectedDay.month, selectedDay.day).toLocal();
-                _focusedDay = focusedDay;
               });
 
               _dailyData = await IsarService().getDailyDataByDate(_selectedDay!);
-
-              setState(() {}); // UI 업데이트
             },
           ),
+
           const SizedBox(height: 8),
 
           // 선택한 날짜의 DailyData 표시
