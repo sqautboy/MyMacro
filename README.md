@@ -15,5 +15,22 @@ samples, guidance on mobile development, and a full API reference.
 
 <br>
 
-
-<img width="259" alt="스크린샷 2024-08-06 오전 1 47 51" src="https://github.com/user-attachments/assets/a9b21967-2f8d-4cc7-aaaa-0ada92080937">
+lib/
+├─ components/
+│  ├─ bottom_modal_sheet.dart
+│  ├─ bottom_navigation.dart
+│  ├─ calendar.dart
+│  ├─ drawer.dart
+│  ├─ nutrition_tile.dart
+├─ models/
+│  ├─ isar_data.dart
+│  ├─ isar_data.g.dart
+│  ├─ isar_service.dart
+├─ pages/
+│  ├─ first_intro.dart
+│  ├─ second_intro.dart
+│  ├─ main_page.dart
+│  ├─ date_page.dart
+│  ├─ diet_page.dart
+├─ diet_provider.dart
+├─ main.dart
