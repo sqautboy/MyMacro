@@ -1,9 +1,11 @@
+import 'package:diet_macro/diet_provider.dart';
 import 'package:diet_macro/models/isar_data.dart';
 import 'package:diet_macro/models/isar_service.dart';
 import 'package:diet_macro/pages/first_intro.dart';
 import 'package:diet_macro/pages/main_page.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   // 앱 초기화 시 IsarService 초기화
@@ -22,10 +24,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // theme: ThemeData(primarySwatch: Colors.grey),
-      debugShowCheckedModeBanner: false,
-      home: targetCalories == null ? const FirstIntro() : const MainPage(), // 조건에 따라 페이지 설정
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => DietProvider(),
+      child: MaterialApp(
+        // theme: ThemeData(primarySwatch: Colors.grey),
+        debugShowCheckedModeBanner: false,
+        home: targetCalories == null ? const FirstIntro() : const MainPage(), // 조건에 따라 페이지 설정
+      ),
     );
   }
 }

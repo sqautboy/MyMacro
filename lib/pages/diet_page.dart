@@ -1,10 +1,10 @@
 import 'package:diet_macro/components/bottom_modal_sheet.dart';
 import 'package:diet_macro/components/nutrition_tile.dart';
-import 'package:diet_macro/models/isar_data.dart'; // isar_data.dart import
-import 'package:diet_macro/models/isar_service.dart';
+import 'package:diet_macro/diet_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:provider/provider.dart';
 
 class DietPage extends StatefulWidget {
   const DietPage({super.key});
@@ -14,66 +14,16 @@ class DietPage extends StatefulWidget {
 }
 
 class _DietPageState extends State<DietPage> {
-  TargetData targetData = TargetData(); // Initialize with default values
-  DailyData dailyData = DailyData(); // Initialize with default values
-  bool loading = true; // Add a loading state
-
-  double get _caloriesPercent => _calculatePercent(dailyData.calories, targetData.targetCalories);
-  double get _carbPercent => _calculatePercent(dailyData.carb, targetData.targetCarb);
-  double get _proteinPercent => _calculatePercent(dailyData.protein, targetData.targetProtein);
-  double get _fatPercent => _calculatePercent(dailyData.fat, targetData.targetFat);
-
   @override
   void initState() {
     super.initState();
-    _loadData();
-  }
-
-  // Isar 데이터 로드
-  Future<void> _loadData() async {
-    targetData = await IsarService().getTargetData() ?? TargetData();
-    dailyData = await _getDailyDataForToday();
-
-    // D E B U G
-    print("DailyData: ${dailyData.calories}칼로리, ${dailyData.carb}탄수화물, ${dailyData.protein}단백질, ${dailyData.fat}지방");
-
-    // 데이터 로드 후 UI 업데이트
-    setState(() {
-      loading = false;
-    });
-  }
-
-  // 오늘 날짜의 DailyData 가져오기
-  Future<DailyData> _getDailyDataForToday() async {
-    final now = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
-    final existingData = await IsarService().getDailyDataByDate(now);
-
-    if (existingData != null) {
-      // 기존 데이터가 있을 경우, 기존 데이터에 더하기
-      existingData.calories += dailyData.calories;
-      existingData.carb += dailyData.carb;
-      existingData.protein += dailyData.protein;
-      existingData.fat += dailyData.fat;
-
-      // 업데이트된 데이터를 저장
-      await IsarService().updateDailyData(existingData);
-      return existingData;
-    }
-
-    return DailyData(); // 기존 데이터가 없으면 새로운 DailyData 반환
-  }
-
-  // 진행률 계산 함수
-  double _calculatePercent(int current, int target) {
-    if (current >= target) {
-      return 1;
-    } else {
-      return 1 - (target - current) / target;
-    }
+    context.read<DietProvider>().loadData();
   }
 
   @override
   Widget build(BuildContext context) {
+    final dietProvider = context.watch<DietProvider>();
+
     return Scaffold(
       backgroundColor: Colors.grey[300],
       floatingActionButton: FloatingActionButton(
@@ -94,32 +44,21 @@ class _DietPageState extends State<DietPage> {
                 return BottomModalSheet(
                   onAddPressed: (calories, carb, protein, fat) async {
                     // 콜백 함수에서 Isar 데이터 업데이트
-                    setState(() {
-                      dailyData
-                        ..calories += calories
-                        ..carb += carb
-                        ..protein += protein
-                        ..fat += fat;
-                      print(
-                          "현재 날짜의 DailyData 업데이트된 값: ${dailyData.calories}칼로리, ${dailyData.carb}���수화물, ${dailyData.protein}단백질, ${dailyData.fat}지방");
-                      print("날짜: ${dailyData.date}");
+                    dietProvider.updateDailyData(calories, carb, protein, fat);
 
-                      IsarService().updateDailyData(dailyData);
-
-                      // 팝업 메시지 표시
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Successfully added your macro!'),
-                          duration: const Duration(seconds: 2),
-                        ),
-                      );
-                    });
+                    // 팝업 메시지 표시
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Successfully added your macro!'),
+                        duration: const Duration(seconds: 2),
+                      ),
+                    );
                   },
                 );
               },
             );
           }),
-      body: loading
+      body: dietProvider.loading
           ? const Center(child: CircularProgressIndicator()) // Show loading indicator while loading
           : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
@@ -130,12 +69,12 @@ class _DietPageState extends State<DietPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         // Calories
-                        _buildCircularPercentIndicator(
-                            _caloriesPercent, Colors.red.shade600, "${dailyData.calories}", 'Calories'),
+                        _buildCircularPercentIndicator(dietProvider.caloriesPercent, Colors.red.shade600,
+                            "${dietProvider.dailyData.calories}", 'Calories'),
                         const SizedBox(width: 20),
                         // Carb
-                        _buildCircularPercentIndicator(
-                            _carbPercent, Colors.green.shade600, "${dailyData.carb} g", 'Carb'),
+                        _buildCircularPercentIndicator(dietProvider.carbPercent, Colors.green.shade600,
+                            "${dietProvider.dailyData.carb} g", 'Carb'),
                       ],
                     ),
                     const SizedBox(
@@ -145,42 +84,45 @@ class _DietPageState extends State<DietPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         // Protein
-                        _buildCircularPercentIndicator(
-                            _proteinPercent, Colors.blue.shade800, "${dailyData.protein} g", 'Protein'),
+                        _buildCircularPercentIndicator(dietProvider.proteinPercent, Colors.blue.shade800,
+                            "${dietProvider.dailyData.protein} g", 'Protein'),
                         const SizedBox(
                           width: 20,
                         ),
                         // Fat
-                        _buildCircularPercentIndicator(_fatPercent, Colors.brown.shade600, "${dailyData.fat} g", 'Fat'),
+                        _buildCircularPercentIndicator(
+                            dietProvider.fatPercent, Colors.brown.shade600, "${dietProvider.dailyData.fat} g", 'Fat'),
                       ],
                     ),
                     const SizedBox(height: 50),
                     NutritionTile(
                       dividerColor: Colors.red.shade600,
                       nutrition: "Calories",
-                      status: '${dailyData.calories} / ${targetData.targetCalories} kcal',
-                      percentage: (dailyData.calories / targetData.targetCalories * 100).toInt(),
+                      status: '${dietProvider.dailyData.calories} / ${dietProvider.targetData.targetCalories} kcal',
+                      percentage:
+                          (dietProvider.dailyData.calories / dietProvider.targetData.targetCalories * 100).toInt(),
                     ),
                     const SizedBox(height: 20),
                     NutritionTile(
                       dividerColor: Colors.green.shade600,
                       nutrition: "Carb",
-                      status: '${dailyData.carb} / ${targetData.targetCarb} g',
-                      percentage: (dailyData.carb / targetData.targetCarb * 100).toInt(),
+                      status: '${dietProvider.dailyData.carb} / ${dietProvider.targetData.targetCarb} g',
+                      percentage: (dietProvider.dailyData.carb / dietProvider.targetData.targetCarb * 100).toInt(),
                     ),
                     const SizedBox(height: 20),
                     NutritionTile(
                       dividerColor: Colors.blue.shade800,
                       nutrition: "Protein",
-                      status: '${dailyData.protein} / ${targetData.targetProtein} g',
-                      percentage: (dailyData.protein / targetData.targetProtein * 100).toInt(),
+                      status: '${dietProvider.dailyData.protein} / ${dietProvider.targetData.targetProtein} g',
+                      percentage:
+                          (dietProvider.dailyData.protein / dietProvider.targetData.targetProtein * 100).toInt(),
                     ),
                     const SizedBox(height: 20),
                     NutritionTile(
                       dividerColor: Colors.brown.shade600,
                       nutrition: "Fat",
-                      status: '${dailyData.fat} / ${targetData.targetFat} g',
-                      percentage: (dailyData.fat / targetData.targetFat * 100).toInt(),
+                      status: '${dietProvider.dailyData.fat} / ${dietProvider.targetData.targetFat} g',
+                      percentage: (dietProvider.dailyData.fat / dietProvider.targetData.targetFat * 100).toInt(),
                     ),
                   ],
                 ),
