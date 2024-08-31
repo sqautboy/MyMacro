@@ -60,7 +60,7 @@ class _SecondIntroState extends State<SecondIntro> {
                         return Text(
                           snapshot.data ?? '', // 계산된 텍스트 표시
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 14,
                             color: Colors.grey[700],
                           ),
                           textAlign: TextAlign.center,

@@ -29,12 +29,6 @@ class SettingPage extends StatelessWidget {
             subtitle: 'Click to delete your     daily data',
             iconDir: 'lib/images/orange.json',
           ),
-          // const SizedBox(height: 20),
-          // SettingCard(
-          //   title: 'TEMP',
-          //   subtitle: 'Not Yet',
-          //   iconDir: 'lib/images/taco.json',
-          // ),
           Spacer(),
         ],
       ),

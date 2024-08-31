@@ -27,12 +27,11 @@ class _FirstIntroState extends State<FirstIntro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.grey[300],
       body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -71,6 +70,7 @@ class _FirstIntroState extends State<FirstIntro> {
 
                 // targetCalorie Input Field
                 TextField(
+                  onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
                   controller: _targetCalorieController,
                   decoration: const InputDecoration(
                     labelText: 'CALORIES GOAL',

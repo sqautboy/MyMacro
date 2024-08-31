@@ -125,6 +125,7 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: TextField(
+        onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
         controller: controller,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(

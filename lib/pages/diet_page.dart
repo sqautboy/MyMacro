@@ -16,6 +16,7 @@ class DietPage extends StatefulWidget {
 class _DietPageState extends State<DietPage> {
   @override
   void initState() {
+    print("---------------initState 호출 완료 -----------------");
     super.initState();
     context.read<DietProvider>().loadData();
   }
