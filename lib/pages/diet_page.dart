@@ -146,15 +146,16 @@ class _DietPageState extends State<DietPage> {
         children: [
           Text(
             centerText1, // 첫 번째 줄 텍스트
-            style: GoogleFonts.roboto(
-              fontWeight: FontWeight.w500,
+            style: GoogleFonts.robotoCondensed(
+              fontWeight: FontWeight.w600,
+              color: Colors.grey[800],
               fontSize: 16,
             ),
           ),
           Text(
             centerText2, // 두 번째 줄 텍스트
-            style: GoogleFonts.roboto(
-              fontWeight: FontWeight.w300,
+            style: GoogleFonts.robotoCondensed(
+              color: Colors.grey[700],
               fontSize: 12,
             ),
           ),
