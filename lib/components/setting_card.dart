@@ -76,7 +76,7 @@ class SettingCard extends StatelessWidget {
                           ),
                           Text(
                             title,
-                            style: GoogleFonts.roboto(
+                            style: GoogleFonts.robotoCondensed(
                               fontSize: 35,
                               fontWeight: FontWeight.w500,
                             ),

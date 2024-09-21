@@ -78,8 +78,8 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
             children: [
               Text(
                 'Add Diet Info',
-                style: GoogleFonts.roboto(
-                  fontSize: 22,
+                style: GoogleFonts.robotoCondensed(
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -108,8 +108,8 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
               onPressed: _addButtonPressed,
               child: Text(
                 'Add',
-                style: GoogleFonts.roboto(
-                  fontSize: 16,
+                style: GoogleFonts.robotoCondensed(
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -129,7 +129,11 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
         controller: controller,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
-          labelStyle: GoogleFonts.roboto(fontSize: 14),
+          labelStyle: GoogleFonts.robotoCondensed(
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
+            color: Colors.grey[700],
+          ),
           labelText: label,
           hintText: hint,
           border: const OutlineInputBorder(),
