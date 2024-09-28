@@ -1,0 +1,9 @@
+{
+    "cmake.ignoreCMakeListsMissing": true,
+    "editor.fontSize": 13,
+    "apc.activityBar": {
+        "position": "bottom",
+        "size": 100,
+        "itemSize": 30,
+    },
+}
