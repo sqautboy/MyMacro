@@ -1,5 +1,5 @@
 import 'package:diet_macro/models/isar_data.dart';
-import 'package:diet_macro/models/isar_service.dart';
+import 'package:diet_macro/services/isar.service.dart';
 import 'package:diet_macro/pages/second_intro.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -72,12 +72,14 @@ class _FirstIntroState extends State<FirstIntro> {
                 TextField(
                   onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
                   controller: _targetCalorieController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'CALORIES GOAL',
                     hintText: 'Kcal',
-                    border: OutlineInputBorder(),
-                    labelStyle: TextStyle(fontSize: 12),
-                    hintStyle: TextStyle(fontSize: 14),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(48),
+                    ),
+                    labelStyle: const TextStyle(fontSize: 12),
+                    hintStyle: const TextStyle(fontSize: 14),
                   ),
                   keyboardType: TextInputType.number,
                   onChanged: (text) {
@@ -126,7 +128,7 @@ class _FirstIntroState extends State<FirstIntro> {
                     backgroundColor: _isButtonEnabled ? Colors.grey[900] : Colors.grey, // 버튼 색상 변경
                     padding: const EdgeInsets.all(25),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(48),
                     ),
                   ),
                   child: Center(

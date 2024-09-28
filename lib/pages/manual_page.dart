@@ -1,5 +1,5 @@
 import 'package:diet_macro/models/isar_data.dart';
-import 'package:diet_macro/models/isar_service.dart';
+import 'package:diet_macro/services/isar.service.dart';
 import 'package:diet_macro/pages/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -100,10 +100,10 @@ class ManualPage extends StatelessWidget {
                     ));
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
+                backgroundColor: Colors.grey[900],
                 padding: const EdgeInsets.all(25),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(48),
                 ),
               ),
               child: Center(
@@ -130,6 +130,7 @@ class ManualPage extends StatelessWidget {
       child: TextField(
         onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
         controller: controller,
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
           labelText: label,
           labelStyle: GoogleFonts.robotoCondensed(
@@ -137,7 +138,9 @@ class ManualPage extends StatelessWidget {
             fontWeight: FontWeight.w700,
             color: Colors.grey[700],
           ),
-          border: const OutlineInputBorder(),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(26),
+          ),
           filled: true,
           fillColor: Colors.grey[200],
         ),
