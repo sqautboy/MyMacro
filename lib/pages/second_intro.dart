@@ -1,5 +1,5 @@
 import 'package:diet_macro/models/isar_data.dart';
-import 'package:diet_macro/models/isar_service.dart';
+import 'package:diet_macro/services/isar.service.dart';
 import 'package:diet_macro/pages/main_page.dart';
 import 'package:diet_macro/pages/manual_page.dart';
 import 'package:flutter/material.dart';
@@ -82,13 +82,9 @@ class _SecondIntroState extends State<SecondIntro> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _buildToggleButton(0, '6  :  2  :  2'),
-                SizedBox(
-                  height: 36,
-                ),
+                const SizedBox(height: 36),
                 _buildToggleButton(1, '5  :  3  :  2'),
-                SizedBox(
-                  height: 36,
-                ),
+                const SizedBox(height: 36),
                 _buildToggleButton(2, '4  :  4  :  2'),
               ],
             ),
@@ -140,12 +136,12 @@ class _SecondIntroState extends State<SecondIntro> {
                   padding: const EdgeInsets.all(25), // 버튼 패딩
                   shape: RoundedRectangleBorder(
                     // 버튼 모양
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(48),
                   ),
                   // minimumSize: const Size(double.infinity, 50),
                 ),
-                child: Center(
-                  child: const Text(
+                child: const Center(
+                  child: Text(
                     'Start Now',
                     style: TextStyle(
                       color: Colors.white,
@@ -175,7 +171,7 @@ class _SecondIntroState extends State<SecondIntro> {
                     fontWeight: FontWeight.bold,
                   ),
                   children: <TextSpan>[
-                    TextSpan(text: 'here', style: TextStyle(color: Colors.blue)),
+                    TextSpan(text: 'here', style: TextStyle(color: Colors.blue[600])),
                     TextSpan(text: ' to set manually', style: TextStyle(color: Colors.grey[700])),
                   ],
                 ),
@@ -205,7 +201,7 @@ class _SecondIntroState extends State<SecondIntro> {
           fontSize: 16,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(32),
         ),
         backgroundColor: _selectedIndex == index ? Colors.green : Colors.grey[700], // 선택된 버튼 색상 변경
       ),

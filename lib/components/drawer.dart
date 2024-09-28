@@ -21,6 +21,7 @@ class MyDrawer extends StatelessWidget {
                 child: Lottie.asset(
                   'lib/images/animated_icon.json',
                   width: 230,
+                  
                 ),
               ),
 
@@ -73,6 +74,7 @@ class MyDrawer extends StatelessWidget {
                 onTap: () {
                   print('on clicked');
                 },
+
                 child: Padding(
                   padding: const EdgeInsets.only(left: 27.0),
                   child: ListTile(

@@ -49,7 +49,7 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
       barrierDismissible: false,
       context: context,
       builder: (context) {
-        Future.delayed(Duration(seconds: 1), () {
+        Future.delayed(const Duration(seconds: 1), () {
           Navigator.of(context).pop(true);
         });
         return AlertDialog(
@@ -136,7 +136,9 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
           ),
           labelText: label,
           hintText: hint,
-          border: const OutlineInputBorder(),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
         ),
       ),
     );

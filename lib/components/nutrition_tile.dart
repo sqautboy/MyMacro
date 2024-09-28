@@ -15,6 +15,7 @@ class NutritionTile extends StatelessWidget {
     required this.percentage,
   });
 
+
   @override
   Widget build(BuildContext context) {
     return Container(

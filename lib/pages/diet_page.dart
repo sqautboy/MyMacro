@@ -49,9 +49,9 @@ class _DietPageState extends State<DietPage> {
 
                     // 팝업 메시지 표시
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text('Successfully added your macro!'),
-                        duration: const Duration(seconds: 2),
+                        duration: Duration(seconds: 2),
                       ),
                     );
                   },
