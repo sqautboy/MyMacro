@@ -1,4 +1,5 @@
-import 'package:diet_macro/models/isar_service.dart';
+import 'package:diet_macro/pages/food_list_page.dart';
+import 'package:diet_macro/services/isar.service.dart';
 import 'package:diet_macro/pages/first_intro.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,12 +48,19 @@ class SettingCard extends StatelessWidget {
                 );
               },
             );
+          } else if (title == 'NUTRITION') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const FoodListPage(),
+              ),
+            );
           }
         },
         child: Card(
           color: Colors.grey[200],
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(28),
           ),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           child: Column(
@@ -65,33 +73,33 @@ class SettingCard extends StatelessWidget {
                   children: [
                     Lottie.asset(
                       iconDir,
-                      height: 140,
+                      height: 120,
                     ),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Text(
                             title,
-                            style: GoogleFonts.robotoCondensed(
-                              fontSize: 35,
+                            style: const TextStyle(
+                              fontSize: 24,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Text(
                             subtitle,
-                            style: GoogleFonts.roboto(
+                            style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w300,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                         ],
@@ -120,7 +128,7 @@ class SettingCard extends StatelessWidget {
               fontSize: 15,
             ),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(24),
             ),
           ),
           onPressed: () {
@@ -128,19 +136,23 @@ class SettingCard extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => FirstIntro(),
+                  builder: (context) => const FirstIntro(),
                 ),
               );
             } else {
               Navigator.pop(context);
             }
-            ;
           },
-          child: const Center(child: Text('OK')),
+          child: Center(
+            child: Text(
+              'Okay',
+              style: GoogleFonts.roboto(),
+            ),
+          ),
         ),
       ],
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(44),
       ),
       contentPadding: EdgeInsets.zero,
       content: Center(
@@ -149,10 +161,10 @@ class SettingCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Lottie.asset(
-              'lib/images/success_icon.json',
+              'lib/images/success.json',
               width: 200,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               title,
               style: GoogleFonts.robotoCondensed(
@@ -160,10 +172,10 @@ class SettingCard extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text(
               subtitle,
-              style: GoogleFonts.roboto(
+              style: GoogleFonts.robotoCondensed(
                 fontSize: 15,
               ),
             ),
