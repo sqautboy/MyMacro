@@ -15,6 +15,8 @@ samples, guidance on mobile development, and a full API reference.
 
 <br>
 
+API USAGE : FatSecret Platform API OAuth 1.0 Protocol
+
 ```
 lib/
 ┣ components/
