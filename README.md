@@ -49,7 +49,7 @@ lib/
 ┣ models/
 ┃ ┣ food_model.dart
 ┃ ┣ isar_data.dart
-┃ ┗ iisar_data.g.dart
+┃ ┗ isar_data.g.dart
 ┣ pages/
 ┃ ┣ date_page.dart
 ┃ ┣ diet_page.dart
