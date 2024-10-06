@@ -37,17 +37,21 @@ lib/
 ┃ ┣ success_icon.json
 ┃ ┗ taco.json
 ┣ models/
+┃ ┣ food_model.dart
 ┃ ┣ isar_data.dart
-┃ ┣ isar_data.g.dart
-┃ ┗ isar_service.dart
+┃ ┗ iisar_data.g.dart
 ┣ pages/
 ┃ ┣ date_page.dart
 ┃ ┣ diet_page.dart
 ┃ ┣ first_intro.dart
+┃ ┣ food_list.dart
 ┃ ┣ main_page.dart
 ┃ ┣ manual_page.dart
 ┃ ┣ second_intro.dart
 ┃ ┗ setting_page.dart
+┣ services/
+┃ ┣ api.service.dart
+┃ ┗ isar.service.dart
 ┣ diet_provider.dart
 ┗ main.dart
 ```
