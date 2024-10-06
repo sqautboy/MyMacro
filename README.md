@@ -13,9 +13,17 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-<br>
 
-API USAGE : FatSecret Platform API OAuth 1.0 Protocol
+#### DB
+[Isar Database](https://isar.dev/)
+
+
+#### API USAGE
+
+
+[FatSecret Platform API OAuth 1.0 Protocol](https://platform.fatsecret.com/docs/guides/authentication/oauth1)
+
+<br>
 
 ```
 lib/
