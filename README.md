@@ -63,5 +63,6 @@ lib/
 ┃ ┣ api.service.dart
 ┃ ┗ isar.service.dart
 ┣ diet_provider.dart
+┣ food_provider.dart
 ┗ main.dart
 ```
