@@ -1,29 +1,17 @@
-import 'package:diet_macro/models/food_model.dart';
-import 'package:diet_macro/services/api.service.dart';
+import 'package:diet_macro/food_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
-class FoodListPage extends StatefulWidget {
+class FoodListPage extends StatelessWidget {
   const FoodListPage({super.key});
 
   @override
-  State<FoodListPage> createState() => _FoodListPageState();
-}
-
-class _FoodListPageState extends State<FoodListPage> {
-  final List<FoodNutrition> foods = [];
-  final textController = TextEditingController();
-
-  // fetch 로딩 상태 체크
-  bool isLoading = false;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    // FoodProvider 상태를 가져옴
+    final foodProvider = context.watch<FoodProvider>();
+    final textController = TextEditingController();
+
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
@@ -41,6 +29,7 @@ class _FoodListPageState extends State<FoodListPage> {
               children: [
                 Expanded(
                   child: TextField(
+                    showCursor: false,
                     controller: textController,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(20),
@@ -68,21 +57,9 @@ class _FoodListPageState extends State<FoodListPage> {
                   child: IconButton(
                     icon: const Icon(Icons.search, color: Colors.white),
                     onPressed: () async {
-                      foods.clear(); // 리스트 초기화
-                      String foodName = textController.text;
-                      print('검색한 음식 이름: $foodName');
-
-                      // 로딩 중
-                      setState(() {
-                        isLoading = true;
-                      });
-
-                      List<FoodNutrition> fetchedFoods = await fetchFoodNutrition(foodName); // await 추가
-
-                      setState(() {
-                        foods.addAll(fetchedFoods); // 검색된 음식 리스트 추가
-                        isLoading = false;
-                      });
+                      final foodName = textController.text;
+                      foodProvider.clearFoods(); // 이전 검색 결과 초기화
+                      context.read<FoodProvider>().fetchFoodNutritionProvider(foodName); // 음식 데이터 가져오기
                     },
                     padding: const EdgeInsets.all(12),
                   ),
@@ -91,7 +68,7 @@ class _FoodListPageState extends State<FoodListPage> {
             ),
           ),
           Expanded(
-            child: isLoading
+            child: foodProvider.isLoading
                 ? Padding(
                     padding: const EdgeInsets.only(top: 24),
                     child: Shimmer.fromColors(
@@ -125,9 +102,9 @@ class _FoodListPageState extends State<FoodListPage> {
                 Padding(
                     padding: const EdgeInsets.only(top: 16),
                     child: ListView.builder(
-                      itemCount: foods.length,
+                      itemCount: foodProvider.foods.length,
                       itemBuilder: (context, index) {
-                        final food = foods[index];
+                        final food = foodProvider.foods[index];
 
                         return ListTile(
                           title: Text(food.name),
