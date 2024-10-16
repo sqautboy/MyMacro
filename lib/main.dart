@@ -1,6 +1,7 @@
 import 'package:diet_macro/diet_provider.dart';
+import 'package:diet_macro/food_provider.dart';
 import 'package:diet_macro/models/isar_data.dart';
-import 'package:diet_macro/models/isar_service.dart';
+import 'package:diet_macro/services/isar.service.dart';
 import 'package:diet_macro/pages/first_intro.dart';
 import 'package:diet_macro/pages/main_page.dart';
 
@@ -14,7 +15,18 @@ void main() async {
 
   final targetCalories = await IsarService().getTargetData();
 
-  runApp(MyApp(targetCalories: targetCalories)); // targetCalories 전달
+  // api test
+  // await fetchFoodNutrition('cheese');
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (BuildContext context) => DietProvider()),
+        ChangeNotifierProvider(create: (BuildContext context) => FoodProvider()),
+      ],
+      child: MyApp(targetCalories: targetCalories),
+    ),
+  ); // targetCalories 전달
 }
 
 class MyApp extends StatelessWidget {
@@ -24,13 +36,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => DietProvider(),
-      child: MaterialApp(
-        // theme: ThemeData(primarySwatch: Colors.grey),
-        debugShowCheckedModeBanner: false,
-        home: targetCalories == null ? const FirstIntro() : const MainPage(), // 조건에 따라 페이지 설정
-      ),
+    return MaterialApp(
+      theme: ThemeData.light(),
+      debugShowCheckedModeBanner: false,
+      home: targetCalories == null ? const FirstIntro() : const MainPage(), // 조건에 따라 페이지 설정
     );
   }
 }
