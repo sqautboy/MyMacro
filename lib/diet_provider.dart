@@ -1,5 +1,5 @@
 import 'package:diet_macro/models/isar_data.dart';
-import 'package:diet_macro/models/isar_service.dart';
+import 'package:diet_macro/services/isar.service.dart';
 import 'package:flutter/material.dart';
 
 class DietProvider with ChangeNotifier {

@@ -28,7 +28,7 @@ String generateSignature(
   return base64EncodedSignature;
 }
 
-Future<void> fetchFoodNutrition() async {
+Future<List<FoodNutrition>> fetchFoodNutrition(String foodName) async {
   // FatSecret API 정보
   const String consumerKey = '6bb1fb0f9bdd48f0a3c19103b768d573'; // 실제 Consumer Key
   const String consumerSecret = 'b550a99ae0d44695b9faa1d6380c622c'; // 실제 Consumer Secret
@@ -37,7 +37,7 @@ Future<void> fetchFoodNutrition() async {
   // 요청 파라미터 설정
   final Map<String, String> params = {
     'method': 'foods.search', // 호출할 API 메서드
-    'search_expression': 'creamcheese', // 검색어
+    'search_expression': foodName, // 검색어
     'format': 'json',
     'oauth_consumer_key': consumerKey,
     'oauth_signature_method': 'HMAC-SHA1',
@@ -62,6 +62,7 @@ Future<void> fetchFoodNutrition() async {
     final List<dynamic> foodList = jsonResponse['foods']['food'];
 
     List<FoodNutrition> foodNutritions = [];
+
     for (var food in foodList) {
       String description = food['food_description'];
 
@@ -70,25 +71,25 @@ Future<void> fetchFoodNutrition() async {
 
       List<String> parts = description.split(' - ')[1].split(' | ');
 
-      foodNutritions.add(FoodNutrition(
-        name: food['food_name'], // food_name 추가
-        calories: int.parse(parts[0].split(': ')[1].replaceAll('kcal', '')),
-        fat: double.parse(parts[1].split(': ')[1].replaceAll('g', '')).round(), // 정수형 변환
-        carbs: double.parse(parts[2].split(': ')[1].replaceAll('g', '')).round(), // 정수형 변환
-        protein: double.parse(parts[3].split(': ')[1].replaceAll('g', '')).round(), // 정수형 변환
-        servingUnit: servingUnit,
-      ));
-    }
-
-    // 검색에 나오는 모든 식품의 Nutrition 출력
-    for (var nutriotionItem in foodNutritions) {
-      print(nutriotionItem);
-      print('\n');
+      foodNutritions.add(
+        FoodNutrition(
+          name: food['food_name'], // food_name 추가
+          calories: int.parse(parts[0].split(': ')[1].replaceAll('kcal', '')),
+          fat: double.parse(parts[1].split(': ')[1].replaceAll('g', '')).round(), // 정수형 변환
+          carbs: double.parse(parts[2].split(': ')[1].replaceAll('g', '')).round(), // 정수형 변환
+          protein: double.parse(parts[3].split(': ')[1].replaceAll('g', '')).round(), // 정수형 변환
+          servingUnit: servingUnit,
+        ),
+      );
     }
 
     print('API Response: $jsonResponse');
+
+    return foodNutritions; // 리스트 반환
   } else {
     print('API Error: ${response.statusCode}');
     print('Error Body: ${response.body}');
+
+    return [];
   }
 }
