@@ -63,24 +63,24 @@ class NotificationService {
   }
 
   // noti test
-  // Future<void> showTestNotification(String title, String body) async {
-  //   const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
-  //     'test_channel_id', // channel ID
-  //     'Test Channel', // channel name
-  //     channelDescription: 'This is a test notification channel',
-  //     importance: Importance.max,
-  //     priority: Priority.high,
-  //   );
+  Future<void> showTestNotification(String title, String body) async {
+    const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
+      'test_channel_id', // channel ID
+      'Test Channel', // channel name
+      channelDescription: 'This is a test notification channel',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
 
-  //   const NotificationDetails notificationDetails = NotificationDetails(
-  //     android: androidDetails,
-  //   );
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: androidDetails,
+    );
 
-  //   await notificationsPlugin.show(
-  //     0, // notification ID
-  //     title, // notification title
-  //     body, // notification body
-  //     notificationDetails,
-  //   );
-  // }
+    await notificationsPlugin.show(
+      0, // notification ID
+      title, // notification title
+      body, // notification body
+      notificationDetails,
+    );
+  }
 }
