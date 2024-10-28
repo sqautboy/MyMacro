@@ -18,7 +18,7 @@ void main() async {
   // local noti test
   Future.delayed(const Duration(seconds: 3), () {
     print('알람 테스트');
-    // NotificationService().showTestNotification("title", "body test");
+    NotificationService().showTestNotification("title", "body test");
     NotificationService().scheduleDailyNotification('timezone test', 'hihihihi');
   });
 
