@@ -21,6 +21,9 @@ samples, guidance on mobile development, and a full API reference.
 #### API USAGE
 [FatSecret Platform API OAuth 1.0 Protocol](https://platform.fatsecret.com/docs/guides)
 
+#### State Management (일부)
+[Provider](https://pub.dev/packages/provider)
+
 #### Push Notification
 [local_push_notification](https://pub.dev/packages/flutter_local_notifications)
 
