@@ -30,8 +30,8 @@ String generateSignature(
 
 Future<List<FoodNutrition>> fetchFoodNutrition(String foodName) async {
   // FatSecret API 정보
-  const String consumerKey = '6bb1fb0f9bdd48f0a3c19103b768d573'; // 실제 Consumer Key
-  const String consumerSecret = 'b550a99ae0d44695b9faa1d6380c622c'; // 실제 Consumer Secret
+  const String consumerKey = 'my_key'; // 실제 Consumer Key
+  const String consumerSecret = 'my_secret'; // 실제 Consumer Secret
   const String apiUrl = 'https://platform.fatsecret.com/rest/server.api';
 
   // 요청 파라미터 설정
