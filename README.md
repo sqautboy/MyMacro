@@ -72,7 +72,8 @@ lib/
 ┣ food_provider.dart
 ┣ main.dart
 ┃ ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-┣ pubspec.yaml (used packages)
+┣ pubspec.yaml/
+┃ ┣ < used packages/plugins >
 ┃ ┣ cupertino_icons: ^1.0.6
 ┃ ┣ shared_preferences: ^2.2.3
 ┃ ┣ is_first_run: ^1.0.0
