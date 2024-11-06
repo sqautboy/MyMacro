@@ -15,14 +15,14 @@ void main() async {
   await NotificationService().initNotification();
   await IsarService.initialize();
 
+  final targetCalories = await IsarService().getTargetData();
+
   // local noti test
   Future.delayed(const Duration(seconds: 3), () {
     print('알람 테스트');
-    NotificationService().showTestNotification("title", "body test");
-    NotificationService().scheduleDailyNotification('timezone test', 'hihihihi');
+    // NotificationService().showTestNotification("title", "body test");
+    NotificationService().scheduleDailyNotification();
   });
-
-  final targetCalories = await IsarService().getTargetData();
 
   runApp(
     MultiProvider(
