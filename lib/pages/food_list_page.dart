@@ -1,5 +1,6 @@
 import 'package:diet_macro/food_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -24,7 +25,7 @@ class FoodListPage extends StatelessWidget {
             height: 8,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Row(
               children: [
                 Expanded(
@@ -32,12 +33,12 @@ class FoodListPage extends StatelessWidget {
                     showCursor: false,
                     controller: textController,
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.all(20),
-                      prefixIcon: Icon(Icons.search, color: Colors.grey[700]),
+                      contentPadding: const EdgeInsets.all(18),
+                      prefixIcon: Icon(Icons.search, color: Colors.grey[800]),
                       labelText: 'Search',
                       labelStyle: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey[700],
+                        fontSize: 15,
+                        color: Colors.grey[800],
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(32.0),
@@ -46,13 +47,13 @@ class FoodListPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 24,
+                  width: 16,
                 ),
                 Container(
-                  padding: const EdgeInsets.all(4),
+                  padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
                     color: Colors.grey[900],
-                    borderRadius: BorderRadius.circular(16.0),
+                    borderRadius: BorderRadius.circular(24.0),
                   ),
                   child: IconButton(
                     icon: const Icon(Icons.search, color: Colors.white),
@@ -107,8 +108,14 @@ class FoodListPage extends StatelessWidget {
                         final food = foodProvider.foods[index];
 
                         return ListTile(
-                          title: Text(food.name),
-                          subtitle: Text(food.servingUnit),
+                          title: Text(
+                            '${food.name} (${food.servingUnit})',
+                            style: const TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          subtitle: Text(
+                            'Calories: ${food.calories}kcal  Carb: ${food.carbs}g  Protein: ${food.protein}g  Fat: ${food.fat}g',
+                            style: const TextStyle(fontWeight: FontWeight.w300),
+                          ),
                         );
                       },
                     ),
