@@ -26,7 +26,7 @@ samples, guidance on mobile development, and a full API reference.
 [Provider](https://pub.dev/packages/provider)
 
 #### Push Notification
-[local_push_notification](https://pub.dev/packages/flutter_local_notifications)
+[Local Push Notification](https://pub.dev/packages/flutter_local_notifications)
 
 <br>
 
