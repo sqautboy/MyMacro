@@ -95,7 +95,9 @@ class _DietPageState extends State<DietPage> {
                             dietProvider.fatPercent, Colors.brown.shade600, "${dietProvider.dailyData.fat} g", 'Fat'),
                       ],
                     ),
-                    const SizedBox(height: 50),
+                    const SizedBox(
+                      height: 50,
+                    ),
                     NutritionTile(
                       dividerColor: Colors.red.shade600,
                       nutrition: "Calories",
@@ -103,14 +105,18 @@ class _DietPageState extends State<DietPage> {
                       percentage:
                           (dietProvider.dailyData.calories / dietProvider.targetData.targetCalories * 100).toInt(),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     NutritionTile(
                       dividerColor: Colors.green.shade600,
                       nutrition: "Carb",
                       status: '${dietProvider.dailyData.carb} / ${dietProvider.targetData.targetCarb} g',
                       percentage: (dietProvider.dailyData.carb / dietProvider.targetData.targetCarb * 100).toInt(),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     NutritionTile(
                       dividerColor: Colors.blue.shade800,
                       nutrition: "Protein",
@@ -118,7 +124,9 @@ class _DietPageState extends State<DietPage> {
                       percentage:
                           (dietProvider.dailyData.protein / dietProvider.targetData.targetProtein * 100).toInt(),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     NutritionTile(
                       dividerColor: Colors.brown.shade600,
                       nutrition: "Fat",
@@ -146,16 +154,15 @@ class _DietPageState extends State<DietPage> {
         children: [
           Text(
             centerText1, // 첫 번째 줄 텍스트
-            style: GoogleFonts.robotoCondensed(
-              fontWeight: FontWeight.w600,
-              color: Colors.grey[800],
+            style: GoogleFonts.dmSerifDisplay(
+              fontWeight: FontWeight.w500,
               fontSize: 16,
             ),
           ),
           Text(
             centerText2, // 두 번째 줄 텍스트
-            style: GoogleFonts.robotoCondensed(
-              color: Colors.grey[700],
+            style: GoogleFonts.roboto(
+              color: Colors.grey[800],
               fontSize: 12,
             ),
           ),

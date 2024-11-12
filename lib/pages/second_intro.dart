@@ -34,10 +34,10 @@ class _SecondIntroState extends State<SecondIntro> {
             const Spacer(),
             Text(
               'Select Your Diet Option',
-              style: GoogleFonts.robotoCondensed(
+              style: GoogleFonts.dmSerifDisplay(
                 fontSize: 28,
                 fontWeight: FontWeight.w700,
-                color: Colors.grey[800],
+                color: Colors.grey[850],
               ),
               textAlign: TextAlign.center,
             ),
@@ -60,7 +60,7 @@ class _SecondIntroState extends State<SecondIntro> {
                         // 계산된 텍스트 표시
                         return Text(
                           snapshot.data ?? '',
-                          style: GoogleFonts.robotoCondensed(
+                          style: GoogleFonts.roboto(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
                             color: Colors.grey[700],

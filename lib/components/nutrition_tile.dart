@@ -15,7 +15,6 @@ class NutritionTile extends StatelessWidget {
     required this.percentage,
   });
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,8 +45,8 @@ class NutritionTile extends StatelessWidget {
                 nutrition,
                 style: GoogleFonts.roboto(
                   color: const Color.fromARGB(255, 61, 61, 61),
-                  fontWeight: FontWeight.w600,
-                  fontSize: 17,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
                 ),
               ),
               Text(
@@ -62,13 +61,13 @@ class NutritionTile extends StatelessWidget {
           const Spacer(),
           Text(
             '$percentage%',
-            style: GoogleFonts.roboto(
+            style: TextStyle(
               fontWeight: FontWeight.w300,
-              fontSize: 18,
+              fontSize: 16,
               color: const Color.fromARGB(255, 36, 36, 36),
             ),
           ),
-          const SizedBox(width: 40),
+          const SizedBox(width: 30),
         ],
       ),
     );

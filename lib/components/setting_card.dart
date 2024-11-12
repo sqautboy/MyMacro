@@ -19,7 +19,7 @@ class SettingCard extends StatelessWidget {
       child: InkWell(
         splashColor: Colors.black,
         onTap: () {
-          if (title == 'RESET') {
+          if (title == 'Reset') {
             IsarService().deleteTargetData(1);
 
             showDialog(
@@ -28,14 +28,11 @@ class SettingCard extends StatelessWidget {
               builder: (context) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 120),
-                  child: _buildDialog(context, 'Reset Complete !', 'Re-Enter your calories goal'),
+                  child: _buildDialog(context, 'Reset Complete', 'Re-Enter your calories goal'),
                 );
               },
             );
-          } else if (title == 'DELETE') {
-            // DEBUG
-            print('Clicked : DELETE');
-
+          } else if (title == 'Delete') {
             IsarService().deleteAllDailyData();
 
             showDialog(
@@ -44,11 +41,11 @@ class SettingCard extends StatelessWidget {
               builder: (context) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 120),
-                  child: _buildDialog(context, 'Delete Complete !', 'Daily data has been removed'),
+                  child: _buildDialog(context, 'Removed', 'Daily data has been removed'),
                 );
               },
             );
-          } else if (title == 'NUTRITION') {
+          } else if (title == 'Nutrition') {
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -84,9 +81,9 @@ class SettingCard extends StatelessWidget {
                           ),
                           Text(
                             title,
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w500,
+                            style: GoogleFonts.dmSerifDisplay(
+                              fontSize: 23,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                           const SizedBox(
@@ -128,11 +125,11 @@ class SettingCard extends StatelessWidget {
               fontSize: 15,
             ),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(12),
             ),
           ),
           onPressed: () {
-            if (title == 'Reset Complete !') {
+            if (title == 'Reset Complete') {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -143,16 +140,15 @@ class SettingCard extends StatelessWidget {
               Navigator.pop(context);
             }
           },
-          child: Center(
+          child: const Center(
             child: Text(
               'Okay',
-              style: GoogleFonts.roboto(),
             ),
           ),
         ),
       ],
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(44),
+        borderRadius: BorderRadius.circular(16),
       ),
       contentPadding: EdgeInsets.zero,
       content: Center(
@@ -167,7 +163,7 @@ class SettingCard extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               title,
-              style: GoogleFonts.robotoCondensed(
+              style: GoogleFonts.dmSerifDisplay(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
               ),
@@ -175,7 +171,7 @@ class SettingCard extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               subtitle,
-              style: GoogleFonts.robotoCondensed(
+              style: GoogleFonts.roboto(
                 fontSize: 15,
               ),
             ),

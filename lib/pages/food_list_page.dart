@@ -1,6 +1,5 @@
 import 'package:diet_macro/food_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -15,10 +14,6 @@ class FoodListPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        backgroundColor: Colors.grey[300],
-      ),
       body: Column(
         children: [
           const SizedBox(
@@ -114,7 +109,7 @@ class FoodListPage extends StatelessWidget {
                           ),
                           subtitle: Text(
                             'Calories: ${food.calories}kcal  Carb: ${food.carbs}g  Protein: ${food.protein}g  Fat: ${food.fat}g',
-                            style: const TextStyle(fontWeight: FontWeight.w300),
+                            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
                           ),
                         );
                       },

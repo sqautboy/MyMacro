@@ -35,6 +35,11 @@ class MyBottomNavBar extends StatelessWidget {
           ),
           GButton(
             gap: 5,
+            icon: Icons.search,
+            text: 'search',
+          ),
+          GButton(
+            gap: 5,
             icon: Icons.settings,
             text: 'Settings',
           ),

@@ -2,6 +2,7 @@ import 'package:diet_macro/components/bottom_navigation_bar.dart';
 import 'package:diet_macro/components/drawer.dart';
 import 'package:diet_macro/pages/date_page.dart';
 import 'package:diet_macro/pages/diet_page.dart';
+import 'package:diet_macro/pages/food_list_page.dart';
 import 'package:diet_macro/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +25,7 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _pages = [
     const DietPage(),
     const DatePage(),
+    const FoodListPage(),
     const SettingPage(),
   ];
 
@@ -40,11 +42,8 @@ class _MainPageState extends State<MainPage> {
         leading: Builder(builder: (context) {
           return IconButton(
             icon: const Padding(
-              padding: EdgeInsets.only(left: 12.0),
-              child: Icon(
-                Icons.menu,
-                color: Colors.black,
-              ),
+              padding: EdgeInsets.only(left: 14.0),
+              child: Image(image: AssetImage('lib/images/cat.png')),
             ),
             color: Colors.black,
             onPressed: () {

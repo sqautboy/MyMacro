@@ -30,50 +30,50 @@ class ManualPage extends StatelessWidget {
         children: [
           Text(
             'Enter Your Diet Option',
-            style: GoogleFonts.robotoCondensed(
+            style: GoogleFonts.dmSerifDisplay(
               fontSize: 28,
               fontWeight: FontWeight.w700,
-              color: Colors.grey[800],
+              color: Colors.grey[850],
             ),
             textAlign: TextAlign.center,
           ),
           const Spacer(),
           Text(
-            'CARB',
-            style: GoogleFonts.robotoCondensed(
+            'Carb',
+            style: GoogleFonts.dmSerifDisplay(
               fontSize: 20,
               fontWeight: FontWeight.w700,
-              color: Colors.grey[700],
+              color: Colors.grey[800],
             ),
           ),
           _buildInputField('Enter Carb (g)', carbController),
           const SizedBox(height: 52),
           Text(
-            'PROTEIN',
-            style: GoogleFonts.robotoCondensed(
+            'Protein',
+            style: GoogleFonts.dmSerifDisplay(
               fontSize: 20,
               fontWeight: FontWeight.w700,
-              color: Colors.grey[700],
+              color: Colors.grey[800],
             ),
           ),
           _buildInputField('Enter Protein (g)', proteinController),
           const SizedBox(height: 52),
           Text(
-            'FAT',
-            style: GoogleFonts.robotoCondensed(
+            'Fat',
+            style: GoogleFonts.dmSerifDisplay(
               fontSize: 20,
               fontWeight: FontWeight.w700,
-              color: Colors.grey[700],
+              color: Colors.grey[800],
             ),
           ),
           _buildInputField('Enter Fat (g)', fatController),
           const SizedBox(height: 52),
           Text(
-            'Set your macros according to your target calories',
+            'Set your macros according to your target calories!',
             style: GoogleFonts.robotoCondensed(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: Colors.grey[600],
+              color: Colors.grey[700],
             ),
           ),
           const SizedBox(height: 16),
@@ -133,7 +133,7 @@ class ManualPage extends StatelessWidget {
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           labelText: label,
-          labelStyle: GoogleFonts.robotoCondensed(
+          labelStyle: GoogleFonts.roboto(
             fontSize: 13,
             fontWeight: FontWeight.w700,
             color: Colors.grey[700],

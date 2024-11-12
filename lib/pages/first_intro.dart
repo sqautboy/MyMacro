@@ -44,9 +44,9 @@ class _FirstIntroState extends State<FirstIntro> {
                 // title
                 Text(
                   'MyMacro',
-                  style: GoogleFonts.roboto(
+                  style: GoogleFonts.dmSerifDisplay(
                     fontWeight: FontWeight.bold,
-                    fontSize: 40,
+                    fontSize: 42,
                   ),
                 ),
 
@@ -57,7 +57,7 @@ class _FirstIntroState extends State<FirstIntro> {
                 // sub title
                 Text(
                   'Enter your Calories Goal',
-                  style: GoogleFonts.roboto(
+                  style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey[600],
                   ),
@@ -134,7 +134,7 @@ class _FirstIntroState extends State<FirstIntro> {
                   child: Center(
                     child: Text(
                       'Next',
-                      style: GoogleFonts.roboto(
+                      style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,

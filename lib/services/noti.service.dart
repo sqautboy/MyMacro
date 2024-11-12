@@ -15,10 +15,7 @@ class NotificationService {
       const InitializationSettings(
         android: AndroidInitializationSettings('@mipmap/launcher_icon'),
         iOS: DarwinInitializationSettings(
-          requestAlertPermission: true,
-          requestBadgePermission: true,
-          requestSoundPermission: true,
-        ),
+            requestAlertPermission: true, requestBadgePermission: true, requestSoundPermission: true),
       ),
     );
     await configureLocalTimeZone();
@@ -62,11 +59,10 @@ class NotificationService {
   }
 
   // scheduled date 설정
+  // 11시 59분 59초로 한뒤, 다음날로 넘어갈때 어제의 칼로리 도달량을 알림으로 표시
   tz.TZDateTime _nextInstance() {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
     tz.TZDateTime scheduledDate = tz.TZDateTime(tz.local, now.year, now.month, now.day, 23, 59, 59);
-
-    print('Scheduled date: $scheduledDate');
 
     if (scheduledDate.isBefore(now)) {
       scheduledDate = scheduledDate.add(const Duration(days: 1));
