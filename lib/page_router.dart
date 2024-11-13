@@ -1,7 +1,8 @@
 import 'package:diet_macro/screens/date_page.dart';
 import 'package:diet_macro/screens/diet_page.dart';
-import 'package:diet_macro/screens/food_list_page.dart';
+import 'package:diet_macro/screens/food_search_page.dart';
 import 'package:diet_macro/screens/setting_page.dart';
+import 'package:diet_macro/utils/color_set.dart';
 import 'package:diet_macro/utils/widgets/bottom_navigation_bar.dart';
 import 'package:diet_macro/utils/drawer.dart';
 import 'package:flutter/material.dart';
@@ -25,20 +26,20 @@ class _PageRouterState extends State<PageRouter> {
   final List<Widget> _pages = [
     const DietPage(),
     const DatePage(),
-    const FoodListPage(),
+    const FoodSearchPage(),
     const SettingPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: mainColor,
       bottomNavigationBar: MyBottomNavBar(
         onTabChange: navigationBottomBar,
       ),
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: Colors.grey[300],
+        backgroundColor: mainColor,
         leading: Builder(builder: (context) {
           return IconButton(
             icon: const Padding(
@@ -53,7 +54,7 @@ class _PageRouterState extends State<PageRouter> {
         }),
       ),
       drawer: const MyDrawer(),
-      body: _pages[_selectedIndex],
+      body: _pages[_selectedIndex], // 이 부분만 변경됨
     );
   }
 }

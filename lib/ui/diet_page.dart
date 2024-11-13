@@ -1,4 +1,5 @@
 import 'package:diet_macro/providers/diet_provider.dart';
+import 'package:diet_macro/utils/color_set.dart';
 import 'package:diet_macro/utils/widgets/bottom_modal_sheet.dart';
 import 'package:diet_macro/utils/components/nutrition_tile.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _DietPageState extends State<DietPage> {
     final dietProvider = context.watch<DietProvider>();
 
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: mainColor,
       floatingActionButton: FloatingActionButton(
           tooltip: 'Add Nutrion',
           backgroundColor: Colors.black,

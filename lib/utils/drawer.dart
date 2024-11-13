@@ -1,3 +1,4 @@
+import 'package:diet_macro/utils/color_set.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -31,26 +32,7 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
 
-              // other pages
-              GestureDetector(
-                onTap: () async {
-                  final Uri url = Uri.parse('https://github.com/squattlife/MyMacro');
-                  if (!await launchUrl(url)) {
-                    throw Exception('Could not launch $url');
-                  }
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 25.0),
-                  child: ListTile(
-                    leading: Image.asset('lib/images/github.png', width: 28.0),
-                    title: Text(
-                      'Github',
-                      style: GoogleFonts.roboto(color: Colors.grey[300]),
-                    ),
-                  ),
-                ),
-              ),
-
+              // App Store
               GestureDetector(
                 onTap: () {
                   print('on clicked');
@@ -62,13 +44,14 @@ class MyDrawer extends StatelessWidget {
                     title: Text(
                       'App Store',
                       style: GoogleFonts.roboto(
-                        color: Colors.grey[300],
+                        color: mainColor,
                       ),
                     ),
                   ),
                 ),
               ),
 
+              // Play Store
               GestureDetector(
                 onTap: () {
                   print('on clicked');
@@ -80,13 +63,14 @@ class MyDrawer extends StatelessWidget {
                     title: Text(
                       'Play Store',
                       style: GoogleFonts.roboto(
-                        color: Colors.grey[300],
+                        color: mainColor,
                       ),
                     ),
                   ),
                 ),
               ),
 
+              // FatSecret
               GestureDetector(
                 onTap: () async {
                   final Uri url = Uri.parse('https://www.fatsecret.com/calories-nutrition/');
@@ -100,7 +84,7 @@ class MyDrawer extends StatelessWidget {
                     leading: Image.asset('lib/images/fatsecret.png', width: 28.0),
                     title: Text(
                       'FatSecret',
-                      style: GoogleFonts.roboto(color: Colors.grey[300]),
+                      style: GoogleFonts.roboto(color: mainColor),
                     ),
                   ),
                 ),
