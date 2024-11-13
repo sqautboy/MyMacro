@@ -1,7 +1,7 @@
 import 'package:diet_macro/models/isar_data.dart';
 import 'package:diet_macro/services/isar.service.dart';
-import 'package:diet_macro/pages/main_page.dart';
-import 'package:diet_macro/pages/manual_page.dart';
+import 'package:diet_macro/page_router.dart';
+import 'package:diet_macro/screens/intro_screens/manual_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:isar/isar.dart';
@@ -127,7 +127,7 @@ class _SecondIntroState extends State<SecondIntro> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const MainPage(),
+                              builder: (context) => const PageRouter(),
                             ));
                       }
                     : null,

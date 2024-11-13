@@ -1,6 +1,7 @@
-import 'package:diet_macro/components/nutrition_tile.dart';
 import 'package:diet_macro/services/isar.service.dart';
+import 'package:diet_macro/utils/components/nutrition_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:diet_macro/models/isar_data.dart';
@@ -80,7 +81,7 @@ class _MyCalendarState extends State<MyCalendar> {
                         color: Colors.grey[80],
                         fontWeight: FontWeight.w800,
                       ),
-                    ),
+                    ).animate().fade(duration: Duration(milliseconds: 200)),
                   ),
                 ),
               ),
@@ -99,7 +100,7 @@ class _MyCalendarState extends State<MyCalendar> {
                       percentage: (_targetData != null && _dailyData!.calories > 0)
                           ? (_dailyData!.calories / _targetData!.targetCalories * 100).toInt()
                           : 0,
-                    ),
+                    ).animate().fade(),
                     const SizedBox(height: 12),
                     NutritionTile(
                       dividerColor: Colors.green.shade600,
@@ -108,7 +109,7 @@ class _MyCalendarState extends State<MyCalendar> {
                       percentage: (_targetData != null && _dailyData!.carb > 0)
                           ? (_dailyData!.carb / _targetData!.targetCarb * 100).toInt()
                           : 0,
-                    ),
+                    ).animate().fade(),
                     const SizedBox(height: 12),
                     NutritionTile(
                       dividerColor: Colors.blue.shade800,
@@ -117,7 +118,7 @@ class _MyCalendarState extends State<MyCalendar> {
                       percentage: (_targetData != null && _dailyData!.protein > 0)
                           ? (_dailyData!.protein / _targetData!.targetProtein * 100).toInt()
                           : 0,
-                    ),
+                    ).animate().fade(),
                     const SizedBox(height: 12),
                     NutritionTile(
                       dividerColor: Colors.brown.shade600,
@@ -126,7 +127,7 @@ class _MyCalendarState extends State<MyCalendar> {
                       percentage: (_targetData != null && _dailyData!.fat > 0)
                           ? (_dailyData!.fat / _targetData!.targetFat * 100).toInt()
                           : 0,
-                    ),
+                    ).animate().fade(),
                   ],
                 ),
               ),

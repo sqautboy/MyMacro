@@ -1,5 +1,6 @@
-import 'package:diet_macro/food_provider.dart';
+import 'package:diet_macro/providers/food_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -106,11 +107,11 @@ class FoodListPage extends StatelessWidget {
                           title: Text(
                             '${food.name} (${food.servingUnit})',
                             style: const TextStyle(fontWeight: FontWeight.w500),
-                          ),
+                          ).animate().fade(delay: Duration(milliseconds: index * 30)),
                           subtitle: Text(
                             'Calories: ${food.calories}kcal  Carb: ${food.carbs}g  Protein: ${food.protein}g  Fat: ${food.fat}g',
                             style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
-                          ),
+                          ).animate().fade(duration: const Duration(milliseconds: 200)),
                         );
                       },
                     ),

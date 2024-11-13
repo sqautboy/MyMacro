@@ -61,10 +61,10 @@ class NutritionTile extends StatelessWidget {
           const Spacer(),
           Text(
             '$percentage%',
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w300,
               fontSize: 16,
-              color: const Color.fromARGB(255, 36, 36, 36),
+              color: Color.fromARGB(255, 36, 36, 36),
             ),
           ),
           const SizedBox(width: 30),

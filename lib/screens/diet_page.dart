@@ -1,7 +1,8 @@
-import 'package:diet_macro/components/bottom_modal_sheet.dart';
-import 'package:diet_macro/components/nutrition_tile.dart';
-import 'package:diet_macro/diet_provider.dart';
+import 'package:diet_macro/providers/diet_provider.dart';
+import 'package:diet_macro/utils/components/bottom_modal_sheet.dart';
+import 'package:diet_macro/utils/components/nutrition_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
@@ -104,7 +105,7 @@ class _DietPageState extends State<DietPage> {
                       status: '${dietProvider.dailyData.calories} / ${dietProvider.targetData.targetCalories} kcal',
                       percentage:
                           (dietProvider.dailyData.calories / dietProvider.targetData.targetCalories * 100).toInt(),
-                    ),
+                    ).animate().fade(duration: const Duration(milliseconds: 200)),
                     const SizedBox(
                       height: 20,
                     ),
@@ -113,7 +114,7 @@ class _DietPageState extends State<DietPage> {
                       nutrition: "Carb",
                       status: '${dietProvider.dailyData.carb} / ${dietProvider.targetData.targetCarb} g',
                       percentage: (dietProvider.dailyData.carb / dietProvider.targetData.targetCarb * 100).toInt(),
-                    ),
+                    ).animate().fade(duration: const Duration(milliseconds: 200)),
                     const SizedBox(
                       height: 20,
                     ),
@@ -123,7 +124,7 @@ class _DietPageState extends State<DietPage> {
                       status: '${dietProvider.dailyData.protein} / ${dietProvider.targetData.targetProtein} g',
                       percentage:
                           (dietProvider.dailyData.protein / dietProvider.targetData.targetProtein * 100).toInt(),
-                    ),
+                    ).animate().fade(duration: const Duration(milliseconds: 200)),
                     const SizedBox(
                       height: 20,
                     ),
@@ -132,7 +133,7 @@ class _DietPageState extends State<DietPage> {
                       nutrition: "Fat",
                       status: '${dietProvider.dailyData.fat} / ${dietProvider.targetData.targetFat} g',
                       percentage: (dietProvider.dailyData.fat / dietProvider.targetData.targetFat * 100).toInt(),
-                    ),
+                    ).animate().fade(duration: const Duration(milliseconds: 200)),
                   ],
                 ),
               ),

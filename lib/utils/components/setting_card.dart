@@ -1,6 +1,6 @@
-import 'package:diet_macro/pages/food_list_page.dart';
+import 'package:diet_macro/screens/food_list_page.dart';
 import 'package:diet_macro/services/isar.service.dart';
-import 'package:diet_macro/pages/first_intro.dart';
+import 'package:diet_macro/screens/intro_screens/first_intro.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';

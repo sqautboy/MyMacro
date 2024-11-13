@@ -1,19 +1,19 @@
-import 'package:diet_macro/components/bottom_navigation_bar.dart';
-import 'package:diet_macro/components/drawer.dart';
-import 'package:diet_macro/pages/date_page.dart';
-import 'package:diet_macro/pages/diet_page.dart';
-import 'package:diet_macro/pages/food_list_page.dart';
-import 'package:diet_macro/pages/setting_page.dart';
+import 'package:diet_macro/screens/date_page.dart';
+import 'package:diet_macro/screens/diet_page.dart';
+import 'package:diet_macro/screens/food_list_page.dart';
+import 'package:diet_macro/screens/setting_page.dart';
+import 'package:diet_macro/utils/components/bottom_navigation_bar.dart';
+import 'package:diet_macro/utils/components/drawer.dart';
 import 'package:flutter/material.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class PageRouter extends StatefulWidget {
+  const PageRouter({super.key});
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<PageRouter> createState() => _PageRouterState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _PageRouterState extends State<PageRouter> {
   int _selectedIndex = 0;
 
   void navigationBottomBar(int index) {
