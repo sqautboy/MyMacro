@@ -2,8 +2,8 @@ import 'package:diet_macro/screens/date_page.dart';
 import 'package:diet_macro/screens/diet_page.dart';
 import 'package:diet_macro/screens/food_list_page.dart';
 import 'package:diet_macro/screens/setting_page.dart';
-import 'package:diet_macro/utils/components/bottom_navigation_bar.dart';
-import 'package:diet_macro/utils/components/drawer.dart';
+import 'package:diet_macro/utils/widgets/bottom_navigation_bar.dart';
+import 'package:diet_macro/utils/drawer.dart';
 import 'package:flutter/material.dart';
 
 class PageRouter extends StatefulWidget {

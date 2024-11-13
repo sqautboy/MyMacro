@@ -1,5 +1,5 @@
 import 'package:diet_macro/providers/diet_provider.dart';
-import 'package:diet_macro/utils/components/bottom_modal_sheet.dart';
+import 'package:diet_macro/utils/widgets/bottom_modal_sheet.dart';
 import 'package:diet_macro/utils/components/nutrition_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

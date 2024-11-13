@@ -1,4 +1,4 @@
-import 'package:diet_macro/utils/components/calendar.dart';
+import 'package:diet_macro/utils/widgets/calendar.dart';
 import 'package:flutter/material.dart';
 
 class DatePage extends StatefulWidget {

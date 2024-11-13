@@ -1,4 +1,4 @@
-import 'package:diet_macro/utils/components/calendar.dart';
+import 'package:diet_macro/utils/widgets/calendar.dart';
 import 'package:diet_macro/utils/components/setting_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
