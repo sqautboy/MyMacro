@@ -1,9 +1,9 @@
-import 'package:diet_macro/diet_provider.dart';
-import 'package:diet_macro/food_provider.dart';
+import 'package:diet_macro/providers/diet_provider.dart';
+import 'package:diet_macro/providers/food_provider.dart';
 import 'package:diet_macro/models/isar_data.dart';
 import 'package:diet_macro/services/isar.service.dart';
-import 'package:diet_macro/pages/first_intro.dart';
-import 'package:diet_macro/pages/main_page.dart';
+import 'package:diet_macro/screens/intro_screens/first_intro.dart';
+import 'package:diet_macro/page_router.dart';
 import 'package:diet_macro/services/noti.service.dart';
 
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ void main() async {
 
   // local noti test
   Future.delayed(const Duration(seconds: 3), () {
-    print('알람 테스트');
+    // print('알람 테스트');
     // NotificationService().showTestNotification("title", "body test");
     NotificationService().scheduleDailyNotification();
   });
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.light(),
       debugShowCheckedModeBanner: false,
-      home: targetCalories == null ? const FirstIntro() : const MainPage(), // 조건에 따라 페이지 설정
+      home: targetCalories == null ? const FirstIntro() : const PageRouter(), // 조건에 따라 페이지 설정
     );
   }
 }
