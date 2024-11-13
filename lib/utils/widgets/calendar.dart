@@ -81,7 +81,7 @@ class _MyCalendarState extends State<MyCalendar> {
                         color: Colors.grey[80],
                         fontWeight: FontWeight.w800,
                       ),
-                    ).animate().fade(duration: Duration(milliseconds: 200)),
+                    ).animate().fade(duration: const Duration(milliseconds: 200)),
                   ),
                 ),
               ),
