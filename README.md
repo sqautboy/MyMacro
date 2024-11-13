@@ -32,45 +32,42 @@ samples, guidance on mobile development, and a full API reference.
 
 ```
 lib/
-┣ components/
-┃ ┣ bottom_modal_sheet.dart
-┃ ┣ bottom_navigation_bar.dart
-┃ ┣ calendar.dart
-┃ ┣ drawer.dart
-┃ ┣ nutrition_tile.dart
-┃ ┗ setting_card.dart
-┣ images/
-┃ ┣ animated_icon.json
-┃ ┣ appstore.png
-┃ ┣ brocoli.json
-┃ ┣ fatsecret.png
-┃ ┣ github.png
-┃ ┣ orange.json
-┃ ┣ playstore.png
-┃ ┣ reset_icon.json
-┃ ┣ success.json
-┃ ┣ success_icon.json
-┃ ┗ taco.json
 ┣ models/
 ┃ ┣ food_model.dart
 ┃ ┣ isar_data.dart
 ┃ ┗ isar_data.g.dart
-┣ pages/
+┣ providers/
+┃ ┣ diet_provider.dart
+┃ ┗ food_provider.dart
+┣ screens/
+┃ ┣ intro_screens/
+┃ ┃ ┣ first_intro.dart
+┃ ┃ ┣ manual_page.dart
+┃ ┃ ┗ second_intro.dart
 ┃ ┣ date_page.dart
 ┃ ┣ diet_page.dart
-┃ ┣ first_intro.dart
-┃ ┣ food_list.dart
-┃ ┣ main_page.dart
-┃ ┣ manual_page.dart
-┃ ┣ second_intro.dart
+┃ ┣ food_list_page.dart
 ┃ ┗ setting_page.dart
 ┣ services/
 ┃ ┣ api.service.dart
-┃ ┣ noti.service.dart
-┃ ┗ isar.service.dart
-┣ diet_provider.dart
-┣ food_provider.dart
+┃ ┣ isar.service.dart
+┃ ┗ noti.service.dart
+┣ ui/
+┃ ┗ diet_page.dart
+┣ utils/
+┃ ┣ components/
+┃ ┃ ┣ nutrition_tile.dart
+┃ ┃ ┗ setting_card.dart
+┃ ┣ logic/
+┃ ┃ ┗ data_process.dart
+┃ ┣ widgets/
+┃ ┃ ┣ bottom_modal_sheet.dart
+┃ ┃ ┣ bottom_navigation_bar.dart
+┃ ┃ ┗ calendar.dart
+┃ ┗ drawer.dart
+┣ images/
 ┣ main.dart
+┗ page_router.dart
 ┃ ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 ┣ pubspec.yaml/
 ┃ ┣ < used packages/plugins >
@@ -96,5 +93,6 @@ lib/
 ┃ ┣ shimmer: ^3.0.0
 ┃ ┣ flutter_local_notifications: ^17.2.3
 ┃ ┣ timezone: ^0.9.4
+┃ ┣ flutter_animate: ^4.5.0
 ┃ ┗ flutter_timezone: ^3.0.1
 ```
