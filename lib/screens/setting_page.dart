@@ -1,4 +1,4 @@
-import 'package:diet_macro/utils/widgets/calendar.dart';
+import 'package:diet_macro/utils/color_set.dart';
 import 'package:diet_macro/utils/components/setting_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -10,7 +10,7 @@ class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: mainColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -22,7 +22,7 @@ class SettingPage extends StatelessWidget {
               fontWeight: FontWeight.w700,
               // color: Colors.grey[850],
             ),
-          ).animate().fade(),
+          ).animate().fade(duration: const Duration(milliseconds: 800)),
           Text(
             'MyMacro',
             style: GoogleFonts.dmSerifDisplay(
@@ -30,7 +30,7 @@ class SettingPage extends StatelessWidget {
               fontWeight: FontWeight.w700,
               // color: Colors.grey[850],
             ),
-          ).animate().fade(),
+          ).animate().fade(duration: const Duration(milliseconds: 800)),
           const SizedBox(height: 12),
           Divider(
             color: Colors.grey[500],
@@ -42,7 +42,7 @@ class SettingPage extends StatelessWidget {
             title: 'Reset',
             subtitle: 'Reset your calories goal',
             iconDir: 'lib/images/reset.json',
-          ).animate().fade(),
+          ).animate().fade(duration: const Duration(milliseconds: 500)),
           const SizedBox(height: 20),
           const SettingCard(
             title: 'Delete',
