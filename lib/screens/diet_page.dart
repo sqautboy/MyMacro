@@ -220,18 +220,20 @@ class _DietPageState extends State<DietPage> {
   @override
   Widget build(BuildContext context) {
     final dietProvider = context.watch<DietProvider>();
+    final dietProviderRead = context.read<DietProvider>();
 
     return Scaffold(
       backgroundColor: mainColor,
-      floatingActionButton: _buildFloatingActionButton(context, dietProvider),
+      floatingActionButton: _buildFloatingActionButton(context, dietProvider, dietProviderRead),
       body: dietProvider.loading
           ? const Center(child: CircularProgressIndicator())
-          : _buildContent(context, dietProvider),
+          : _buildContent(context, dietProvider, dietProviderRead),
     );
   }
 
   // FloatingActionButton 생성
-  FloatingActionButton _buildFloatingActionButton(BuildContext context, DietProvider dietProvider) {
+  FloatingActionButton _buildFloatingActionButton(
+      BuildContext context, DietProvider dietProvider, DietProvider dietProviderRead) {
     return FloatingActionButton(
       tooltip: 'Add Nutrition',
       backgroundColor: Colors.black,
@@ -249,7 +251,7 @@ class _DietPageState extends State<DietPage> {
           builder: (context) {
             return BottomModalSheet(
               onAddPressed: (calories, carb, protein, fat) async {
-                dietProvider.updateDailyData(calories, carb, protein, fat);
+                dietProviderRead.updateDailyData(calories, carb, protein, fat);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Successfully added your macro!'),
@@ -265,56 +267,56 @@ class _DietPageState extends State<DietPage> {
   }
 
   // 메인 콘텐츠
-  Widget _buildContent(BuildContext context, DietProvider dietProvider) {
+  Widget _buildContent(BuildContext context, DietProvider dietProvider, DietProvider dietProviderRead) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
       child: SingleChildScrollView(
         child: Column(
           children: [
             _buildRowIndicators(
-              dietProvider.caloriesPercent,
+              dietProviderRead.caloriesPercent,
               caloriesColor,
-              dietProvider.dailyData.calories,
+              dietProviderRead.dailyData.calories,
               "Calories",
-              dietProvider.carbPercent,
+              dietProviderRead.carbPercent,
               carbColor,
-              "${dietProvider.dailyData.carb} g",
+              "${dietProviderRead.dailyData.carb} g",
               "Carb",
             ),
             const SizedBox(height: 40),
             _buildRowIndicators(
-              dietProvider.proteinPercent,
+              dietProviderRead.proteinPercent,
               proteinColor,
-              dietProvider.dailyData.protein,
+              dietProviderRead.dailyData.protein,
               "Protein",
-              dietProvider.fatPercent,
+              dietProviderRead.fatPercent,
               fatColor,
-              "${dietProvider.dailyData.fat} g",
+              "${dietProviderRead.dailyData.fat} g",
               "Fat",
             ),
             const SizedBox(height: 50),
             _buildAnimatedNutritionTile(
               "Calories",
-              dietProvider.dailyData.calories,
-              dietProvider.targetData.targetCalories,
+              dietProviderRead.dailyData.calories,
+              dietProviderRead.targetData.targetCalories,
               const Color.fromARGB(255, 160, 25, 23),
             ),
             _buildAnimatedNutritionTile(
               "Carb",
-              dietProvider.dailyData.carb,
-              dietProvider.targetData.targetCarb,
+              dietProviderRead.dailyData.carb,
+              dietProviderRead.targetData.targetCarb,
               const Color.fromARGB(255, 26, 121, 31),
             ),
             _buildAnimatedNutritionTile(
               "Protein",
-              dietProvider.dailyData.protein,
-              dietProvider.targetData.targetProtein,
+              dietProviderRead.dailyData.protein,
+              dietProviderRead.targetData.targetProtein,
               const Color.fromARGB(255, 14, 74, 144),
             ),
             _buildAnimatedNutritionTile(
               "Fat",
-              dietProvider.dailyData.fat,
-              dietProvider.targetData.targetFat,
+              dietProviderRead.dailyData.fat,
+              dietProviderRead.targetData.targetFat,
               const Color.fromARGB(255, 124, 86, 14),
             ),
           ],
