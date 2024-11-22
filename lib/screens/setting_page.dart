@@ -1,5 +1,5 @@
 import 'package:diet_macro/utils/color_set.dart';
-import 'package:diet_macro/utils/components/setting_card.dart';
+import 'package:diet_macro/widgets/setting_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -41,13 +41,13 @@ class SettingPage extends StatelessWidget {
           const SettingCard(
             title: 'Reset',
             subtitle: 'Reset your calories goal',
-            iconDir: 'lib/images/reset.json',
+            iconDir: 'lib/images/reset.png',
           ).animate().fade(duration: const Duration(milliseconds: 500)),
           const SizedBox(height: 20),
           const SettingCard(
             title: 'Delete',
             subtitle: 'Delete all of daily data',
-            iconDir: 'lib/images/delete.json',
+            iconDir: 'lib/images/delete.png',
           ).animate().fade(),
           const Spacer(
             flex: 2,

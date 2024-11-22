@@ -1,6 +1,7 @@
 import 'package:diet_macro/models/isar_data.dart';
 import 'package:diet_macro/services/isar.service.dart';
 import 'package:diet_macro/screens/intro_screens/second_intro.dart';
+import 'package:diet_macro/utils/color_set.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:isar/isar.dart';
@@ -27,7 +28,7 @@ class _FirstIntroState extends State<FirstIntro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: mainColor,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -77,6 +78,10 @@ class _FirstIntroState extends State<FirstIntro> {
                     hintText: 'Kcal',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(48),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(32.0),
                     ),
                     labelStyle: const TextStyle(fontSize: 12),
                     hintStyle: const TextStyle(fontSize: 14),

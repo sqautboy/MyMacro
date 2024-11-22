@@ -1,6 +1,7 @@
 import 'package:diet_macro/models/isar_data.dart';
 import 'package:diet_macro/services/isar.service.dart';
 import 'package:diet_macro/page_router.dart';
+import 'package:diet_macro/utils/color_set.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:isar/isar.dart';
@@ -16,14 +17,14 @@ class ManualPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[300],
+        backgroundColor: mainColor,
         leading: IconButton(
           padding: const EdgeInsets.only(left: 12.0),
           icon: const Icon(Icons.arrow_back, color: Colors.black), // 뒤로가기 아이콘 색상 변경
           onPressed: () => Navigator.of(context).pop(), // 뒤로가기 기능
         ),
       ),
-      backgroundColor: Colors.grey[300],
+      backgroundColor: mainColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -137,6 +138,10 @@ class ManualPage extends StatelessWidget {
             fontSize: 13,
             fontWeight: FontWeight.w700,
             color: Colors.grey[700],
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(32.0),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(26),

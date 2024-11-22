@@ -1,20 +1,19 @@
 import 'package:diet_macro/providers/food_provider.dart';
+import 'package:diet_macro/utils/color_set.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
-class FoodListPage extends StatelessWidget {
-  const FoodListPage({super.key});
+class FoodSearchPage extends StatelessWidget {
+  const FoodSearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // FoodProvider 상태를 가져옴
-    final foodProvider = context.watch<FoodProvider>();
     final textController = TextEditingController();
 
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: mainColor,
       body: Column(
         children: [
           const SizedBox(
@@ -39,6 +38,10 @@ class FoodListPage extends StatelessWidget {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(32.0),
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(32.0),
+                      ),
                     ),
                   ),
                 ),
@@ -55,7 +58,7 @@ class FoodListPage extends StatelessWidget {
                     icon: const Icon(Icons.search, color: Colors.white),
                     onPressed: () async {
                       final foodName = textController.text;
-                      foodProvider.clearFoods(); // 이전 검색 결과 초기화
+                      context.read<FoodProvider>().clearFoods(); // 이전 검색 결과 초기화
                       context.read<FoodProvider>().fetchFoodNutritionProvider(foodName); // 음식 데이터 가져오기
                     },
                     padding: const EdgeInsets.all(12),
@@ -65,7 +68,7 @@ class FoodListPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: foodProvider.isLoading
+            child: context.watch<FoodProvider>().isLoading
                 ? Padding(
                     padding: const EdgeInsets.only(top: 24),
                     child: Shimmer.fromColors(
@@ -99,19 +102,19 @@ class FoodListPage extends StatelessWidget {
                 Padding(
                     padding: const EdgeInsets.only(top: 16),
                     child: ListView.builder(
-                      itemCount: foodProvider.foods.length,
+                      itemCount: context.read<FoodProvider>().foods.length,
                       itemBuilder: (context, index) {
-                        final food = foodProvider.foods[index];
+                        final food = context.read<FoodProvider>().foods[index];
 
                         return ListTile(
                           title: Text(
                             '${food.name} (${food.servingUnit})',
                             style: const TextStyle(fontWeight: FontWeight.w500),
-                          ).animate().fade(delay: Duration(milliseconds: index * 30)),
+                          ),
                           subtitle: Text(
                             'Calories: ${food.calories}kcal  Carb: ${food.carbs}g  Protein: ${food.protein}g  Fat: ${food.fat}g',
                             style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
-                          ).animate().fade(duration: const Duration(milliseconds: 200)),
+                          ).animate().fade(duration: const Duration(milliseconds: 800)),
                         );
                       },
                     ),
