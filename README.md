@@ -46,26 +46,24 @@ lib/
 ┃ ┃ ┗ second_intro.dart
 ┃ ┣ date_page.dart
 ┃ ┣ diet_page.dart
-┃ ┣ food_list_page.dart
+┃ ┣ food_search_page.dart
 ┃ ┗ setting_page.dart
 ┣ services/
 ┃ ┣ api.service.dart
 ┃ ┣ isar.service.dart
 ┃ ┗ noti.service.dart
-┣ ui/
-┃ ┗ diet_page.dart
 ┣ utils/
-┃ ┣ components/
-┃ ┃ ┣ nutrition_tile.dart
-┃ ┃ ┗ setting_card.dart
 ┃ ┣ logic/
 ┃ ┃ ┗ data_process.dart
-┃ ┣ widgets/
-┃ ┃ ┣ bottom_modal_sheet.dart
-┃ ┃ ┣ bottom_navigation_bar.dart
-┃ ┃ ┗ calendar.dart
+┃ ┣ color_set.dart
+┃ ┣ custom_icons.dart
 ┃ ┗ drawer.dart
-┣ images/
+┣ widgets/
+┃ ┣ bottom_modal_sheet.dart
+┃ ┣ bottom_navigation_bar.dart
+┃ ┣ calendar.dart
+┃ ┣ nutrition_tile.dart
+┃ ┗ setting_card.dart
 ┣ main.dart
 ┗ page_router.dart
 ┃ ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
