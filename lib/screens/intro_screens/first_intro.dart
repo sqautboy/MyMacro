@@ -38,7 +38,7 @@ class _FirstIntroState extends State<FirstIntro> {
               children: [
                 // logo
                 Lottie.asset(
-                  'lib/images/animated_icon.json',
+                  'assets/images/animated_icon.json',
                   width: 300,
                 ),
 

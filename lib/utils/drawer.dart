@@ -20,7 +20,7 @@ class MyDrawer extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(top: 55.0),
                 child: Lottie.asset(
-                  'lib/images/animated_icon.json',
+                  'assets/images/animated_icon.json',
                   width: 230,
                 ),
               ),
@@ -40,7 +40,7 @@ class MyDrawer extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 25.0),
                   child: ListTile(
-                    leading: Image.asset('lib/images/appstore.png', width: 28.0),
+                    leading: Image.asset('assets/images/appstore.png', width: 28.0),
                     title: Text(
                       'App Store',
                       style: GoogleFonts.roboto(
@@ -59,7 +59,7 @@ class MyDrawer extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 27.0),
                   child: ListTile(
-                    leading: Image.asset('lib/images/playstore.png', width: 26.0),
+                    leading: Image.asset('assets/images/playstore.png', width: 26.0),
                     title: Text(
                       'Play Store',
                       style: GoogleFonts.roboto(
@@ -81,7 +81,7 @@ class MyDrawer extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 25.5),
                   child: ListTile(
-                    leading: Image.asset('lib/images/fatsecret.png', width: 28.0),
+                    leading: Image.asset('assets/images/fatsecret.png', width: 28.0),
                     title: Text(
                       'FatSecret',
                       style: GoogleFonts.roboto(color: mainColor),

@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:diet_macro/utils/color_set.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -54,7 +55,7 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
         });
         return AlertDialog(
           backgroundColor: Colors.transparent,
-          title: Lottie.asset('lib/images/success.json'),
+          title: Lottie.asset('assets/images/success.json'),
         );
       },
     );
@@ -102,7 +103,7 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
                   borderRadius: BorderRadius.circular(24),
                 ),
                 fixedSize: const Size(350, 50),
-                foregroundColor: Colors.grey[300],
+                foregroundColor: mainColor,
                 backgroundColor: Colors.black,
               ),
               onPressed: _addButtonPressed,
@@ -138,6 +139,10 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
           hintText: hint,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(24),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(32.0),
           ),
         ),
       ),

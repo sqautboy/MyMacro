@@ -1,5 +1,6 @@
 import 'package:diet_macro/services/isar.service.dart';
-import 'package:diet_macro/utils/components/nutrition_tile.dart';
+import 'package:diet_macro/utils/color_set.dart';
+import 'package:diet_macro/widgets/nutrition_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -41,7 +42,7 @@ class _MyCalendarState extends State<MyCalendar> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30),
-      color: Colors.grey[300],
+      color: mainColor,
       child: Column(
         children: [
           TableCalendar(

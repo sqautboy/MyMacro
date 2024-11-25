@@ -3,7 +3,7 @@ import 'package:diet_macro/screens/diet_page.dart';
 import 'package:diet_macro/screens/food_search_page.dart';
 import 'package:diet_macro/screens/setting_page.dart';
 import 'package:diet_macro/utils/color_set.dart';
-import 'package:diet_macro/utils/widgets/bottom_navigation_bar.dart';
+import 'package:diet_macro/widgets/bottom_navigation_bar.dart';
 import 'package:diet_macro/utils/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -44,7 +44,7 @@ class _PageRouterState extends State<PageRouter> {
           return IconButton(
             icon: const Padding(
               padding: EdgeInsets.only(left: 14.0),
-              child: Image(image: AssetImage('lib/images/cat.png')),
+              child: Image(image: AssetImage('assets/images/cat.png')),
             ),
             color: Colors.black,
             onPressed: () {

@@ -8,6 +8,7 @@ parseFoodNutrition(Map<String, dynamic> food, List foodNutritions) {
 
   List<String> parts = description.split(' - ')[1].split(' | ');
 
+  // 데이터 가공 후 추가
   foodNutritions.add(
     FoodNutrition(
       name: food['food_name'], // food_name 추가

@@ -1,4 +1,4 @@
-import 'package:diet_macro/screens/food_list_page.dart';
+import 'package:diet_macro/screens/food_search_page.dart';
 import 'package:diet_macro/services/isar.service.dart';
 import 'package:diet_macro/screens/intro_screens/first_intro.dart';
 import 'package:flutter/material.dart';
@@ -19,39 +19,45 @@ class SettingCard extends StatelessWidget {
       child: InkWell(
         splashColor: Colors.black,
         onTap: () {
-          if (title == 'Reset') {
-            IsarService().deleteTargetData(1);
+          switch (title) {
+            case 'Reset':
+              IsarService().deleteTargetData(1);
 
-            showDialog(
-              barrierDismissible: false,
-              context: context,
-              builder: (context) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 120),
-                  child: _buildDialog(context, 'Reset Complete', 'Re-Enter your calories goal'),
-                );
-              },
-            );
-          } else if (title == 'Delete') {
-            IsarService().deleteAllDailyData();
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (context) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 120),
+                    child: _buildDialog(context, 'Reset Complete', 'Re-Enter your calories goal'),
+                  );
+                },
+              );
+              break;
+            case 'Delete':
+              IsarService().deleteAllDailyData();
 
-            showDialog(
-              barrierDismissible: false,
-              context: context,
-              builder: (context) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 120),
-                  child: _buildDialog(context, 'Removed', 'Daily data has been removed'),
-                );
-              },
-            );
-          } else if (title == 'Nutrition') {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const FoodListPage(),
-              ),
-            );
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (context) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 120),
+                    child: _buildDialog(context, 'Removed', 'Daily data has been removed'),
+                  );
+                },
+              );
+              break;
+            case 'Nutrition':
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FoodSearchPage(),
+                ),
+              );
+              break;
+            default:
+              break;
           }
         },
         child: Card(
@@ -68,9 +74,12 @@ class SettingCard extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Lottie.asset(
-                      iconDir,
-                      height: 120,
+                    Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: Image.asset(
+                        iconDir,
+                        height: 70,
+                      ),
                     ),
                     Expanded(
                       child: Column(
@@ -157,7 +166,7 @@ class SettingCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Lottie.asset(
-              'lib/images/success.json',
+              'assets/images/success.json',
               width: 200,
             ),
             const SizedBox(height: 16),
