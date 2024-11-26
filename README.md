@@ -16,7 +16,7 @@ samples, guidance on mobile development, and a full API reference.
 <br>
 
 #### DB
-[Isar Database](https://github.com/isar/isar)
+[Isar](https://github.com/isar/isar)
 
 
 #### API
