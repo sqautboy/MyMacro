@@ -16,10 +16,10 @@ samples, guidance on mobile development, and a full API reference.
 <br>
 
 #### DB
-[Isar Database](https://isar.dev/)
+[Isar Database](https://github.com/isar/isar)
 
 
-#### API USAGE
+#### API
 [FatSecret Platform API OAuth 1.0 Protocol](https://platform.fatsecret.com/docs/guides)
 
 #### State Management (일부)
