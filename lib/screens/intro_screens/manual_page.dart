@@ -2,6 +2,7 @@ import 'package:diet_macro/models/isar_data.dart';
 import 'package:diet_macro/services/isar.service.dart';
 import 'package:diet_macro/page_router.dart';
 import 'package:diet_macro/utils/color_set.dart';
+import 'package:diet_macro/utils/google_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:isar/isar.dart';
@@ -31,8 +32,7 @@ class ManualPage extends StatelessWidget {
         children: [
           Text(
             'Enter Your Diet Option',
-            style: GoogleFonts.dmSerifDisplay(
-              fontSize: 28,
+            style: GoogleTextStyles.dmSerifDisplayLarge(
               fontWeight: FontWeight.w700,
               color: Colors.grey[850],
             ),
@@ -41,8 +41,7 @@ class ManualPage extends StatelessWidget {
           const Spacer(),
           Text(
             'Carb',
-            style: GoogleFonts.dmSerifDisplay(
-              fontSize: 20,
+            style: GoogleTextStyles.dmSerifDisplayMedium(
               fontWeight: FontWeight.w700,
               color: Colors.grey[800],
             ),
@@ -51,8 +50,7 @@ class ManualPage extends StatelessWidget {
           const SizedBox(height: 52),
           Text(
             'Protein',
-            style: GoogleFonts.dmSerifDisplay(
-              fontSize: 20,
+            style: GoogleTextStyles.dmSerifDisplayMedium(
               fontWeight: FontWeight.w700,
               color: Colors.grey[800],
             ),
@@ -61,8 +59,7 @@ class ManualPage extends StatelessWidget {
           const SizedBox(height: 52),
           Text(
             'Fat',
-            style: GoogleFonts.dmSerifDisplay(
-              fontSize: 20,
+            style: GoogleTextStyles.dmSerifDisplayMedium(
               fontWeight: FontWeight.w700,
               color: Colors.grey[800],
             ),
@@ -71,8 +68,7 @@ class ManualPage extends StatelessWidget {
           const SizedBox(height: 52),
           Text(
             'Set your macros according to your target calories!',
-            style: GoogleFonts.robotoCondensed(
-              fontSize: 14,
+            style: GoogleTextStyles.robotoCondensedSmall(
               fontWeight: FontWeight.w600,
               color: Colors.grey[700],
             ),
@@ -110,11 +106,7 @@ class ManualPage extends StatelessWidget {
               child: Center(
                 child: Text(
                   'Next',
-                  style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
+                  style: GoogleTextStyles.robotoIntroButton(),
                 ),
               ),
             ),
@@ -129,16 +121,13 @@ class ManualPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 8, left: 100, right: 100),
       child: TextField(
+        cursorColor: Colors.black,
         onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
         controller: controller,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
-          labelText: label,
-          labelStyle: GoogleFonts.roboto(
-            fontSize: 13,
-            fontWeight: FontWeight.w700,
-            color: Colors.grey[700],
-          ),
+          hintText: label,
+          hintStyle: GoogleTextStyles.robotoLabel(),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.black),
             borderRadius: BorderRadius.circular(32.0),

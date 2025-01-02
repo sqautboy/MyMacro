@@ -6,6 +6,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:diet_macro/models/isar_data.dart';
+import '../utils/google_text_styles.dart';
 
 class MyCalendar extends StatefulWidget {
   const MyCalendar({super.key});
@@ -77,10 +78,8 @@ class _MyCalendarState extends State<MyCalendar> {
                     // 텍스트를 가운데 정렬
                     child: Text(
                       'No Data',
-                      style: GoogleFonts.dmSerifDisplay(
-                        fontSize: 60,
+                      style: GoogleTextStyles.dmSerifDisplayHeader(
                         color: Colors.grey[80],
-                        fontWeight: FontWeight.w800,
                       ),
                     ).animate().fade(duration: const Duration(milliseconds: 200)),
                   ),
@@ -142,10 +141,10 @@ class _MyCalendarState extends State<MyCalendar> {
   CalendarStyle _calendarStyle() {
     return CalendarStyle(
       tablePadding: const EdgeInsets.all(8),
-      defaultTextStyle: GoogleFonts.dmSerifDisplay(fontWeight: FontWeight.bold), // 기본 날짜 텍스트 굵게
-      weekendTextStyle: GoogleFonts.dmSerifDisplay(fontWeight: FontWeight.bold), // 주말 날짜 텍스트 굵게
-      selectedTextStyle: GoogleFonts.dmSerifDisplay(fontWeight: FontWeight.bold), // 선택된 날짜 텍스트 굵게
-      todayTextStyle: GoogleFonts.dmSerifDisplay(fontWeight: FontWeight.bold),
+      defaultTextStyle: GoogleTextStyles.dmSerifDisplayBold(), // 기본 날짜 텍스트 굵게
+      weekendTextStyle: GoogleTextStyles.dmSerifDisplayBold(), // 주말 날짜 텍스트 굵게
+      selectedTextStyle: GoogleTextStyles.dmSerifDisplayBold(), // 선택된 날짜 텍스트 굵게
+      todayTextStyle: GoogleTextStyles.dmSerifDisplayBold(),
     );
   }
 
@@ -155,10 +154,7 @@ class _MyCalendarState extends State<MyCalendar> {
       leftChevronIcon: Icon(Icons.arrow_circle_left, color: Colors.grey[800]),
       headerPadding: const EdgeInsets.only(bottom: 12, left: 60, right: 60),
       titleTextFormatter: (date, locale) => date.month.toString(),
-      titleTextStyle: GoogleFonts.dmSerifDisplay(
-        fontWeight: FontWeight.w900,
-        fontSize: 36,
-      ), // 월, 년도 텍스트 스타일
+      titleTextStyle: GoogleTextStyles.dmSerifDisplayHeader(), // 월, 년도 텍스트 스타일
       formatButtonVisible: false, // 형식 버튼 숨기기
       titleCentered: true, // 제목 중앙 정렬
     );

@@ -21,50 +21,12 @@ class FoodSearchPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    showCursor: false,
-                    controller: textController,
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.all(18),
-                      prefixIcon: Icon(Icons.search, color: Colors.grey[800]),
-                      labelText: 'Search',
-                      labelStyle: TextStyle(
-                        fontSize: 15,
-                        color: Colors.grey[800],
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(32.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
-                        borderRadius: BorderRadius.circular(32.0),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 16,
-                ),
-                Container(
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[900],
-                    borderRadius: BorderRadius.circular(24.0),
-                  ),
-                  child: IconButton(
-                    icon: const Icon(Icons.search, color: Colors.white),
-                    onPressed: () async {
-                      final foodName = textController.text;
-                      context.read<FoodProvider>().clearFoods(); // 이전 검색 결과 초기화
-                      context.read<FoodProvider>().fetchFoodNutritionProvider(foodName); // 음식 데이터 가져오기
-                    },
-                    padding: const EdgeInsets.all(12),
-                  ),
-                ),
-              ],
+            child: SearchTextField(
+              textController: textController,
+              onSearch: (foodName) {
+                context.read<FoodProvider>().clearFoods();
+                context.read<FoodProvider>().fetchFoodNutritionProvider(foodName);
+              },
             ),
           ),
           Expanded(
@@ -75,7 +37,7 @@ class FoodSearchPage extends StatelessWidget {
                       baseColor: Colors.grey[400]!,
                       highlightColor: Colors.grey[100]!,
                       child: ListView.builder(
-                        itemCount: 10, // 임의의 항목 개수
+                        itemCount: 10,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.only(left: 8, right: 8),
@@ -96,10 +58,7 @@ class FoodSearchPage extends StatelessWidget {
                       ),
                     ),
                   )
-                :
-                // Shimmer 위젯 사용
-
-                Padding(
+                : Padding(
                     padding: const EdgeInsets.only(top: 16),
                     child: ListView.builder(
                       itemCount: context.read<FoodProvider>().foods.length,
@@ -122,6 +81,61 @@ class FoodSearchPage extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class SearchTextField extends StatelessWidget {
+  final TextEditingController textController;
+  final Function(String) onSearch;
+
+  const SearchTextField({
+    super.key,
+    required this.textController,
+    required this.onSearch,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: TextField(
+            showCursor: false,
+            controller: textController,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(18),
+              prefixIcon: Icon(Icons.search, color: Colors.grey[800]),
+              suffixIcon: Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: Colors.grey[900],
+                  borderRadius: BorderRadius.circular(24.0),
+                ),
+                child: IconButton(
+                  icon: const Icon(Icons.search, color: Colors.white),
+                  onPressed: () {
+                    onSearch(textController.text);
+                  },
+                  padding: const EdgeInsets.all(12),
+                ),
+              ),
+              labelText: 'Search',
+              labelStyle: TextStyle(
+                fontSize: 15,
+                color: Colors.grey[800],
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.black),
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

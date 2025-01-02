@@ -1,5 +1,6 @@
 import 'package:diet_macro/services/isar.service.dart';
 import 'package:diet_macro/utils/color_set.dart';
+import 'package:diet_macro/utils/google_text_styles.dart';
 import 'package:diet_macro/widgets/nutrition_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -77,11 +78,7 @@ class _DatePageState extends State<DatePage> {
                     // 텍스트를 가운데 정렬
                     child: Text(
                       'No Data',
-                      style: GoogleFonts.dmSerifDisplay(
-                        fontSize: 60,
-                        color: Colors.grey[80],
-                        fontWeight: FontWeight.w800,
-                      ),
+                      style: GoogleTextStyles.dmSerifDisplayTitle(),
                     ).animate().fade(duration: const Duration(milliseconds: 200)),
                   ),
                 ),

@@ -1,6 +1,7 @@
 import 'package:diet_macro/screens/food_search_page.dart';
 import 'package:diet_macro/services/isar.service.dart';
 import 'package:diet_macro/screens/intro_screens/first_intro.dart';
+import 'package:diet_macro/utils/google_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -90,10 +91,7 @@ class SettingCard extends StatelessWidget {
                           ),
                           Text(
                             title,
-                            style: GoogleFonts.dmSerifDisplay(
-                              fontSize: 23,
-                              fontWeight: FontWeight.w700,
-                            ),
+                            style: GoogleTextStyles.dmSerifDisplaySettingCardTitle(),
                           ),
                           const SizedBox(
                             height: 5,
@@ -172,17 +170,14 @@ class SettingCard extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               title,
-              style: GoogleFonts.dmSerifDisplay(
-                fontSize: 32,
+              style: GoogleTextStyles.dmSerifDisplayCardTitle(
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 4),
             Text(
               subtitle,
-              style: GoogleFonts.roboto(
-                fontSize: 15,
-              ),
+              style: GoogleTextStyles.robotoCondensedSmall(),
             ),
           ],
         ),

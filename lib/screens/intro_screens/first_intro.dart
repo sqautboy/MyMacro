@@ -2,6 +2,7 @@ import 'package:diet_macro/models/isar_data.dart';
 import 'package:diet_macro/services/isar.service.dart';
 import 'package:diet_macro/screens/intro_screens/second_intro.dart';
 import 'package:diet_macro/utils/color_set.dart';
+import 'package:diet_macro/utils/google_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:isar/isar.dart';
@@ -73,9 +74,9 @@ class _FirstIntroState extends State<FirstIntro> {
                 TextField(
                   onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
                   controller: _targetCalorieController,
+                  cursorColor: Colors.black,
                   decoration: InputDecoration(
-                    labelText: 'CALORIES GOAL',
-                    hintText: 'Kcal',
+                    hintText: 'Enter your calories goal (Kcal)',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(48),
                     ),
@@ -139,11 +140,7 @@ class _FirstIntroState extends State<FirstIntro> {
                   child: Center(
                     child: Text(
                       'Next',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                      style: GoogleTextStyles.robotoIntroButton(),
                     ),
                   ),
                 ),

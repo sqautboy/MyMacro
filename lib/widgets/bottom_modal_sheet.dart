@@ -4,6 +4,7 @@ import 'package:diet_macro/utils/color_set.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import '../utils/google_text_styles.dart';
 
 class BottomModalSheet extends StatefulWidget {
   final Function(int, int, int, int) onAddPressed;
@@ -59,12 +60,13 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
         );
       },
     );
-
+    print('============ bottom sheet button pressed ============');
     print('Calories: $calories');
     print('Carb: $carb');
     print('Protein: $protein');
     print('Fat: $fat');
     print("날짜: ${DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day)}");
+    print('=====================================================');
   }
 
   @override
@@ -79,10 +81,7 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
             children: [
               Text(
                 'Add Diet Info',
-                style: GoogleFonts.dmSerifDisplay(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: GoogleTextStyles.dmSerifDisplayLarge(),
               ),
               IconButton(
                 icon: const Icon(Icons.close),
@@ -109,10 +108,7 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
               onPressed: _addButtonPressed,
               child: Text(
                 'Add',
-                style: GoogleFonts.dmSerifDisplay(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: GoogleTextStyles.dmSerifDisplayMedium(),
               ),
             ),
           ),
@@ -130,9 +126,7 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
         controller: controller,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
-          labelStyle: GoogleFonts.roboto(
-            fontSize: 14,
-            fontWeight: FontWeight.w700,
+          labelStyle: GoogleTextStyles.robotoLabel(
             color: Colors.grey[700],
           ),
           labelText: label,

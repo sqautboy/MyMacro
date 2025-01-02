@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../utils/google_text_styles.dart';
 
 class NutritionTile extends StatelessWidget {
   final Color dividerColor;
@@ -43,16 +43,13 @@ class NutritionTile extends StatelessWidget {
             children: [
               Text(
                 nutrition,
-                style: GoogleFonts.roboto(
+                style: GoogleTextStyles.robotoRegular(
                   color: const Color.fromARGB(255, 61, 61, 61),
-                  fontWeight: FontWeight.w700,
-                  fontSize: 15,
                 ),
               ),
               Text(
                 status,
-                style: GoogleFonts.roboto(
-                  fontSize: 12,
+                style: GoogleTextStyles.robotoSmall(
                   color: const Color.fromARGB(255, 87, 87, 87),
                 ),
               ),

@@ -3,6 +3,7 @@ import 'package:diet_macro/services/isar.service.dart';
 import 'package:diet_macro/page_router.dart';
 import 'package:diet_macro/screens/intro_screens/manual_page.dart';
 import 'package:diet_macro/utils/color_set.dart';
+import 'package:diet_macro/utils/google_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:isar/isar.dart';
@@ -35,8 +36,7 @@ class _SecondIntroState extends State<SecondIntro> {
             const Spacer(),
             Text(
               'Select Your Diet Option',
-              style: GoogleFonts.dmSerifDisplay(
-                fontSize: 28,
+              style: GoogleTextStyles.dmSerifDisplayLarge(
                 fontWeight: FontWeight.w700,
                 color: Colors.grey[850],
               ),
@@ -66,10 +66,6 @@ class _SecondIntroState extends State<SecondIntro> {
                             fontWeight: FontWeight.w700,
                             color: Colors.grey[700],
                           ),
-                          // style: TextStyle(
-                          //   fontSize: 14,
-                          //   color: Colors.grey[700],
-                          // ),
                           textAlign: TextAlign.center,
                         );
                       }
