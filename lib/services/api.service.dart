@@ -1,8 +1,10 @@
 import 'package:diet_macro/models/food_model.dart';
+import 'package:diet_macro/utils/logic/data_process.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'dart:math';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 String generateSignature(
     String httpMethod, String baseUrl, Map<String, String> params, String consumerSecret, String? tokenSecret) {
@@ -30,11 +32,11 @@ String generateSignature(
 
 Future<List<FoodNutrition>> fetchFoodNutrition(String foodName) async {
   // FatSecret API 정보
-  const String consumerKey = 'my_key'; // 실제 Consumer Key
-  const String consumerSecret = 'my_secret'; // 실제 Consumer Secret
+  final String consumerKey = dotenv.env['FATSECRET_CONSUMER_KEY']!;
+  final String consumerSecret = dotenv.env['FATSECRET_CONSUMER_SECRET']!;
   const String apiUrl = 'https://platform.fatsecret.com/rest/server.api';
 
-  // 요청 파라미터 설정
+  // 요청 파라미터 설정 (Search 사용)
   final Map<String, String> params = {
     'method': 'foods.search', // 호출할 API 메서드
     'search_expression': foodName, // 검색어
@@ -58,38 +60,20 @@ Future<List<FoodNutrition>> fetchFoodNutrition(String foodName) async {
 
   // 응답 처리
   if (response.statusCode == 200) {
-    final Map<String, dynamic> jsonResponse = json.decode(response.body);
-    final List<dynamic> foodList = jsonResponse['foods']['food'];
-
-    List<FoodNutrition> foodNutritions = [];
-
-    for (var food in foodList) {
-      String description = food['food_description'];
-
-      // "Per" 뒤에 오는 서빙 양 추출
-      String servingUnit = description.split(' - ')[0].substring(4).trim();
-
-      List<String> parts = description.split(' - ')[1].split(' | ');
-
-      foodNutritions.add(
-        FoodNutrition(
-          name: food['food_name'], // food_name 추가
-          calories: int.parse(parts[0].split(': ')[1].replaceAll('kcal', '')),
-          fat: double.parse(parts[1].split(': ')[1].replaceAll('g', '')).round(), // 정수형 변환
-          carbs: double.parse(parts[2].split(': ')[1].replaceAll('g', '')).round(), // 정수형 변환
-          protein: double.parse(parts[3].split(': ')[1].replaceAll('g', '')).round(), // 정수형 변환
-          servingUnit: servingUnit,
-        ),
-      );
-    }
-
-    print('API Response: $jsonResponse');
-
-    return foodNutritions; // 리스트 반환
+    return _parseFoodNutrition(response.body);
   } else {
-    print('API Error: ${response.statusCode}');
-    print('Error Body: ${response.body}');
-
     return [];
   }
+}
+
+List<FoodNutrition> _parseFoodNutrition(String responseBody) {
+  final Map<String, dynamic> jsonResponse = json.decode(responseBody);
+  final List<dynamic> foodList = jsonResponse['foods']['food'];
+
+  List<FoodNutrition> foodNutritions = [];
+
+  for (var food in foodList) {
+    parseFoodNutrition(food, foodNutritions);
+  }
+  return foodNutritions;
 }
