@@ -15,9 +15,6 @@ class DietPage extends StatefulWidget {
 }
 
 class _DietPageState extends State<DietPage> {
-  // @override
-  // bool get wantKeepAlive => true;
-
   @override
   void initState() {
     super.initState();
