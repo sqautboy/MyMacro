@@ -1,10 +1,10 @@
-import 'package:diet_macro/screens/date_page.dart';
-import 'package:diet_macro/screens/diet_page.dart';
-import 'package:diet_macro/screens/food_search_page.dart';
-import 'package:diet_macro/screens/setting_page.dart';
-import 'package:diet_macro/utils/color_set.dart';
-import 'package:diet_macro/widgets/bottom_navigation_bar.dart';
-import 'package:diet_macro/utils/drawer.dart';
+import 'package:diet_macro/presentation/views/calendar/date_page.dart';
+import 'package:diet_macro/presentation/views/diet_page/diet_page.dart';
+import 'package:diet_macro/presentation/views/food_search/food_search_page.dart';
+import 'package:diet_macro/presentation/views/setting_view/setting_page.dart';
+import 'package:diet_macro/core/styles/nutrition_color_set.dart';
+import 'package:diet_macro/presentation/widgets/bottom_navigation_bar.dart';
+import 'package:diet_macro/core/utils/drawer.dart';
 import 'package:flutter/material.dart';
 
 class PageRouter extends StatefulWidget {
@@ -36,6 +36,7 @@ class _PageRouterState extends State<PageRouter> {
       backgroundColor: mainColor,
       bottomNavigationBar: MyBottomNavBar(
         onTabChange: navigationBottomBar,
+        currentIndex: _selectedIndex,
       ),
       appBar: AppBar(
         scrolledUnderElevation: 0,

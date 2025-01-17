@@ -1,12 +1,14 @@
 import 'package:diet_macro/providers/diet_provider.dart';
 import 'package:diet_macro/providers/food_provider.dart';
-import 'package:diet_macro/models/isar_data.dart';
-import 'package:diet_macro/services/isar.service.dart';
-import 'package:diet_macro/screens/intro_screens/first_intro.dart';
+import 'package:diet_macro/data/models/isar_data.dart';
+import 'package:diet_macro/data/services/isar_service.dart';
+import 'package:diet_macro/presentation/views/intro_screens/first_intro/first_intro.dart';
 import 'package:diet_macro/page_router.dart';
-import 'package:diet_macro/services/noti.service.dart';
+import 'package:diet_macro/data/services/noti_service.dart';
+import 'package:diet_macro/core/styles/app_theme.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -14,6 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await NotificationService().initNotification();
   await IsarService.initialize();
+  await dotenv.load(fileName: '.env');
 
   final targetCalories = await IsarService().getTargetData();
 
@@ -43,7 +46,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.light(),
+      theme: myLightTheme,
       debugShowCheckedModeBanner: false,
       home: targetCalories == null ? const FirstIntro() : const PageRouter(), // 조건에 따라 페이지 설정
     );

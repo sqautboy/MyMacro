@@ -1,5 +1,5 @@
-import 'package:diet_macro/models/isar_data.dart';
-import 'package:diet_macro/services/isar.service.dart';
+import 'package:diet_macro/data/models/isar_data.dart';
+import 'package:diet_macro/data/services/isar_service.dart';
 import 'package:flutter/material.dart';
 
 class DietProvider with ChangeNotifier {
@@ -18,7 +18,9 @@ class DietProvider with ChangeNotifier {
     dailyData = await _getDailyDataForToday();
 
     // D E B U G
+    print('============= ISAR DATA LOADED =============');
     print("DailyData: ${dailyData.calories}칼로리, ${dailyData.carb}탄수화물, ${dailyData.protein}단백질, ${dailyData.fat}지방");
+    print('============================================');
 
     loading = false;
 

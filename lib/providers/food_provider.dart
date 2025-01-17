@@ -1,5 +1,5 @@
-import 'package:diet_macro/models/food_model.dart';
-import 'package:diet_macro/services/api.service.dart';
+import 'package:diet_macro/data/models/food_model.dart';
+import 'package:diet_macro/data/services/api_service.dart';
 import 'package:flutter/material.dart';
 
 class FoodProvider extends ChangeNotifier {
