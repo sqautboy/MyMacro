@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'package:diet_macro/providers/diet_provider.dart';
-import 'package:diet_macro/core/styles/nutrition_color_set.dart';
+import 'package:diet_macro/styles/nutrition_color_set.dart';
 
 class DietPage extends StatefulWidget {
   const DietPage({super.key});

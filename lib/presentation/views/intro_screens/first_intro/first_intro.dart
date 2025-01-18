@@ -1,7 +1,7 @@
 import 'package:diet_macro/data/models/isar_data.dart';
 import 'package:diet_macro/data/services/isar_service.dart';
 import 'package:diet_macro/presentation/views/intro_screens/second_intro/second_intro.dart';
-import 'package:diet_macro/core/styles/typography.dart';
+import 'package:diet_macro/styles/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:lottie/lottie.dart';

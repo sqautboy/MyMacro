@@ -1,4 +1,4 @@
-import 'package:diet_macro/core/styles/nutrition_color_set.dart';
+import 'package:diet_macro/styles/nutrition_color_set.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';

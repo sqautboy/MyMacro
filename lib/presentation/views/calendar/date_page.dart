@@ -1,6 +1,6 @@
 import 'package:diet_macro/data/services/isar_service.dart';
-import 'package:diet_macro/core/styles/typography.dart';
-import 'package:diet_macro/core/styles/nutrition_color_set.dart';
+import 'package:diet_macro/styles/typography.dart';
+import 'package:diet_macro/styles/nutrition_color_set.dart';
 import 'package:diet_macro/presentation/widgets/nutrition_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

@@ -1,4 +1,4 @@
-import 'package:diet_macro/core/styles/colors.dart';
+import 'package:diet_macro/styles/colors.dart';
 import 'package:flutter/material.dart';
 
 abstract class MyTypos {

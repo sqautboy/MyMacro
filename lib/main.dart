@@ -1,11 +1,13 @@
-import 'package:diet_macro/providers/diet_provider.dart';
-import 'package:diet_macro/providers/food_provider.dart';
+import 'package:diet_macro/data/datasources/remote/%08food_search_api.dart';
+import 'package:diet_macro/data/repositories/food_repository/food_repository_impl.dart';
+import 'package:diet_macro/presentation/views/food_search/food_search_viewmodel.dart';
 import 'package:diet_macro/data/models/isar_data.dart';
 import 'package:diet_macro/data/services/isar_service.dart';
 import 'package:diet_macro/presentation/views/intro_screens/first_intro/first_intro.dart';
 import 'package:diet_macro/page_router.dart';
 import 'package:diet_macro/data/services/noti_service.dart';
-import 'package:diet_macro/core/styles/app_theme.dart';
+import 'package:diet_macro/providers/diet_provider.dart';
+import 'package:diet_macro/styles/app_theme.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -28,13 +30,7 @@ void main() async {
   });
 
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (BuildContext context) => DietProvider()),
-        ChangeNotifierProvider(create: (BuildContext context) => FoodProvider()),
-      ],
-      child: MyApp(targetCalories: targetCalories),
-    ),
+    MyApp(targetCalories: targetCalories),
   ); // targetCalories 전달
 }
 
@@ -45,10 +41,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: myLightTheme,
-      debugShowCheckedModeBanner: false,
-      home: targetCalories == null ? const FirstIntro() : const PageRouter(), // 조건에 따라 페이지 설정
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (BuildContext context) {
+          final foodSearchApi = FoodSearchApi();
+          final foodRepository = FoodRepositoryImpl(foodSearchApi);
+          return FoodViewModel(foodRepository: foodRepository);
+        }),
+        ChangeNotifierProvider(create: (BuildContext context) => DietProvider()),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: myLightTheme,
+        debugShowCheckedModeBanner: false,
+        home: targetCalories == null ? const FirstIntro() : const PageRouter(), // 조건에 따라 페이지 설정
+      ),
     );
   }
 }

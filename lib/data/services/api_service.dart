@@ -1,5 +1,5 @@
 import 'package:diet_macro/data/models/food_model.dart';
-import 'package:diet_macro/core/utils/logic/data_process.dart';
+import 'package:diet_macro/utils/logic/data_process.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
