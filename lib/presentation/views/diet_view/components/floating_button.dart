@@ -1,13 +1,13 @@
+import 'package:diet_macro/presentation/views/diet_view/diet_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:diet_macro/presentation/widgets/bottom_modal_sheet.dart';
-import 'package:diet_macro/providers/diet_provider.dart';
 
 class MyFloatingActionButton extends StatelessWidget {
-  final DietProvider dietProvider;
+  final DietViewModel dietViewModel;
 
   const MyFloatingActionButton({
     super.key,
-    required this.dietProvider,
+    required this.dietViewModel,
   });
 
   @override
@@ -27,7 +27,7 @@ class MyFloatingActionButton extends StatelessWidget {
           builder: (context) {
             return BottomModalSheet(
               onAddPressed: (calories, carb, protein, fat) async {
-                dietProvider.updateDailyData(calories, carb, protein, fat);
+                dietViewModel.updateDailyData(calories, carb, protein, fat);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Successfully added your macro!'),

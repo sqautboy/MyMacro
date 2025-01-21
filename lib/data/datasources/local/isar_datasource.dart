@@ -2,7 +2,7 @@ import 'package:diet_macro/data/models/isar_data.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
-class IsarService {
+class IsarDatasource {
   static late Isar isar;
 
   // I N I T I A L I Z E  D A T A B A S E

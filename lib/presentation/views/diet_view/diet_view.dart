@@ -1,50 +1,49 @@
-import 'package:diet_macro/presentation/views/diet_page/floating_button.dart';
-import 'package:diet_macro/presentation/views/diet_page/progress_indicator.dart';
+import 'package:diet_macro/presentation/views/diet_view/components/floating_button.dart';
+import 'package:diet_macro/presentation/views/diet_view/components/progress_indicator.dart';
+import 'package:diet_macro/presentation/views/diet_view/diet_view_model.dart';
 import 'package:diet_macro/presentation/widgets/nutrition_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
-import 'package:diet_macro/providers/diet_provider.dart';
 import 'package:diet_macro/styles/nutrition_color_set.dart';
 
-class DietPage extends StatefulWidget {
-  const DietPage({super.key});
+class DietView extends StatefulWidget {
+  const DietView({super.key});
 
   @override
-  State<DietPage> createState() => _DietPageState();
+  State<DietView> createState() => _DietViewState();
 }
 
-class _DietPageState extends State<DietPage> {
+class _DietViewState extends State<DietView> {
   @override
   void initState() {
     super.initState();
-    context.read<DietProvider>().loadData();
+    Future.microtask(() => context.read<DietViewModel>().loadData());
   }
 
   @override
   Widget build(BuildContext context) {
-    // super.build(context);
-
-    final dietProvider = context.watch<DietProvider>();
-    final dietProviderRead = context.read<DietProvider>();
+    final viewModel = context.watch<DietViewModel>();
 
     return Scaffold(
       backgroundColor: mainColor,
-      floatingActionButton: MyFloatingActionButton(dietProvider: dietProviderRead),
-      body: dietProvider.loading ? const Center(child: CircularProgressIndicator()) : _buildContent(dietProviderRead),
+      floatingActionButton: Consumer<DietViewModel>(
+        builder: (context, viewModel, child) => MyFloatingActionButton(dietViewModel: viewModel),
+      ),
+      body: _buildContent(viewModel),
     );
   }
 
   // 메인 콘텐츠
-  Widget _buildContent(DietProvider dietProviderRead) {
+  Widget _buildContent(DietViewModel viewModel) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
       child: SingleChildScrollView(
         child: Column(
           children: [
-            _buildIndicatorRow(dietProviderRead),
+            _buildIndicatorRow(viewModel),
             const SizedBox(height: 50),
-            _buildNutritionTiles(dietProviderRead),
+            _buildNutritionTiles(viewModel),
           ],
         ),
       ),
@@ -52,22 +51,22 @@ class _DietPageState extends State<DietPage> {
   }
 
   // CircularPercentIndicator Row 두 개 배치
-  Widget _buildIndicatorRow(DietProvider dietProviderRead) {
+  Widget _buildIndicatorRow(DietViewModel viewModel) {
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             MyProgressIndicator(
-              percent: dietProviderRead.caloriesPercent,
+              percent: viewModel.caloriesPercent,
               progressColor: caloriesColor,
-              centerText1: "${dietProviderRead.dailyData.calories}",
+              centerText1: "${viewModel.dailyData.calories}",
               centerText2: "Calories",
             ),
             MyProgressIndicator(
-              percent: dietProviderRead.carbPercent,
+              percent: viewModel.carbPercent,
               progressColor: carbColor,
-              centerText1: "${dietProviderRead.dailyData.carb} g",
+              centerText1: "${viewModel.dailyData.carb} g",
               centerText2: "Carb",
             ),
           ],
@@ -77,15 +76,15 @@ class _DietPageState extends State<DietPage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             MyProgressIndicator(
-              percent: dietProviderRead.proteinPercent,
+              percent: viewModel.proteinPercent,
               progressColor: proteinColor,
-              centerText1: "${dietProviderRead.dailyData.protein} g",
+              centerText1: "${viewModel.dailyData.protein} g",
               centerText2: "Protein",
             ),
             MyProgressIndicator(
-              percent: dietProviderRead.fatPercent,
+              percent: viewModel.fatPercent,
               progressColor: fatColor,
-              centerText1: "${dietProviderRead.dailyData.fat} g",
+              centerText1: "${viewModel.dailyData.fat} g",
               centerText2: "Fat",
             ),
           ],
@@ -95,31 +94,31 @@ class _DietPageState extends State<DietPage> {
   }
 
   // NutritionTiles 생성
-  Widget _buildNutritionTiles(DietProvider dietProviderRead) {
+  Widget _buildNutritionTiles(DietViewModel viewModel) {
     return Column(
       children: [
         _buildNutritionTile(
           nutrition: "Calories",
-          currentValue: dietProviderRead.dailyData.calories,
-          targetValue: dietProviderRead.targetData.targetCalories,
+          currentValue: viewModel.dailyData.calories,
+          targetValue: viewModel.targetData.targetCalories,
           dividerColor: const Color.fromARGB(255, 160, 25, 23),
         ),
         _buildNutritionTile(
           nutrition: "Carb",
-          currentValue: dietProviderRead.dailyData.carb,
-          targetValue: dietProviderRead.targetData.targetCarb,
+          currentValue: viewModel.dailyData.carb,
+          targetValue: viewModel.targetData.targetCarb,
           dividerColor: const Color.fromARGB(255, 26, 121, 31),
         ),
         _buildNutritionTile(
           nutrition: "Protein",
-          currentValue: dietProviderRead.dailyData.protein,
-          targetValue: dietProviderRead.targetData.targetProtein,
+          currentValue: viewModel.dailyData.protein,
+          targetValue: viewModel.targetData.targetProtein,
           dividerColor: const Color.fromARGB(255, 14, 74, 144),
         ),
         _buildNutritionTile(
           nutrition: "Fat",
-          currentValue: dietProviderRead.dailyData.fat,
-          targetValue: dietProviderRead.targetData.targetFat,
+          currentValue: viewModel.dailyData.fat,
+          targetValue: viewModel.targetData.targetFat,
           dividerColor: const Color.fromARGB(255, 124, 86, 14),
         ),
       ],
@@ -138,7 +137,7 @@ class _DietPageState extends State<DietPage> {
         dividerColor: dividerColor,
         nutrition: nutrition,
         status: "$currentValue / $targetValue",
-        percentage: (currentValue / targetValue * 100).toInt(),
+        percentage: targetValue > 0 ? (currentValue / targetValue * 100).toInt() : 0, // 0이하는 0으로 설정(계산식 수정)
       ).animate().fade(duration: const Duration(milliseconds: 200)),
     );
   }

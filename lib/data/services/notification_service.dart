@@ -1,5 +1,5 @@
+import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
 import 'package:diet_macro/data/models/isar_data.dart';
-import 'package:diet_macro/data/services/isar_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
@@ -31,9 +31,9 @@ class NotificationService {
   // 특정 시간대 알람 설정
   Future<void> scheduleDailyNotification() async {
     // 오늘 날짜의 DailyData와 TargetData 가져오기
-    final TargetData? targetData = await IsarService().getTargetData();
-    final DailyData? dailyData =
-        await IsarService().getDailyDataByDate(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
+    final TargetData? targetData = await IsarDatasource().getTargetData();
+    final DailyData? dailyData = await IsarDatasource()
+        .getDailyDataByDate(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
 
     // 알림 제목에 targetCalories와 dailyCalories 사용
     String notificationTitle = "Your Yesterday's Calories";

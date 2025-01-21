@@ -1,6 +1,6 @@
 import 'package:diet_macro/presentation/views/calendar/date_page.dart';
-import 'package:diet_macro/presentation/views/diet_page/diet_page.dart';
-import 'package:diet_macro/presentation/views/food_search/food_search_page.dart';
+import 'package:diet_macro/presentation/views/diet_view/diet_view.dart';
+import 'package:diet_macro/presentation/views/food_search/food_search_view.dart';
 import 'package:diet_macro/presentation/views/setting_view/setting_page.dart';
 import 'package:diet_macro/styles/nutrition_color_set.dart';
 import 'package:diet_macro/presentation/widgets/bottom_navigation_bar.dart';
@@ -24,9 +24,9 @@ class _PageRouterState extends State<PageRouter> {
   }
 
   final List<Widget> _pages = [
-    const DietPage(),
+    const DietView(),
     const DatePage(),
-    const FoodSearchPage(),
+    const FoodSearchView(),
     const SettingPage(),
   ];
 
