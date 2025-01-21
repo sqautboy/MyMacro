@@ -1,5 +1,5 @@
+import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
 import 'package:diet_macro/data/models/isar_data.dart';
-import 'package:diet_macro/data/services/isar_service.dart';
 import 'package:diet_macro/page_router.dart';
 import 'package:diet_macro/presentation/views/intro_screens/second_intro/manual_page.dart';
 import 'package:diet_macro/styles/typography.dart';
@@ -86,7 +86,7 @@ class _SecondIntroState extends State<SecondIntro> {
               child: ElevatedButton(
                 onPressed: _selectedIndex != -1 // _selectedIndex가 -1이 아니면 활성화
                     ? () async {
-                        TargetData? existingTargetData = await IsarService.isar.targetDatas.where().findFirst();
+                        TargetData? existingTargetData = await IsarDatasource.isar.targetDatas.where().findFirst();
                         int calories = existingTargetData!.targetCalories;
 
                         switch (_selectedIndex) {
@@ -110,8 +110,8 @@ class _SecondIntroState extends State<SecondIntro> {
                             break;
                         }
                         // 설정된 목표 칼로리, 탄수화물, 단백질, 지방 비율을 데이터베이스에 저장
-                        await IsarService.isar
-                            .writeTxn(() async => await IsarService.isar.targetDatas.put(existingTargetData));
+                        await IsarDatasource.isar
+                            .writeTxn(() async => await IsarDatasource.isar.targetDatas.put(existingTargetData));
 
                         Navigator.pushReplacement(
                             context,
@@ -199,7 +199,7 @@ class _SecondIntroState extends State<SecondIntro> {
   }
 
   Future<String> _getSelectedText(int index) async {
-    TargetData? existingTargetData = await IsarService.isar.targetDatas.where().findFirst();
+    TargetData? existingTargetData = await IsarDatasource.isar.targetDatas.where().findFirst();
     int calories = existingTargetData!.targetCalories;
 
     switch (index) {

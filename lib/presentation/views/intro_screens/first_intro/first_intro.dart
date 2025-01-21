@@ -1,5 +1,5 @@
+import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
 import 'package:diet_macro/data/models/isar_data.dart';
-import 'package:diet_macro/data/services/isar_service.dart';
 import 'package:diet_macro/presentation/views/intro_screens/second_intro/second_intro.dart';
 import 'package:diet_macro/styles/typography.dart';
 import 'package:flutter/material.dart';
@@ -99,17 +99,17 @@ class _FirstIntroState extends State<FirstIntro> {
                           // 1. TextField에서 입력된 값 가져오기
                           int targetCalories = int.tryParse(_targetCalorieController.text) ?? 0;
 
-                          // 2. IsarService를 통해 TargetData 가져오기
-                          TargetData? existingTargetData = await IsarService.isar.targetDatas.where().findFirst();
+                          // 2. IsarDatasource를 통해 TargetData 가져오기
+                          TargetData? existingTargetData = await IsarDatasource.isar.targetDatas.where().findFirst();
 
                           // 3. TargetData가 이미 존재하면 업데이트, 없으면 생성
                           if (existingTargetData != null) {
                             existingTargetData.targetCalories = targetCalories;
-                            await IsarService.isar
-                                .writeTxn(() async => await IsarService.isar.targetDatas.put(existingTargetData));
+                            await IsarDatasource.isar
+                                .writeTxn(() async => await IsarDatasource.isar.targetDatas.put(existingTargetData));
                           } else {
-                            await IsarService.isar.writeTxn(() async {
-                              await IsarService.isar.targetDatas.put(TargetData()..targetCalories = targetCalories);
+                            await IsarDatasource.isar.writeTxn(() async {
+                              await IsarDatasource.isar.targetDatas.put(TargetData()..targetCalories = targetCalories);
                             });
                           }
 

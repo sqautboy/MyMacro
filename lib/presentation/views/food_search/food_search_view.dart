@@ -8,8 +8,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
-class FoodSearchPage extends StatelessWidget {
-  const FoodSearchPage({super.key});
+class FoodSearchView extends StatelessWidget {
+  const FoodSearchView({super.key});
 
   @override
   Widget build(BuildContext context) {

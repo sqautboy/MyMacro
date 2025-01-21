@@ -1,9 +1,9 @@
 import 'package:diet_macro/data/models/food_model.dart';
-import 'package:diet_macro/data/repositories/food_repository/food_repository.dart';
+import 'package:diet_macro/data/repositories/food_search/i_food_repository.dart';
 import 'package:flutter/material.dart';
 
 class FoodViewModel extends ChangeNotifier {
-  final FoodRepository foodRepository;
+  final IFoodRepository foodRepository;
   List<FoodNutrition> foods = [];
   bool isLoading = false;
 
@@ -13,7 +13,7 @@ class FoodViewModel extends ChangeNotifier {
     isLoading = true;
     notifyListeners(); // 상태 변경 알림
 
-    foods = await foodRepository.fetchFoodNutrition(foodName);
+    foods = await foodRepository.getFoodNutrition(foodName);
 
     isLoading = false;
     notifyListeners();

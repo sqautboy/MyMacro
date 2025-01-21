@@ -1,5 +1,5 @@
-import 'package:diet_macro/presentation/views/food_search/food_search_page.dart';
-import 'package:diet_macro/data/services/isar_service.dart';
+import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
+import 'package:diet_macro/presentation/views/food_search/food_search_view.dart';
 import 'package:diet_macro/presentation/views/intro_screens/first_intro/first_intro.dart';
 import 'package:diet_macro/styles/typography.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class SettingCard extends StatelessWidget {
         onTap: () {
           switch (title) {
             case 'Reset':
-              IsarService().deleteTargetData(1);
+              IsarDatasource().deleteTargetData(1);
 
               showDialog(
                 barrierDismissible: false,
@@ -35,7 +35,7 @@ class SettingCard extends StatelessWidget {
               );
               break;
             case 'Delete':
-              IsarService().deleteAllDailyData();
+              IsarDatasource().deleteAllDailyData();
 
               showDialog(
                 barrierDismissible: false,
@@ -52,7 +52,7 @@ class SettingCard extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const FoodSearchPage(),
+                  builder: (context) => const FoodSearchView(),
                 ),
               );
               break;

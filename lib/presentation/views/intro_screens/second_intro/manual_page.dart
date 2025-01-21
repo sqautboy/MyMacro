@@ -1,5 +1,5 @@
+import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
 import 'package:diet_macro/data/models/isar_data.dart';
-import 'package:diet_macro/data/services/isar_service.dart';
 import 'package:diet_macro/page_router.dart';
 import 'package:diet_macro/styles/typography.dart';
 import 'package:diet_macro/styles/nutrition_color_set.dart';
@@ -63,7 +63,7 @@ class ManualPage extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () async {
                 // targetData 가져오기
-                final targetData = await IsarService.isar.targetDatas.where().findFirst();
+                final targetData = await IsarDatasource.isar.targetDatas.where().findFirst();
 
                 // textfield 에서 값을 읽어와 정수형으로 변환
                 targetData!
@@ -71,7 +71,7 @@ class ManualPage extends StatelessWidget {
                   ..targetProtein = int.tryParse(proteinController.text) ?? 0
                   ..targetFat = int.tryParse(fatController.text) ?? 0;
 
-                await IsarService().updateTargetData(targetData);
+                await IsarDatasource().updateTargetData(targetData);
 
                 // MainPage 이동
                 Navigator.pushReplacement(

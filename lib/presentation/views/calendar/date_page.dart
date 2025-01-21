@@ -1,4 +1,4 @@
-import 'package:diet_macro/data/services/isar_service.dart';
+import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
 import 'package:diet_macro/styles/typography.dart';
 import 'package:diet_macro/styles/nutrition_color_set.dart';
 import 'package:diet_macro/presentation/widgets/nutrition_tile.dart';
@@ -29,12 +29,12 @@ class _DatePageState extends State<DatePage> {
 
   // TargetData 로드 함수
   Future<void> _loadTargetData() async {
-    _targetData = await IsarService().getTargetData();
+    _targetData = await IsarDatasource().getTargetData();
   }
 
   // focusedDay의 DailyData 로드
   Future<void> _loadDailyDataForFocusedDay() async {
-    _dailyData = await IsarService().getDailyDataByDate(_focusedDay);
+    _dailyData = await IsarDatasource().getDailyDataByDate(_focusedDay);
     setState(() {}); // UI 업데이트
   }
 
@@ -61,7 +61,7 @@ class _DatePageState extends State<DatePage> {
               setState(() {
                 _selectedDay = DateTime(selectedDay.year, selectedDay.month, selectedDay.day).toLocal();
               });
-              _dailyData = await IsarService().getDailyDataByDate(_selectedDay!);
+              _dailyData = await IsarDatasource().getDailyDataByDate(_selectedDay!);
             },
           ),
 
