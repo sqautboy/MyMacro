@@ -27,13 +27,13 @@ class FoodSearchView extends StatelessWidget {
             child: SearchTextField(
               textController: textController,
               onSearch: (foodName) {
-                context.read<FoodViewModel>().clearFoods();
-                context.read<FoodViewModel>().fetchFoodNutrition(foodName);
+                context.read<FoodSearchViewModel>().clearFoods();
+                context.read<FoodSearchViewModel>().fetchFoodNutrition(foodName);
               },
             ),
           ),
           Expanded(
-            child: Consumer<FoodViewModel>(
+            child: Consumer<FoodSearchViewModel>(
               builder: (context, viewModel, child) {
                 if (viewModel.isLoading) {
                   return _buildLoadingState();
