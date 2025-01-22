@@ -15,21 +15,17 @@ import '../../data/repositories/daily_data/i_daily_data_repository.dart';
 
 final getIt = GetIt.instance;
 
-void configureDependencies() {
+void setupDependencies() {
   // DataSource
   getIt.registerLazySingleton<FoodSearchApi>(() => FoodSearchApi());
   getIt.registerLazySingleton<IsarDatasource>(() => IsarDatasource());
 
   // Repository
-  // getIt.registerLazySingleton<DailyDataRepository>(() => DailyDataRepository(getIt()));
-  // getIt.registerLazySingleton<TargetDataRepository>(() => TargetDataRepository(getIt()));
-
-  // Repository
-  getIt.registerLazySingleton<IFoodRepository>(() => FoodRepositoryImpl(getIt()));
-  getIt.registerLazySingleton<IDailyDataRepository>(() => DailyDataRepositoryImpl(getIt()));
+  getIt.registerLazySingleton<IFoodRepository>(() => FoodRepositoryImpl(getIt<FoodSearchApi>()));
+  getIt.registerLazySingleton<IDailyDataRepository>(() => DailyDataRepositoryImpl(getIt<IsarDatasource>()));
   getIt.registerLazySingleton<ITargetDataRepository>(() => TargetDataRepositoryImpl(getIt()));
 
   // ViewModel
-  getIt.registerFactory<FoodViewModel>(() => FoodViewModel(foodRepository: getIt()));
-  getIt.registerFactory<DietViewModel>(() => DietViewModel(getIt(), getIt()));
+  getIt.registerFactory<FoodSearchViewModel>(() => FoodSearchViewModel());
+  getIt.registerFactory<DietViewModel>(() => DietViewModel());
 }
