@@ -1,11 +1,12 @@
+import 'package:diet_macro/core/injection/get_it.dart';
 import 'package:diet_macro/data/models/isar_data.dart';
 import 'package:diet_macro/data/repositories/daily_data/i_daily_data_repository.dart';
 import 'package:diet_macro/data/repositories/target_data/i_target_data_repository.dart';
 import 'package:flutter/material.dart';
 
 class DietViewModel with ChangeNotifier {
-  final ITargetDataRepository _targetDataRepository;
-  final IDailyDataRepository _dailyDataRepository;
+  final ITargetDataRepository _targetDataRepository = getIt<ITargetDataRepository>();
+  final IDailyDataRepository _dailyDataRepository = getIt<IDailyDataRepository>();
 
   TargetData _targetData = TargetData();
   DailyData _dailyData = DailyData();
@@ -13,7 +14,8 @@ class DietViewModel with ChangeNotifier {
   TargetData get targetData => _targetData;
   DailyData get dailyData => _dailyData;
 
-  DietViewModel(this._targetDataRepository, this._dailyDataRepository);
+  // get_it DI 로 인해 라인 삭제
+  // DietViewModel(this._targetDataRepository, this._dailyDataRepository);
 
   double get caloriesPercent => _calculatePercent(dailyData.calories, targetData.targetCalories);
   double get carbPercent => _calculatePercent(dailyData.carb, targetData.targetCarb);
