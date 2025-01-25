@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
 
+import 'package:diet_macro/core/network/api_error_handler.dart';
+import 'package:diet_macro/core/network/api_exception.dart';
 import 'package:diet_macro/core/network/signature_helper.dart';
 import 'package:http/http.dart' as http;
 import 'dart:math';
@@ -30,13 +33,22 @@ class FoodSearchApi {
     // 요청 URL 생성
     final finalUrl = Uri.parse('$apiUrl?${params.entries.map((e) => '${e.key}=${e.value}').join('&')}');
 
-    // API 호출
-    final response = await http.get(finalUrl);
+    try {
+      // API 호출
+      final response = await http.get(finalUrl);
 
-    // 응답 처리
-    if (response.statusCode == 200) {
-      return response.body;
-    } else {
+      // 응답처리
+      final responseBody = ApiErrorHandler.handleResponse(response);
+      return responseBody;
+    } on ApiException catch (e) {
+      // ApiException catch 블록 유지 (API 에러 처리)
+      // API 자체에서 발생한 에러 (예: 404, 500)
+      print('ApiException 발생: $e');
+      return '';
+    } catch (e) {
+      // 일반적인 Exception catch 블록 유지 (네트워크 에러 등)
+      // http.get() 자체에서 발생한 에러 (예: 네트워크 문제, Timeout)
+      print('Exception 발생: $e');
       return '';
     }
   }
