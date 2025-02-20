@@ -1,6 +1,6 @@
-import 'package:diet_macro/data/models/isar_data.dart';
+import '../../models/isar_data.dart';
 
-abstract class IDailyDataRepository {
+abstract interface class DailyDataRepository {
   Future<DailyData> getDailyDataForToday();
   Future<void> updateDailyData(DailyData dailyData);
 }

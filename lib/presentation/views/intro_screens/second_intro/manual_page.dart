@@ -1,8 +1,8 @@
-import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
-import 'package:diet_macro/data/models/isar_data.dart';
-import 'package:diet_macro/page_router.dart';
-import 'package:diet_macro/styles/typography.dart';
-import 'package:diet_macro/styles/nutrition_color_set.dart';
+import '../../../../data/datasources/local/isar_datasource.dart';
+import '../../../../data/models/isar_data.dart';
+import '../../../../page_router.dart';
+import '../../../../core/styles/typography.dart';
+import '../../../../core/styles/colors/nutrition_color_set.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 

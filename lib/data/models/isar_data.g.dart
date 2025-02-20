@@ -120,7 +120,8 @@ void _targetDataAttach(IsarCollection<dynamic> col, Id id, TargetData object) {
   object.id = id;
 }
 
-extension TargetDataQueryWhereSort on QueryBuilder<TargetData, TargetData, QWhere> {
+extension TargetDataQueryWhereSort
+    on QueryBuilder<TargetData, TargetData, QWhere> {
   QueryBuilder<TargetData, TargetData, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
@@ -128,7 +129,8 @@ extension TargetDataQueryWhereSort on QueryBuilder<TargetData, TargetData, QWher
   }
 }
 
-extension TargetDataQueryWhere on QueryBuilder<TargetData, TargetData, QWhereClause> {
+extension TargetDataQueryWhere
+    on QueryBuilder<TargetData, TargetData, QWhereClause> {
   QueryBuilder<TargetData, TargetData, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
@@ -160,7 +162,8 @@ extension TargetDataQueryWhere on QueryBuilder<TargetData, TargetData, QWhereCla
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterWhereClause> idGreaterThan(Id id, {bool include = false}) {
+  QueryBuilder<TargetData, TargetData, QAfterWhereClause> idGreaterThan(Id id,
+      {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.greaterThan(lower: id, includeLower: include),
@@ -168,7 +171,8 @@ extension TargetDataQueryWhere on QueryBuilder<TargetData, TargetData, QWhereCla
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterWhereClause> idLessThan(Id id, {bool include = false}) {
+  QueryBuilder<TargetData, TargetData, QAfterWhereClause> idLessThan(Id id,
+      {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.lessThan(upper: id, includeUpper: include),
@@ -193,8 +197,10 @@ extension TargetDataQueryWhere on QueryBuilder<TargetData, TargetData, QWhereCla
   }
 }
 
-extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterCondition> {
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> idEqualTo(Id value) {
+extension TargetDataQueryFilter
+    on QueryBuilder<TargetData, TargetData, QFilterCondition> {
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> idEqualTo(
+      Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -246,7 +252,8 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetCaloriesEqualTo(int value) {
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition>
+      targetCaloriesEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'targetCalories',
@@ -255,7 +262,8 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetCaloriesGreaterThan(
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition>
+      targetCaloriesGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -268,7 +276,8 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetCaloriesLessThan(
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition>
+      targetCaloriesLessThan(
     int value, {
     bool include = false,
   }) {
@@ -281,7 +290,8 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetCaloriesBetween(
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition>
+      targetCaloriesBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -298,7 +308,8 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetCarbEqualTo(int value) {
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetCarbEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'targetCarb',
@@ -307,7 +318,8 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetCarbGreaterThan(
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition>
+      targetCarbGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -320,7 +332,8 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetCarbLessThan(
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition>
+      targetCarbLessThan(
     int value, {
     bool include = false,
   }) {
@@ -350,7 +363,8 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetFatEqualTo(int value) {
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetFatEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'targetFat',
@@ -359,7 +373,8 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetFatGreaterThan(
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition>
+      targetFatGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -402,7 +417,8 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetProteinEqualTo(int value) {
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition>
+      targetProteinEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'targetProtein',
@@ -411,7 +427,8 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetProteinGreaterThan(
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition>
+      targetProteinGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -424,7 +441,8 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetProteinLessThan(
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition>
+      targetProteinLessThan(
     int value, {
     bool include = false,
   }) {
@@ -437,7 +455,8 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterFilterCondition> targetProteinBetween(
+  QueryBuilder<TargetData, TargetData, QAfterFilterCondition>
+      targetProteinBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -455,18 +474,22 @@ extension TargetDataQueryFilter on QueryBuilder<TargetData, TargetData, QFilterC
   }
 }
 
-extension TargetDataQueryObject on QueryBuilder<TargetData, TargetData, QFilterCondition> {}
+extension TargetDataQueryObject
+    on QueryBuilder<TargetData, TargetData, QFilterCondition> {}
 
-extension TargetDataQueryLinks on QueryBuilder<TargetData, TargetData, QFilterCondition> {}
+extension TargetDataQueryLinks
+    on QueryBuilder<TargetData, TargetData, QFilterCondition> {}
 
-extension TargetDataQuerySortBy on QueryBuilder<TargetData, TargetData, QSortBy> {
+extension TargetDataQuerySortBy
+    on QueryBuilder<TargetData, TargetData, QSortBy> {
   QueryBuilder<TargetData, TargetData, QAfterSortBy> sortByTargetCalories() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'targetCalories', Sort.asc);
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterSortBy> sortByTargetCaloriesDesc() {
+  QueryBuilder<TargetData, TargetData, QAfterSortBy>
+      sortByTargetCaloriesDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'targetCalories', Sort.desc);
     });
@@ -509,7 +532,8 @@ extension TargetDataQuerySortBy on QueryBuilder<TargetData, TargetData, QSortBy>
   }
 }
 
-extension TargetDataQuerySortThenBy on QueryBuilder<TargetData, TargetData, QSortThenBy> {
+extension TargetDataQuerySortThenBy
+    on QueryBuilder<TargetData, TargetData, QSortThenBy> {
   QueryBuilder<TargetData, TargetData, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -528,7 +552,8 @@ extension TargetDataQuerySortThenBy on QueryBuilder<TargetData, TargetData, QSor
     });
   }
 
-  QueryBuilder<TargetData, TargetData, QAfterSortBy> thenByTargetCaloriesDesc() {
+  QueryBuilder<TargetData, TargetData, QAfterSortBy>
+      thenByTargetCaloriesDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'targetCalories', Sort.desc);
     });
@@ -571,7 +596,8 @@ extension TargetDataQuerySortThenBy on QueryBuilder<TargetData, TargetData, QSor
   }
 }
 
-extension TargetDataQueryWhereDistinct on QueryBuilder<TargetData, TargetData, QDistinct> {
+extension TargetDataQueryWhereDistinct
+    on QueryBuilder<TargetData, TargetData, QDistinct> {
   QueryBuilder<TargetData, TargetData, QDistinct> distinctByTargetCalories() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'targetCalories');
@@ -597,7 +623,8 @@ extension TargetDataQueryWhereDistinct on QueryBuilder<TargetData, TargetData, Q
   }
 }
 
-extension TargetDataQueryProperty on QueryBuilder<TargetData, TargetData, QQueryProperty> {
+extension TargetDataQueryProperty
+    on QueryBuilder<TargetData, TargetData, QQueryProperty> {
   QueryBuilder<TargetData, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
@@ -752,7 +779,8 @@ void _dailyDataAttach(IsarCollection<dynamic> col, Id id, DailyData object) {
   object.id = id;
 }
 
-extension DailyDataQueryWhereSort on QueryBuilder<DailyData, DailyData, QWhere> {
+extension DailyDataQueryWhereSort
+    on QueryBuilder<DailyData, DailyData, QWhere> {
   QueryBuilder<DailyData, DailyData, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
@@ -760,7 +788,8 @@ extension DailyDataQueryWhereSort on QueryBuilder<DailyData, DailyData, QWhere> 
   }
 }
 
-extension DailyDataQueryWhere on QueryBuilder<DailyData, DailyData, QWhereClause> {
+extension DailyDataQueryWhere
+    on QueryBuilder<DailyData, DailyData, QWhereClause> {
   QueryBuilder<DailyData, DailyData, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
@@ -792,7 +821,8 @@ extension DailyDataQueryWhere on QueryBuilder<DailyData, DailyData, QWhereClause
     });
   }
 
-  QueryBuilder<DailyData, DailyData, QAfterWhereClause> idGreaterThan(Id id, {bool include = false}) {
+  QueryBuilder<DailyData, DailyData, QAfterWhereClause> idGreaterThan(Id id,
+      {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.greaterThan(lower: id, includeLower: include),
@@ -800,7 +830,8 @@ extension DailyDataQueryWhere on QueryBuilder<DailyData, DailyData, QWhereClause
     });
   }
 
-  QueryBuilder<DailyData, DailyData, QAfterWhereClause> idLessThan(Id id, {bool include = false}) {
+  QueryBuilder<DailyData, DailyData, QAfterWhereClause> idLessThan(Id id,
+      {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.lessThan(upper: id, includeUpper: include),
@@ -825,8 +856,10 @@ extension DailyDataQueryWhere on QueryBuilder<DailyData, DailyData, QWhereClause
   }
 }
 
-extension DailyDataQueryFilter on QueryBuilder<DailyData, DailyData, QFilterCondition> {
-  QueryBuilder<DailyData, DailyData, QAfterFilterCondition> caloriesEqualTo(int value) {
+extension DailyDataQueryFilter
+    on QueryBuilder<DailyData, DailyData, QFilterCondition> {
+  QueryBuilder<DailyData, DailyData, QAfterFilterCondition> caloriesEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'calories',
@@ -878,7 +911,8 @@ extension DailyDataQueryFilter on QueryBuilder<DailyData, DailyData, QFilterCond
     });
   }
 
-  QueryBuilder<DailyData, DailyData, QAfterFilterCondition> carbEqualTo(int value) {
+  QueryBuilder<DailyData, DailyData, QAfterFilterCondition> carbEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'carb',
@@ -930,7 +964,8 @@ extension DailyDataQueryFilter on QueryBuilder<DailyData, DailyData, QFilterCond
     });
   }
 
-  QueryBuilder<DailyData, DailyData, QAfterFilterCondition> dateEqualTo(DateTime value, int month) {
+  QueryBuilder<DailyData, DailyData, QAfterFilterCondition> dateEqualTo(
+      DateTime value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'date',
@@ -982,7 +1017,8 @@ extension DailyDataQueryFilter on QueryBuilder<DailyData, DailyData, QFilterCond
     });
   }
 
-  QueryBuilder<DailyData, DailyData, QAfterFilterCondition> fatEqualTo(int value) {
+  QueryBuilder<DailyData, DailyData, QAfterFilterCondition> fatEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'fat',
@@ -1034,7 +1070,8 @@ extension DailyDataQueryFilter on QueryBuilder<DailyData, DailyData, QFilterCond
     });
   }
 
-  QueryBuilder<DailyData, DailyData, QAfterFilterCondition> idEqualTo(Id value) {
+  QueryBuilder<DailyData, DailyData, QAfterFilterCondition> idEqualTo(
+      Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -1086,7 +1123,8 @@ extension DailyDataQueryFilter on QueryBuilder<DailyData, DailyData, QFilterCond
     });
   }
 
-  QueryBuilder<DailyData, DailyData, QAfterFilterCondition> proteinEqualTo(int value) {
+  QueryBuilder<DailyData, DailyData, QAfterFilterCondition> proteinEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'protein',
@@ -1139,9 +1177,11 @@ extension DailyDataQueryFilter on QueryBuilder<DailyData, DailyData, QFilterCond
   }
 }
 
-extension DailyDataQueryObject on QueryBuilder<DailyData, DailyData, QFilterCondition> {}
+extension DailyDataQueryObject
+    on QueryBuilder<DailyData, DailyData, QFilterCondition> {}
 
-extension DailyDataQueryLinks on QueryBuilder<DailyData, DailyData, QFilterCondition> {}
+extension DailyDataQueryLinks
+    on QueryBuilder<DailyData, DailyData, QFilterCondition> {}
 
 extension DailyDataQuerySortBy on QueryBuilder<DailyData, DailyData, QSortBy> {
   QueryBuilder<DailyData, DailyData, QAfterSortBy> sortByCalories() {
@@ -1205,7 +1245,8 @@ extension DailyDataQuerySortBy on QueryBuilder<DailyData, DailyData, QSortBy> {
   }
 }
 
-extension DailyDataQuerySortThenBy on QueryBuilder<DailyData, DailyData, QSortThenBy> {
+extension DailyDataQuerySortThenBy
+    on QueryBuilder<DailyData, DailyData, QSortThenBy> {
   QueryBuilder<DailyData, DailyData, QAfterSortBy> thenByCalories() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'calories', Sort.asc);
@@ -1279,7 +1320,8 @@ extension DailyDataQuerySortThenBy on QueryBuilder<DailyData, DailyData, QSortTh
   }
 }
 
-extension DailyDataQueryWhereDistinct on QueryBuilder<DailyData, DailyData, QDistinct> {
+extension DailyDataQueryWhereDistinct
+    on QueryBuilder<DailyData, DailyData, QDistinct> {
   QueryBuilder<DailyData, DailyData, QDistinct> distinctByCalories() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'calories');
@@ -1311,7 +1353,8 @@ extension DailyDataQueryWhereDistinct on QueryBuilder<DailyData, DailyData, QDis
   }
 }
 
-extension DailyDataQueryProperty on QueryBuilder<DailyData, DailyData, QQueryProperty> {
+extension DailyDataQueryProperty
+    on QueryBuilder<DailyData, DailyData, QQueryProperty> {
   QueryBuilder<DailyData, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');

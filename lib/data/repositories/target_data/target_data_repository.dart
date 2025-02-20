@@ -1,6 +1,6 @@
-import 'package:diet_macro/data/models/isar_data.dart';
+import '../../models/isar_data.dart';
 
-abstract class ITargetDataRepository {
+abstract class TargetDataRepository {
   Future<TargetData?> getTargetData();
   Future<void> updateTargetData(TargetData targetData);
 }

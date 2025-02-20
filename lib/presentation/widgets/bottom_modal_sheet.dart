@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
-import 'package:diet_macro/styles/typography.dart';
-import 'package:diet_macro/styles/nutrition_color_set.dart';
+import 'package:diet_macro/core/styles/typography.dart';
+import 'package:diet_macro/core/styles/colors/nutrition_color_set.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

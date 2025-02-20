@@ -1,5 +1,5 @@
-import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
-import 'package:diet_macro/data/models/isar_data.dart';
+import '../datasources/local/isar_datasource.dart';
+import '../models/isar_data.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tz;

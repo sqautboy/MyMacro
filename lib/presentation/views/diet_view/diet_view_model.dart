@@ -1,12 +1,12 @@
-import 'package:diet_macro/core/injection/get_it.dart';
-import 'package:diet_macro/data/models/isar_data.dart';
-import 'package:diet_macro/data/repositories/daily_data/i_daily_data_repository.dart';
-import 'package:diet_macro/data/repositories/target_data/i_target_data_repository.dart';
+import '../../../core/injection/get_it.dart';
+import '../../../data/models/isar_data.dart';
+import '../../../data/repositories/daily_data/daily_data_repository.dart';
+import '../../../data/repositories/target_data/target_data_repository.dart';
 import 'package:flutter/material.dart';
 
 class DietViewModel with ChangeNotifier {
-  final ITargetDataRepository _targetDataRepository = getIt<ITargetDataRepository>();
-  final IDailyDataRepository _dailyDataRepository = getIt<IDailyDataRepository>();
+  final TargetDataRepository _targetDataRepository = getIt<TargetDataRepository>();
+  final DailyDataRepository _dailyDataRepository = getIt<DailyDataRepository>();
 
   TargetData _targetData = TargetData();
   DailyData _dailyData = DailyData();

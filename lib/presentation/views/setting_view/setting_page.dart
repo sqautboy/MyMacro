@@ -1,5 +1,5 @@
-import 'package:diet_macro/styles/nutrition_color_set.dart';
-import 'package:diet_macro/presentation/widgets/setting_card.dart';
+import '../../../core/styles/colors/nutrition_color_set.dart';
+import '../../widgets/setting_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';

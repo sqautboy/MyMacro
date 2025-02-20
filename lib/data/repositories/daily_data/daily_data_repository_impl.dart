@@ -1,11 +1,10 @@
-import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
-import 'package:diet_macro/data/models/isar_data.dart';
-import 'package:diet_macro/data/repositories/daily_data/i_daily_data_repository.dart';
+import '../../../core/injection/get_it.dart';
+import '../../datasources/local/isar_datasource.dart';
+import '../../models/isar_data.dart';
+import 'daily_data_repository.dart';
 
-class DailyDataRepositoryImpl implements IDailyDataRepository {
-  final IsarDatasource _isarDatasource;
-
-  DailyDataRepositoryImpl(this._isarDatasource);
+class DailyDataRepositoryImpl implements DailyDataRepository {
+  final IsarDatasource _isarDatasource = getIt<IsarDatasource>();
 
   @override
   Future<DailyData> getDailyDataForToday() async {

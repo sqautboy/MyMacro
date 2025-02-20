@@ -1,19 +1,19 @@
-import 'package:diet_macro/data/models/food_model.dart';
-import 'package:diet_macro/data/repositories/food_search/i_food_repository.dart';
+import '../../../core/injection/get_it.dart';
+import '../../../data/models/food_model.dart';
+import '../../../data/repositories/food_search/food_repository.dart';
 import 'package:flutter/material.dart';
 
-class FoodViewModel extends ChangeNotifier {
-  final IFoodRepository foodRepository;
+class FoodSearchViewModel extends ChangeNotifier {
+  final _foodRepository = getIt<FoodRepository>();
+
   List<FoodNutrition> foods = [];
   bool isLoading = false;
-
-  FoodViewModel({required this.foodRepository});
 
   Future<void> fetchFoodNutrition(String foodName) async {
     isLoading = true;
     notifyListeners(); // 상태 변경 알림
 
-    foods = await foodRepository.getFoodNutrition(foodName);
+    foods = await _foodRepository.getFoodNutrition(foodName);
 
     isLoading = false;
     notifyListeners();

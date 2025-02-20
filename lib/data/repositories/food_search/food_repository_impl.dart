@@ -48,3 +48,24 @@ class FoodRepositoryImpl implements FoodRepository {
     }
   }
 }
+
+
+/* 응답 구조
+{
+  "foods": {  // <-- foods 키 (첫 번째 레벨)
+    "food": [  // <-- food 키 (두 번째 레벨, 배열 형태)
+      {
+        "food_name": "Banana",
+        "food_description": "...",
+        // ... 기타 음식 정보 ...
+      },
+      {
+        "food_name": "Apple",
+        "food_description": "...",
+        // ... 기타 음식 정보 ...
+      },
+      // ... more food items ...
+    ]
+  }
+}
+*/

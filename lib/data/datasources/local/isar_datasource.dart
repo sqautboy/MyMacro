@@ -1,4 +1,4 @@
-import 'package:diet_macro/data/models/isar_data.dart';
+import '../../models/isar_data.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -58,7 +58,7 @@ class IsarDatasource {
 
   // 특정 날짜의 DailyData 조회
   Future<DailyData?> getDailyDataByDate(DateTime date) async {
-    return await isar.dailyDatas.filter().dateEqualTo(date, date.month).findFirst();
+    return await isar.dailyDatas.filter().dateEqualTo(date).findFirst();
   }
 
   // TargetData 조회

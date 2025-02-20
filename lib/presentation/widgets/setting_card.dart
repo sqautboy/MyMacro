@@ -1,7 +1,7 @@
-import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
-import 'package:diet_macro/presentation/views/food_search/food_search_view.dart';
-import 'package:diet_macro/presentation/views/intro_screens/first_intro/first_intro.dart';
-import 'package:diet_macro/styles/typography.dart';
+import '../../data/datasources/local/isar_datasource.dart';
+import '../views/food_search/food_search_view.dart';
+import '../views/intro_screens/first_intro/first_intro.dart';
+import '../../core/styles/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

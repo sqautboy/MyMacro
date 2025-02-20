@@ -1,8 +1,10 @@
-import 'package:diet_macro/data/models/food_model.dart';
+import 'package:diet_macro/core/styles/typography.dart';
 
-import 'package:diet_macro/presentation/views/food_search/food_search_viewmodel.dart';
-import 'package:diet_macro/styles/nutrition_color_set.dart';
-import 'package:diet_macro/presentation/widgets/search_textfield.dart';
+import '../../../data/models/food_model.dart';
+
+import 'food_search_viewmodel.dart';
+import '../../../core/styles/colors/nutrition_color_set.dart';
+import '../../widgets/search_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +40,7 @@ class FoodSearchView extends StatelessWidget {
                 if (viewModel.isLoading) {
                   return _buildLoadingState();
                 } else if (viewModel.foods.isEmpty) {
-                  return Center(child: Text('검색 결과가 없습니다.'));
+                  return Center(child: Text('No food found', style: MyTypos.body1Medium));
                 } else {
                   return _buildFoodList(viewModel.foods);
                 }

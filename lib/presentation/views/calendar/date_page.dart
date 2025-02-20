@@ -1,11 +1,11 @@
-import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
-import 'package:diet_macro/styles/typography.dart';
-import 'package:diet_macro/styles/nutrition_color_set.dart';
-import 'package:diet_macro/presentation/widgets/nutrition_tile.dart';
+import '../../../data/datasources/local/isar_datasource.dart';
+import '../../../core/styles/typography.dart';
+import '../../../core/styles/colors/nutrition_color_set.dart';
+import '../../widgets/nutrition_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:diet_macro/data/models/isar_data.dart';
+import '../../../data/models/isar_data.dart';
 
 class DatePage extends StatefulWidget {
   const DatePage({super.key});
@@ -75,10 +75,9 @@ class _DatePageState extends State<DatePage> {
                   padding: const EdgeInsets.all(30.0),
                   child: Center(
                     // 텍스트를 가운데 정렬
-                    child: const Text(
-                      'No Data',
-                      style: MyTypos.heading3ExtraBold,
-                    ).animate().fade(duration: const Duration(milliseconds: 200)),
+                    child: const Text('No Data', style: MyTypos.heading3ExtraBold)
+                        .animate()
+                        .fade(duration: const Duration(milliseconds: 200)),
                   ),
                 ),
               ),
@@ -86,7 +85,6 @@ class _DatePageState extends State<DatePage> {
           ] else ...[
             Expanded(
               child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   children: [

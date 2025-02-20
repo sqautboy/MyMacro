@@ -1,11 +1,11 @@
-import 'package:diet_macro/presentation/views/diet_view/components/floating_button.dart';
-import 'package:diet_macro/presentation/views/diet_view/components/progress_indicator.dart';
-import 'package:diet_macro/presentation/views/diet_view/diet_view_model.dart';
-import 'package:diet_macro/presentation/widgets/nutrition_tile.dart';
+import 'components/floating_button.dart';
+import 'components/progress_indicator.dart';
+import 'diet_view_model.dart';
+import '../../widgets/nutrition_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
-import 'package:diet_macro/styles/nutrition_color_set.dart';
+import '../../../core/styles/colors/nutrition_color_set.dart';
 
 class DietView extends StatefulWidget {
   const DietView({super.key});

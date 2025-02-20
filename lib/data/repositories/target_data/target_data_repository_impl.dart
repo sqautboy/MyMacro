@@ -1,11 +1,10 @@
-import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
-import 'package:diet_macro/data/models/isar_data.dart';
-import 'package:diet_macro/data/repositories/target_data/i_target_data_repository.dart';
+import '../../../core/injection/get_it.dart';
+import '../../datasources/local/isar_datasource.dart';
+import '../../models/isar_data.dart';
+import 'target_data_repository.dart';
 
-class TargetDataRepositoryImpl implements ITargetDataRepository {
-  final IsarDatasource _isarDatasource;
-
-  TargetDataRepositoryImpl(this._isarDatasource);
+class TargetDataRepositoryImpl implements TargetDataRepository {
+  final IsarDatasource _isarDatasource = getIt<IsarDatasource>();
 
   @override
   Future<TargetData?> getTargetData() async {

@@ -1,10 +1,10 @@
-import 'package:diet_macro/presentation/views/calendar/date_page.dart';
-import 'package:diet_macro/presentation/views/diet_view/diet_view.dart';
-import 'package:diet_macro/presentation/views/food_search/food_search_view.dart';
-import 'package:diet_macro/presentation/views/setting_view/setting_page.dart';
-import 'package:diet_macro/styles/nutrition_color_set.dart';
-import 'package:diet_macro/presentation/widgets/bottom_navigation_bar.dart';
-import 'package:diet_macro/utils/drawer.dart';
+import 'presentation/views/calendar/date_page.dart';
+import 'presentation/views/diet_view/diet_view.dart';
+import 'presentation/views/food_search/food_search_view.dart';
+import 'presentation/views/setting_view/setting_page.dart';
+import 'core/styles/colors/nutrition_color_set.dart';
+import 'presentation/widgets/bottom_navigation_bar.dart';
+import 'presentation/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class PageRouter extends StatefulWidget {

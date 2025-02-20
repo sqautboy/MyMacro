@@ -1,26 +1,25 @@
-import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
-import 'package:diet_macro/data/datasources/remote/food_search_api.dart';
-import 'package:diet_macro/data/repositories/daily_data/daily_data_repository_impl.dart';
-import 'package:diet_macro/data/repositories/food_search/food_repository_impl.dart';
-import 'package:diet_macro/data/repositories/target_data/target_data_repository_impl.dart';
-import 'package:diet_macro/presentation/views/diet_view/diet_view_model.dart';
-import 'package:diet_macro/presentation/views/food_search/food_search_viewmodel.dart';
-import 'package:diet_macro/data/models/isar_data.dart';
-import 'package:diet_macro/presentation/views/intro_screens/first_intro/first_intro.dart';
-import 'package:diet_macro/page_router.dart';
-import 'package:diet_macro/data/services/notification_service.dart';
-import 'package:diet_macro/styles/app_theme.dart';
+import 'core/injection/get_it.dart';
+import 'data/datasources/local/isar_datasource.dart';
+import 'data/models/isar_data.dart';
+import 'presentation/views/diet_view/diet_view_model.dart';
+import 'presentation/views/food_search/food_search_viewmodel.dart';
+import 'presentation/views/intro_screens/first_intro/first_intro.dart';
+import 'page_router.dart';
+import 'data/services/notification_service.dart';
+import 'core/styles/app_theme.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-  // 앱 초기화 시 IsarDatasource 초기화
+  // 앱 초기화 시 IsarService, dotenv 초기화
   WidgetsFlutterBinding.ensureInitialized();
   await NotificationService().initNotification();
   await IsarDatasource.initialize();
   await dotenv.load(fileName: '.env');
+
+  setupDependencies(); // 의존성 주입 설정
 
   final targetCalories = await IsarDatasource().getTargetData();
 
@@ -45,24 +44,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (BuildContext context) {
-          final foodSearchApi = FoodSearchApi();
-          final foodRepository = FoodRepositoryImpl(foodSearchApi);
-          return FoodViewModel(foodRepository: foodRepository);
-        }),
-        ChangeNotifierProvider(create: (BuildContext context) {
-          final isarDatasource = IsarDatasource();
-          final targetDataRepository = TargetDataRepositoryImpl(isarDatasource);
-          final dailyDataRepository = DailyDataRepositoryImpl(isarDatasource);
-          return DietViewModel(targetDataRepository, dailyDataRepository);
-        }),
+        ChangeNotifierProvider(create: (_) => getIt<FoodSearchViewModel>()),
+        ChangeNotifierProvider(create: (_) => getIt<DietViewModel>()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: myLightTheme,
         debugShowCheckedModeBanner: false,
         home: targetCalories == null ? const FirstIntro() : const PageRouter(), // 조건에 따라 페이지 설정
-        // home: FirstIntro(),
       ),
     );
   }

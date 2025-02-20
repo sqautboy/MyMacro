@@ -1,6 +1,6 @@
-import 'package:diet_macro/presentation/views/diet_view/diet_view_model.dart';
+import '../diet_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:diet_macro/presentation/widgets/bottom_modal_sheet.dart';
+import '../../../widgets/bottom_modal_sheet.dart';
 
 class MyFloatingActionButton extends StatelessWidget {
   final DietViewModel dietViewModel;
@@ -22,7 +22,7 @@ class MyFloatingActionButton extends StatelessWidget {
           context: context,
           isScrollControlled: true,
           constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * 0.65,
+            maxHeight: MediaQuery.of(context).size.height * 0.6,
           ),
           builder: (context) {
             return BottomModalSheet(

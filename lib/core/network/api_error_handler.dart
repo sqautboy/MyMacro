@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:diet_macro/core/network/api_exception.dart';
+import 'api_exception.dart';
 
 class ApiErrorHandler {
   /// API 응답 상태 코드를 확인하고, 실패 시 ApiException 을 던진다

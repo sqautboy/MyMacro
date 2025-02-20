@@ -1,7 +1,7 @@
-import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
-import 'package:diet_macro/data/models/isar_data.dart';
-import 'package:diet_macro/presentation/views/intro_screens/second_intro/second_intro.dart';
-import 'package:diet_macro/styles/typography.dart';
+import '../../../../data/datasources/local/isar_datasource.dart';
+import '../../../../data/models/isar_data.dart';
+import '../second_intro/second_intro.dart';
+import '../../../../core/styles/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:lottie/lottie.dart';
@@ -35,10 +35,7 @@ class _FirstIntroState extends State<FirstIntro> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // logo
-                Lottie.asset(
-                  'assets/images/animated_icon.json',
-                  width: 300,
-                ),
+                Lottie.asset('assets/images/animated_icon.json', width: 300),
 
                 // title
                 const Text(
@@ -46,9 +43,7 @@ class _FirstIntroState extends State<FirstIntro> {
                   style: MyTypos.heading1ExtraBold,
                 ),
 
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
 
                 // sub title
                 const Text(
@@ -57,9 +52,7 @@ class _FirstIntroState extends State<FirstIntro> {
                   textAlign: TextAlign.center,
                 ),
 
-                const SizedBox(
-                  height: 48,
-                ),
+                const SizedBox(height: 48),
 
                 // targetCalorie Input Field
                 TextField(

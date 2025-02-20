@@ -1,4 +1,4 @@
-import 'package:diet_macro/data/models/food_model.dart';
+import '../data/models/food_model.dart';
 
 parseFoodNutrition(Map<String, dynamic> food, List foodNutritions) {
   String description = food['food_description'];
