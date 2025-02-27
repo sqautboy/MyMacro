@@ -45,7 +45,7 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
 
     Navigator.pop(context); // 모달 닫기
 
-    // success animation modal popup dialog
+    // success dialog popup
     showDialog(
       barrierDismissible: false,
       context: context,
@@ -59,6 +59,7 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
         );
       },
     );
+
     debugPrint('============ bottom sheet button pressed ============');
     debugPrint('Calories: $calories');
     debugPrint('Carb: $carb');
@@ -71,49 +72,38 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height * 0.6,
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Add Meal Info',
-                style: MyTypos.heading1ExtraBold,
-              ),
-              IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ],
-          ),
+          _buildBottomSheetHeader(),
           const Spacer(),
           _buildInputField('Calories', 'Kcal', caloriesController),
           _buildInputField('Carb', 'g', carbController),
           _buildInputField('Protein', 'g', proteinController),
           _buildInputField('Fat', 'g', fatController),
           const Spacer(),
-          Center(
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                fixedSize: const Size(350, 50),
-                foregroundColor: mainColor,
-                backgroundColor: Colors.black,
-              ),
-              onPressed: _addButtonPressed,
-              child: const Text(
-                'Add',
-                style: MyTypos.button,
-              ),
-            ),
-          ),
+          _buildAddButton(),
           const Spacer(),
         ],
       ),
+    );
+  }
+
+  Widget _buildBottomSheetHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Text(
+          'Add Meal Info',
+          style: MyTypos.heading1ExtraBold,
+        ),
+        IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ],
     );
   }
 
@@ -138,6 +128,24 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
             borderRadius: BorderRadius.circular(32.0),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildAddButton() {
+    return ElevatedButton(
+      onPressed: _addButtonPressed,
+      style: ElevatedButton.styleFrom(
+        minimumSize: const Size(double.infinity, 50),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+        ),
+        foregroundColor: mainColor,
+        backgroundColor: Colors.black,
+      ),
+      child: const Text(
+        'Add',
+        style: MyTypos.heading4ExtraBold,
       ),
     );
   }

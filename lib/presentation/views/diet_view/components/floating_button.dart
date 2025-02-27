@@ -21,13 +21,10 @@ class MyFloatingActionButton extends StatelessWidget {
         showModalBottomSheet(
           context: context,
           isScrollControlled: true,
-          constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * 0.6,
-          ),
           builder: (context) {
             return BottomModalSheet(
               onAddPressed: (calories, carb, protein, fat) async {
-                // dailyData update -> mealList에 meal 추가로 변경
+                // DailyData 업데이트, MealData 추가
                 await dietViewModel.addMeal(calories, carb, protein, fat);
                 await dietViewModel.updateDailyData(calories, carb, protein, fat);
                 ScaffoldMessenger.of(context).showSnackBar(
