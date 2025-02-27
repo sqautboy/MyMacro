@@ -1,11 +1,13 @@
+import 'components/daily_meal_info.dart';
 import 'components/floating_button.dart';
-import 'components/progress_indicator.dart';
-import 'diet_view_model.dart';
-import '../../widgets/nutrition_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
+
 import '../../../core/styles/colors/nutrition_color_set.dart';
+import '../../widgets/nutrition_tile.dart';
+import 'components/progress_indicator.dart';
+import 'diet_view_model.dart'; // DailyMealInfo import 추가
 
 class DietView extends StatefulWidget {
   const DietView({super.key});
@@ -44,9 +46,34 @@ class _DietViewState extends State<DietView> {
             _buildIndicatorRow(viewModel),
             const SizedBox(height: 50),
             _buildNutritionTiles(viewModel),
+            const SizedBox(height: 30),
+            _buildMealInfoList(viewModel), // meal list view 추가
           ],
         ),
       ),
+    );
+  }
+
+  // // meal list view 추가
+  Widget _buildMealInfoList(DietViewModel viewModel) {
+    if (viewModel.mealData?.isEmpty ?? true) {
+      // mealData 리스트가 비어있는지 확인
+      return const Text(
+        "No meals added yet",
+        style: TextStyle(color: Colors.grey),
+        textAlign: TextAlign.center,
+      );
+    }
+    return Column(
+      children: viewModel.mealData!.map((meal) {
+        return DailyMealInfo(
+          mealNumber: 'Meal #${viewModel.mealData!.indexOf(meal) + 1}', // Meal 번호 표시
+          calories: meal.calories,
+          carb: meal.carb,
+          protein: meal.protein,
+          fat: meal.fat,
+        );
+      }).toList(),
     );
   }
 
@@ -93,7 +120,7 @@ class _DietViewState extends State<DietView> {
     );
   }
 
-  // NutritionTiles 생성
+  // NutritionTiles 생성 (daily 영양소 타일)
   Widget _buildNutritionTiles(DietViewModel viewModel) {
     return Column(
       children: [
@@ -125,6 +152,7 @@ class _DietViewState extends State<DietView> {
     );
   }
 
+  // NutritionTile 템플릿
   Widget _buildNutritionTile({
     required String nutrition,
     required int currentValue,

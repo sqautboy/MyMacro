@@ -1,6 +1,6 @@
 import '../../../core/injection/get_it.dart';
-import '../../datasources/local/isar_datasource.dart';
-import '../../models/isar_data.dart';
+import '../../datasource/local/isar_datasource.dart';
+import '../../isar/isar_data.dart';
 import 'target_data_repository.dart';
 
 class TargetDataRepositoryImpl implements TargetDataRepository {

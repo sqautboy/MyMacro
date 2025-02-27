@@ -5,11 +5,12 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:diet_macro/data/datasources/local/isar_datasource.dart' as _i2;
-import 'package:diet_macro/data/datasources/remote/food_search_api.dart' as _i5;
-import 'package:diet_macro/data/models/isar_data.dart' as _i3;
+import 'package:diet_macro/core/network/oauth1.0/oauth_helper.dart' as _i2;
+import 'package:diet_macro/data/datasource/local/isar_datasource.dart' as _i3;
+import 'package:diet_macro/data/datasource/remote/food_search_api.dart' as _i6;
+import 'package:diet_macro/data/isar/isar_data.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i6;
+import 'package:mockito/src/dummies.dart' as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -24,95 +25,65 @@ import 'package:mockito/src/dummies.dart' as _i6;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeOAuthHelper_0 extends _i1.SmartFake implements _i2.OAuthHelper {
+  _FakeOAuthHelper_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [IsarDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIsarDatasource extends _i1.Mock implements _i2.IsarDatasource {
+class MockIsarDatasource extends _i1.Mock implements _i3.IsarDatasource {
   @override
-  List<_i3.DailyData> get dailyDataList => (super.noSuchMethod(
-        Invocation.getter(#dailyDataList),
-        returnValue: <_i3.DailyData>[],
-        returnValueForMissingStub: <_i3.DailyData>[],
-      ) as List<_i3.DailyData>);
-
-  @override
-  _i4.Future<void> createDailyData(
-    DateTime? date,
-    int? calories,
-    int? carb,
-    int? protein,
-    int? fat,
-  ) =>
+  _i4.Future<List<_i5.MealData>> getMealsByDate(DateTime? date) =>
       (super.noSuchMethod(
         Invocation.method(
-          #createDailyData,
-          [
-            date,
-            calories,
-            carb,
-            protein,
-            fat,
-          ],
+          #getMealsByDate,
+          [date],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
-  _i4.Future<void> createTargetData(
-    int? targetCalories,
-    int? targetCarb,
-    int? targetProtein,
-    int? targetFat,
-  ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #createTargetData,
-          [
-            targetCalories,
-            targetCarb,
-            targetProtein,
-            targetFat,
-          ],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
-  _i4.Future<List<_i3.DailyData>> getAllDailyData() => (super.noSuchMethod(
-        Invocation.method(
-          #getAllDailyData,
-          [],
-        ),
-        returnValue: _i4.Future<List<_i3.DailyData>>.value(<_i3.DailyData>[]),
+        returnValue: _i4.Future<List<_i5.MealData>>.value(<_i5.MealData>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i3.DailyData>>.value(<_i3.DailyData>[]),
-      ) as _i4.Future<List<_i3.DailyData>>);
+            _i4.Future<List<_i5.MealData>>.value(<_i5.MealData>[]),
+      ) as _i4.Future<List<_i5.MealData>>);
 
   @override
-  _i4.Future<_i3.DailyData?> getDailyDataByDate(DateTime? date) =>
+  _i4.Future<void> addMealData(_i5.MealData? mealData) => (super.noSuchMethod(
+        Invocation.method(
+          #addMealData,
+          [mealData],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<_i5.DailyData?> getDailyDataByDate(DateTime? date) =>
       (super.noSuchMethod(
         Invocation.method(
           #getDailyDataByDate,
           [date],
         ),
-        returnValue: _i4.Future<_i3.DailyData?>.value(),
-        returnValueForMissingStub: _i4.Future<_i3.DailyData?>.value(),
-      ) as _i4.Future<_i3.DailyData?>);
+        returnValue: _i4.Future<_i5.DailyData?>.value(),
+        returnValueForMissingStub: _i4.Future<_i5.DailyData?>.value(),
+      ) as _i4.Future<_i5.DailyData?>);
 
   @override
-  _i4.Future<_i3.TargetData?> getTargetData() => (super.noSuchMethod(
+  _i4.Future<_i5.TargetData?> getTargetData() => (super.noSuchMethod(
         Invocation.method(
           #getTargetData,
           [],
         ),
-        returnValue: _i4.Future<_i3.TargetData?>.value(),
-        returnValueForMissingStub: _i4.Future<_i3.TargetData?>.value(),
-      ) as _i4.Future<_i3.TargetData?>);
+        returnValue: _i4.Future<_i5.TargetData?>.value(),
+        returnValueForMissingStub: _i4.Future<_i5.TargetData?>.value(),
+      ) as _i4.Future<_i5.TargetData?>);
 
   @override
-  _i4.Future<void> updateDailyData(_i3.DailyData? dailyData) =>
+  _i4.Future<void> updateDailyData(_i5.DailyData? dailyData) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateDailyData,
@@ -123,21 +94,11 @@ class MockIsarDatasource extends _i1.Mock implements _i2.IsarDatasource {
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> updateTargetData(_i3.TargetData? targetData) =>
+  _i4.Future<void> updateTargetData(_i5.TargetData? targetData) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateTargetData,
           [targetData],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
-  _i4.Future<void> deleteDailyData(int? id) => (super.noSuchMethod(
-        Invocation.method(
-          #deleteDailyData,
-          [id],
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
@@ -167,7 +128,33 @@ class MockIsarDatasource extends _i1.Mock implements _i2.IsarDatasource {
 /// A class which mocks [FoodSearchApi].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFoodSearchApi extends _i1.Mock implements _i5.FoodSearchApi {
+class MockFoodSearchApi extends _i1.Mock implements _i6.FoodSearchApi {
+  @override
+  String get baseUrl => (super.noSuchMethod(
+        Invocation.getter(#baseUrl),
+        returnValue: _i7.dummyValue<String>(
+          this,
+          Invocation.getter(#baseUrl),
+        ),
+        returnValueForMissingStub: _i7.dummyValue<String>(
+          this,
+          Invocation.getter(#baseUrl),
+        ),
+      ) as String);
+
+  @override
+  _i2.OAuthHelper get oAuthHelper => (super.noSuchMethod(
+        Invocation.getter(#oAuthHelper),
+        returnValue: _FakeOAuthHelper_0(
+          this,
+          Invocation.getter(#oAuthHelper),
+        ),
+        returnValueForMissingStub: _FakeOAuthHelper_0(
+          this,
+          Invocation.getter(#oAuthHelper),
+        ),
+      ) as _i2.OAuthHelper);
+
   @override
   _i4.Future<String> fetchFoodNutrition(String? foodName) =>
       (super.noSuchMethod(
@@ -175,7 +162,7 @@ class MockFoodSearchApi extends _i1.Mock implements _i5.FoodSearchApi {
           #fetchFoodNutrition,
           [foodName],
         ),
-        returnValue: _i4.Future<String>.value(_i6.dummyValue<String>(
+        returnValue: _i4.Future<String>.value(_i7.dummyValue<String>(
           this,
           Invocation.method(
             #fetchFoodNutrition,
@@ -183,7 +170,7 @@ class MockFoodSearchApi extends _i1.Mock implements _i5.FoodSearchApi {
           ),
         )),
         returnValueForMissingStub:
-            _i4.Future<String>.value(_i6.dummyValue<String>(
+            _i4.Future<String>.value(_i7.dummyValue<String>(
           this,
           Invocation.method(
             #fetchFoodNutrition,

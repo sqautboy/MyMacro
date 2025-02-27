@@ -1,4 +1,4 @@
-import '../../models/isar_data.dart';
+import '../../isar/isar_data.dart';
 
 abstract class TargetDataRepository {
   Future<TargetData?> getTargetData();

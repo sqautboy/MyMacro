@@ -35,7 +35,7 @@ class MyDrawer extends StatelessWidget {
               // App Store
               GestureDetector(
                 onTap: () {
-                  print('on clicked');
+                  debugPrint('on clicked');
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 25.0),
@@ -54,7 +54,7 @@ class MyDrawer extends StatelessWidget {
               // Play Store
               GestureDetector(
                 onTap: () {
-                  print('on clicked');
+                  debugPrint('on clicked');
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 27.0),

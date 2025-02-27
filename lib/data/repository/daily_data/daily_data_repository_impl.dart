@@ -1,6 +1,7 @@
+import '../../datasource/local/isar_datasource.dart';
+import '../../isar/isar_data.dart';
+
 import '../../../core/injection/get_it.dart';
-import '../../datasources/local/isar_datasource.dart';
-import '../../models/isar_data.dart';
 import 'daily_data_repository.dart';
 
 class DailyDataRepositoryImpl implements DailyDataRepository {

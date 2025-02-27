@@ -1,5 +1,5 @@
-import '../../../../data/datasources/local/isar_datasource.dart';
-import '../../../../data/models/isar_data.dart';
+import '../../../../data/datasource/local/isar_datasource.dart';
+import '../../../../data/isar/isar_data.dart';
 import '../second_intro/second_intro.dart';
 import '../../../../core/styles/typography.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +106,7 @@ class _FirstIntroState extends State<FirstIntro> {
                             });
                           }
 
-                          print('입력된 텍스트: ${_targetCalorieController.text}');
+                          debugPrint('입력된 텍스트: ${_targetCalorieController.text}');
                           Navigator.push(
                               context,
                               MaterialPageRoute(

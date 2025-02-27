@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_debugPrint
 
 import 'package:diet_macro/core/styles/typography.dart';
 import 'package:diet_macro/core/styles/colors/nutrition_color_set.dart';
@@ -43,7 +43,7 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
       int.tryParse(fat) ?? 0,
     );
 
-    Navigator.pop(context); // 모덜 닫기
+    Navigator.pop(context); // 모달 닫기
 
     // success animation modal popup dialog
     showDialog(
@@ -59,13 +59,13 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
         );
       },
     );
-    print('============ bottom sheet button pressed ============');
-    print('Calories: $calories');
-    print('Carb: $carb');
-    print('Protein: $protein');
-    print('Fat: $fat');
-    print("날짜: ${DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day)}");
-    print('=====================================================');
+    debugPrint('============ bottom sheet button pressed ============');
+    debugPrint('Calories: $calories');
+    debugPrint('Carb: $carb');
+    debugPrint('Protein: $protein');
+    debugPrint('Fat: $fat');
+    debugPrint("날짜: ${DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day)}");
+    debugPrint('=====================================================');
   }
 
   @override
@@ -79,7 +79,7 @@ class _BottomModalSheetState extends State<BottomModalSheet> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Add Diet Info',
+                'Add Meal Info',
                 style: MyTypos.heading1ExtraBold,
               ),
               IconButton(

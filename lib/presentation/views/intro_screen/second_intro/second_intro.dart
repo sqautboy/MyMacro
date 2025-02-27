@@ -1,11 +1,12 @@
-import '../../../../data/datasources/local/isar_datasource.dart';
-import '../../../../data/models/isar_data.dart';
-import '../../../../page_router.dart';
-import 'manual_page.dart';
-import '../../../../core/styles/typography.dart';
-import '../../../../core/styles/colors/nutrition_color_set.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
+
+import '../../../../core/styles/colors/nutrition_color_set.dart';
+import '../../../../core/styles/typography.dart';
+import '../../../../data/datasource/local/isar_datasource.dart';
+import '../../../../data/isar/isar_data.dart';
+import '../../../../page_router.dart';
+import 'manual_page.dart';
 
 class SecondIntro extends StatefulWidget {
   const SecondIntro({super.key});

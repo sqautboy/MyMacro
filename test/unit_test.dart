@@ -1,9 +1,9 @@
-import 'package:diet_macro/data/datasources/local/isar_datasource.dart';
-import 'package:diet_macro/data/datasources/remote/food_search_api.dart';
-import 'package:diet_macro/data/models/food_model.dart';
-import 'package:diet_macro/data/models/isar_data.dart';
-import 'package:diet_macro/data/repositories/daily_data/daily_data_repository_impl.dart';
-import 'package:diet_macro/data/repositories/food_search/food_repository_impl.dart';
+import 'package:diet_macro/data/datasource/local/isar_datasource.dart';
+import 'package:diet_macro/data/datasource/remote/food_search_api.dart';
+import 'package:diet_macro/data/entity/daily_nutrition.dart';
+import 'package:diet_macro/data/isar/isar_data.dart';
+import 'package:diet_macro/data/repository/daily_data/daily_data_repository_impl.dart';
+import 'package:diet_macro/data/repository/food_search/food_repository_impl.dart';
 import 'package:diet_macro/utils/data_process.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -61,7 +61,7 @@ void main() {
 
     test("_parseFoodNutrition should correctly parse JSON response", () async {
       // Arrange
-      final responseBody = """
+      const responseBody = """
       {
         "foods": {
           "food": [
@@ -85,7 +85,7 @@ void main() {
       final result = await foodRepositoryImpl.getFoodNutrition('test');
 
       // Assert
-      expect(result, isA<List<FoodNutrition>>());
+      expect(result, isA<List<DailyNutrition>>());
       expect(result.length, 2);
       expect(result[0].name, "Banana");
       expect(result[0].calories, 89);
@@ -109,7 +109,7 @@ void main() {
         "food_name": "Banana",
         "food_description": "Per 100g - Calories: 89kcal | Fat: 0.33g | Carbs: 22.84g | Protein: 1.09g"
       };
-      final foodNutritions = <FoodNutrition>[];
+      final foodNutritions = <DailyNutrition>[];
 
       // Act
       parseFoodNutrition(food, foodNutritions);

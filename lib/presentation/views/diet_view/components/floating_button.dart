@@ -1,6 +1,6 @@
 import '../diet_view_model.dart';
 import 'package:flutter/material.dart';
-import '../../../widgets/bottom_modal_sheet.dart';
+import 'bottom_modal_sheet.dart';
 
 class MyFloatingActionButton extends StatelessWidget {
   final DietViewModel dietViewModel;
@@ -27,10 +27,12 @@ class MyFloatingActionButton extends StatelessWidget {
           builder: (context) {
             return BottomModalSheet(
               onAddPressed: (calories, carb, protein, fat) async {
-                dietViewModel.updateDailyData(calories, carb, protein, fat);
+                // dailyData update -> mealList에 meal 추가로 변경
+                await dietViewModel.addMeal(calories, carb, protein, fat);
+                await dietViewModel.updateDailyData(calories, carb, protein, fat);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Successfully added your macro!'),
+                    content: Text('Successfully added!'),
                     duration: Duration(seconds: 2),
                   ),
                 );

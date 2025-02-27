@@ -1,6 +1,6 @@
-import 'package:diet_macro/core/styles/typography.dart';
+import '../../../core/styles/typography.dart';
 
-import '../../../data/models/food_model.dart';
+import '../../../data/entity/daily_nutrition.dart';
 
 import 'food_search_viewmodel.dart';
 import '../../../core/styles/colors/nutrition_color_set.dart';
@@ -40,7 +40,7 @@ class FoodSearchView extends StatelessWidget {
                 if (viewModel.isLoading) {
                   return _buildLoadingState();
                 } else if (viewModel.foods.isEmpty) {
-                  return Center(child: Text('No food found', style: MyTypos.body1Medium));
+                  return const Center(child: Text('No food found', style: MyTypos.body1Medium));
                 } else {
                   return _buildFoodList(viewModel.foods);
                 }
@@ -82,7 +82,7 @@ class FoodSearchView extends StatelessWidget {
     );
   }
 
-  Widget _buildFoodList(List<FoodNutrition> foods) {
+  Widget _buildFoodList(List<DailyNutrition> foods) {
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: ListView.builder(

@@ -1,8 +1,9 @@
-import 'package:diet_macro/core/network/oauth1.0/oauth_helper.dart';
+import '../../../core/network/oauth1.0/oauth_helper.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:diet_macro/core/network/api_error_handler.dart';
-import 'package:diet_macro/core/network/api_exception.dart';
+import '../../../core/network/api_error_handler.dart';
+import '../../../core/network/api_exception.dart';
 
 /// FatSecret API 호출을 담당하는 클래스
 class FoodSearchApi {
@@ -32,9 +33,9 @@ class FoodSearchApi {
       final response = await http.get(uri);
       return ApiErrorHandler.handleResponse(response);
     } on ApiException catch (e) {
-      print('ApiException 발생: $e');
+      debugPrint('ApiException 발생: $e');
     } catch (e) {
-      print('Exception 발생: $e');
+      debugPrint('Exception 발생: $e');
     }
     return '';
   }

@@ -1,5 +1,5 @@
-import '../../../../data/datasources/local/isar_datasource.dart';
-import '../../../../data/models/isar_data.dart';
+import '../../../../data/datasource/local/isar_datasource.dart';
+import '../../../../data/isar/isar_data.dart';
 import '../../../../page_router.dart';
 import '../../../../core/styles/typography.dart';
 import '../../../../core/styles/colors/nutrition_color_set.dart';

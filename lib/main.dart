@@ -1,11 +1,11 @@
 import 'core/injection/get_it.dart';
-import 'data/datasources/local/isar_datasource.dart';
-import 'data/models/isar_data.dart';
+import 'data/datasource/local/isar_datasource.dart';
+import 'data/isar/isar_data.dart';
 import 'presentation/views/diet_view/diet_view_model.dart';
 import 'presentation/views/food_search/food_search_viewmodel.dart';
-import 'presentation/views/intro_screens/first_intro/first_intro.dart';
+import 'presentation/views/intro_screen/first_intro/first_intro.dart';
 import 'page_router.dart';
-import 'data/services/notification_service.dart';
+import 'data/service/notification_service.dart';
 import 'core/styles/app_theme.dart';
 
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ void main() async {
 
   // local noti test
   Future.delayed(const Duration(seconds: 3), () {
-    // print('알람 테스트');
+    // debugPrint('알람 테스트');
     // NotificationService().showTestNotification("title", "body test");
     NotificationService().scheduleDailyNotification();
   });

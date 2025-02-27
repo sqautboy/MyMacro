@@ -1,5 +1,6 @@
-import '../../core/styles/typography.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/styles/typography.dart';
 
 class NutritionTile extends StatelessWidget {
   final Color dividerColor;

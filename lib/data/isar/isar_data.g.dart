@@ -1391,3 +1391,736 @@ extension DailyDataQueryProperty
     });
   }
 }
+
+// coverage:ignore-file
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+
+extension GetMealDataCollection on Isar {
+  IsarCollection<MealData> get mealDatas => this.collection();
+}
+
+const MealDataSchema = CollectionSchema(
+  name: r'MealData',
+  id: 5392423940093169763,
+  properties: {
+    r'calories': PropertySchema(
+      id: 0,
+      name: r'calories',
+      type: IsarType.long,
+    ),
+    r'carb': PropertySchema(
+      id: 1,
+      name: r'carb',
+      type: IsarType.long,
+    ),
+    r'date': PropertySchema(
+      id: 2,
+      name: r'date',
+      type: IsarType.dateTime,
+    ),
+    r'fat': PropertySchema(
+      id: 3,
+      name: r'fat',
+      type: IsarType.long,
+    ),
+    r'protein': PropertySchema(
+      id: 4,
+      name: r'protein',
+      type: IsarType.long,
+    )
+  },
+  estimateSize: _mealDataEstimateSize,
+  serialize: _mealDataSerialize,
+  deserialize: _mealDataDeserialize,
+  deserializeProp: _mealDataDeserializeProp,
+  idName: r'id',
+  indexes: {},
+  links: {},
+  embeddedSchemas: {},
+  getId: _mealDataGetId,
+  getLinks: _mealDataGetLinks,
+  attach: _mealDataAttach,
+  version: '3.1.0+1',
+);
+
+int _mealDataEstimateSize(
+  MealData object,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  var bytesCount = offsets.last;
+  return bytesCount;
+}
+
+void _mealDataSerialize(
+  MealData object,
+  IsarWriter writer,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  writer.writeLong(offsets[0], object.calories);
+  writer.writeLong(offsets[1], object.carb);
+  writer.writeDateTime(offsets[2], object.date);
+  writer.writeLong(offsets[3], object.fat);
+  writer.writeLong(offsets[4], object.protein);
+}
+
+MealData _mealDataDeserialize(
+  Id id,
+  IsarReader reader,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  final object = MealData();
+  object.calories = reader.readLong(offsets[0]);
+  object.carb = reader.readLong(offsets[1]);
+  object.date = reader.readDateTime(offsets[2]);
+  object.fat = reader.readLong(offsets[3]);
+  object.id = id;
+  object.protein = reader.readLong(offsets[4]);
+  return object;
+}
+
+P _mealDataDeserializeProp<P>(
+  IsarReader reader,
+  int propertyId,
+  int offset,
+  Map<Type, List<int>> allOffsets,
+) {
+  switch (propertyId) {
+    case 0:
+      return (reader.readLong(offset)) as P;
+    case 1:
+      return (reader.readLong(offset)) as P;
+    case 2:
+      return (reader.readDateTime(offset)) as P;
+    case 3:
+      return (reader.readLong(offset)) as P;
+    case 4:
+      return (reader.readLong(offset)) as P;
+    default:
+      throw IsarError('Unknown property with id $propertyId');
+  }
+}
+
+Id _mealDataGetId(MealData object) {
+  return object.id;
+}
+
+List<IsarLinkBase<dynamic>> _mealDataGetLinks(MealData object) {
+  return [];
+}
+
+void _mealDataAttach(IsarCollection<dynamic> col, Id id, MealData object) {
+  object.id = id;
+}
+
+extension MealDataQueryWhereSort on QueryBuilder<MealData, MealData, QWhere> {
+  QueryBuilder<MealData, MealData, QAfterWhere> anyId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(const IdWhereClause.any());
+    });
+  }
+}
+
+extension MealDataQueryWhere on QueryBuilder<MealData, MealData, QWhereClause> {
+  QueryBuilder<MealData, MealData, QAfterWhereClause> idEqualTo(Id id) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IdWhereClause.between(
+        lower: id,
+        upper: id,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterWhereClause> idNotEqualTo(Id id) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(
+              IdWhereClause.lessThan(upper: id, includeUpper: false),
+            )
+            .addWhereClause(
+              IdWhereClause.greaterThan(lower: id, includeLower: false),
+            );
+      } else {
+        return query
+            .addWhereClause(
+              IdWhereClause.greaterThan(lower: id, includeLower: false),
+            )
+            .addWhereClause(
+              IdWhereClause.lessThan(upper: id, includeUpper: false),
+            );
+      }
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterWhereClause> idGreaterThan(Id id,
+      {bool include = false}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(
+        IdWhereClause.greaterThan(lower: id, includeLower: include),
+      );
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterWhereClause> idLessThan(Id id,
+      {bool include = false}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(
+        IdWhereClause.lessThan(upper: id, includeUpper: include),
+      );
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterWhereClause> idBetween(
+    Id lowerId,
+    Id upperId, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IdWhereClause.between(
+        lower: lowerId,
+        includeLower: includeLower,
+        upper: upperId,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+}
+
+extension MealDataQueryFilter
+    on QueryBuilder<MealData, MealData, QFilterCondition> {
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> caloriesEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'calories',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> caloriesGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'calories',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> caloriesLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'calories',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> caloriesBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'calories',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> carbEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'carb',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> carbGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'carb',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> carbLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'carb',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> carbBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'carb',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> dateEqualTo(
+      DateTime value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'date',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> dateGreaterThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'date',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> dateLessThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'date',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> dateBetween(
+    DateTime lower,
+    DateTime upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'date',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> fatEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fat',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> fatGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fat',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> fatLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fat',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> fatBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fat',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> idEqualTo(Id value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'id',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> idGreaterThan(
+    Id value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'id',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> idLessThan(
+    Id value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'id',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> idBetween(
+    Id lower,
+    Id upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'id',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> proteinEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'protein',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> proteinGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'protein',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> proteinLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'protein',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterFilterCondition> proteinBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'protein',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+}
+
+extension MealDataQueryObject
+    on QueryBuilder<MealData, MealData, QFilterCondition> {}
+
+extension MealDataQueryLinks
+    on QueryBuilder<MealData, MealData, QFilterCondition> {}
+
+extension MealDataQuerySortBy on QueryBuilder<MealData, MealData, QSortBy> {
+  QueryBuilder<MealData, MealData, QAfterSortBy> sortByCalories() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'calories', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> sortByCaloriesDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'calories', Sort.desc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> sortByCarb() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'carb', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> sortByCarbDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'carb', Sort.desc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> sortByDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'date', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> sortByDateDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'date', Sort.desc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> sortByFat() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fat', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> sortByFatDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fat', Sort.desc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> sortByProtein() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'protein', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> sortByProteinDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'protein', Sort.desc);
+    });
+  }
+}
+
+extension MealDataQuerySortThenBy
+    on QueryBuilder<MealData, MealData, QSortThenBy> {
+  QueryBuilder<MealData, MealData, QAfterSortBy> thenByCalories() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'calories', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> thenByCaloriesDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'calories', Sort.desc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> thenByCarb() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'carb', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> thenByCarbDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'carb', Sort.desc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> thenByDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'date', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> thenByDateDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'date', Sort.desc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> thenByFat() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fat', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> thenByFatDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fat', Sort.desc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> thenById() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'id', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> thenByIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'id', Sort.desc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> thenByProtein() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'protein', Sort.asc);
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QAfterSortBy> thenByProteinDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'protein', Sort.desc);
+    });
+  }
+}
+
+extension MealDataQueryWhereDistinct
+    on QueryBuilder<MealData, MealData, QDistinct> {
+  QueryBuilder<MealData, MealData, QDistinct> distinctByCalories() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'calories');
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QDistinct> distinctByCarb() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'carb');
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QDistinct> distinctByDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'date');
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QDistinct> distinctByFat() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'fat');
+    });
+  }
+
+  QueryBuilder<MealData, MealData, QDistinct> distinctByProtein() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'protein');
+    });
+  }
+}
+
+extension MealDataQueryProperty
+    on QueryBuilder<MealData, MealData, QQueryProperty> {
+  QueryBuilder<MealData, int, QQueryOperations> idProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'id');
+    });
+  }
+
+  QueryBuilder<MealData, int, QQueryOperations> caloriesProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'calories');
+    });
+  }
+
+  QueryBuilder<MealData, int, QQueryOperations> carbProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'carb');
+    });
+  }
+
+  QueryBuilder<MealData, DateTime, QQueryOperations> dateProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'date');
+    });
+  }
+
+  QueryBuilder<MealData, int, QQueryOperations> fatProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'fat');
+    });
+  }
+
+  QueryBuilder<MealData, int, QQueryOperations> proteinProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'protein');
+    });
+  }
+}

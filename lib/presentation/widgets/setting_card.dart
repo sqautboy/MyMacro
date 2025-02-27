@@ -1,6 +1,6 @@
-import '../../data/datasources/local/isar_datasource.dart';
+import '../../data/datasource/local/isar_datasource.dart';
 import '../views/food_search/food_search_view.dart';
-import '../views/intro_screens/first_intro/first_intro.dart';
+import '../views/intro_screen/first_intro/first_intro.dart';
 import '../../core/styles/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';

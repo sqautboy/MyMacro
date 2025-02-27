@@ -1,12 +1,12 @@
 import '../../../core/injection/get_it.dart';
-import '../../../data/models/food_model.dart';
-import '../../../data/repositories/food_search/food_repository.dart';
+import '../../../data/entity/daily_nutrition.dart';
+import '../../../data/repository/food_search/food_repository.dart';
 import 'package:flutter/material.dart';
 
 class FoodSearchViewModel extends ChangeNotifier {
   final _foodRepository = getIt<FoodRepository>();
 
-  List<FoodNutrition> foods = [];
+  List<DailyNutrition> foods = [];
   bool isLoading = false;
 
   Future<void> fetchFoodNutrition(String foodName) async {
